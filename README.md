@@ -1,3 +1,3 @@
 # Friday Fellows Updater (Google Cloud Functions)
 
-Implementing 
+Implementing FridayFellows Updater on Google Cloud Platform with Cloud Functions.
