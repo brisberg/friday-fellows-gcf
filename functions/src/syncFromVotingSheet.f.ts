@@ -30,7 +30,11 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   try {
     const sheetModel = await request.then(handleSpreadsheetsGetResponse);
 
-    await firestore.collection(COLLECTION_NAME).add({sheetsData: sheetModel});
+    const created = new Date().getTime();
+    await firestore.collection(COLLECTION_NAME).add({
+      created,
+      data: sheetModel,
+    });
 
     res.status(200).send({sheetModel});
   } catch (err) {
