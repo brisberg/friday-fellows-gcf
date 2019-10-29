@@ -9,7 +9,12 @@
     "target": "es2017"
   },
   "compileOnSave": true,
+  "files": [
+    "./types/chinmei.d.ts",
+    "./types/googleapi.d.ts"
+  ],
   "include": [
-    "src"
+    "config.ts",
+    "src",
   ]
 }
