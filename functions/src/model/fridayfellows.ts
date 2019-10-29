@@ -1,8 +1,11 @@
 /**
  * Set of type definitions for FridayFellows domain models. These will be used
- * internally and act as the common storage medium between the different service
- * models.
+ * internally in Firestore and act as the common storage medium between the
+ * different service models.
  */
+
+// Top level collection for all season documents
+export const SEASONS_COLLECTION = 'seasons';
 
 export enum Season {
   Spring = 0,
@@ -12,12 +15,34 @@ export enum Season {
 }
 
 export interface SeasonModel {
-  formattedName: string; // ex. 'Winter 2014'
+  documentId: string|null;
+  formattedName: string;  // ex. 'Winter 2014'
   year: number;
   season: Season;
+  sheetId: number;  // id of the sheet in the source SpreadSheet
   startDate: Date;
-  records: SeriesVotingRecord[];
 }
+
+// Top level collection for all series documents
+export const SERIES_COLLECTION = 'series';
+
+export enum SeriesType {
+  Series,
+  Short,
+}
+
+export interface SeriesModel {
+  documentId: string|null;
+  titleEn: string;
+  type: SeriesType;
+  idMal?: number;
+  idAL?: number;
+  episodes: number;
+  seasonIds: number[];
+}
+
+// Top level collection for all series documents
+export const VOTING_RECORDS_COLLECTION = 'voting-records';
 
 // Current voting status of a show
 export enum VotingStatus {
@@ -28,26 +53,13 @@ export enum VotingStatus {
 }
 
 export interface SeriesVotingRecord {
-  series: AnimeModel;
+  documentId: string|null;
+  series: SeriesModel;
   status: VotingStatus;
   startedWeek: number;
   completedWeek?: number;
 }
 
-export enum SeriesType {
-  Series,
-  Short,
-}
-
-export interface AnimeModel {
-  titleEn: string;
-  type: SeriesType;
-  idMal?: number;
-  idAL?: number;
-  episodes: number;
-  season: Season;
-  year: number;
-}
 
 /// Export to List Service models
 export enum WatchStatus {
@@ -57,7 +69,7 @@ export enum WatchStatus {
 }
 
 export interface AnimeListRecord {
-  series: AnimeModel;
+  series: SeriesModel;
   status: WatchStatus;
   startDate: Date;
   completedDate?: Date;

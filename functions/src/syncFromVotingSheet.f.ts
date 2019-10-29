@@ -5,9 +5,9 @@ import {sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
+import {Season, SeasonModel, SEASONS_COLLECTION} from './model/fridayfellows';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
 
-const COLLECTION_NAME = 'sheets-collection';
 const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
@@ -21,6 +21,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     'sheets.properties.sheetId',
     'sheets.properties.title',
     'sheets.properties.gridProperties',
+    'developerMetadata',
   ].join(',');
 
   const request = api.spreadsheets.get({
@@ -30,11 +31,17 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   try {
     const sheetModel = await request.then(handleSpreadsheetsGetResponse);
 
-    const created = new Date().getTime();
-    await firestore.collection(COLLECTION_NAME).add({
-      created,
-      data: sheetModel,
-    });
+    const seasonModels = extractSeasonDocuments(sheetModel);
+
+    const batch = firestore.batch();
+    const seasonCollection = firestore.collection(SEASONS_COLLECTION);
+
+    for (const season of seasonModels) {
+      const docRef = seasonCollection.doc();
+      batch.create(docRef, season);
+    }
+
+    await batch.commit();
 
     res.status(200).send({sheetModel});
   } catch (err) {
@@ -73,4 +80,66 @@ function handleSpreadsheetsGetResponse(
 
   sheetModel.sheets = sheets.reverse();
   return sheetModel;
+}
+
+/**
+ * Extracts Season domain documents from a SpreadsheetModel suitable for storage
+ * in Firestore.
+ * @param model Domain model of a Voting Spreadsheet from GoogleSheets
+ */
+function extractSeasonDocuments(model: SpreadsheetModel) {
+  const seasonDocs: SeasonModel[] = [];
+
+  model.sheets.map((sheet: WorksheetModel) => {
+    seasonDocs.push({
+      documentId: null,
+      sheetId: sheet.sheetId,
+      formattedName: sheet.title,
+      year: extractYear(sheet.title),
+      season: extractSeason(sheet.title),
+      startDate: new Date(),
+    });
+  });
+
+  return seasonDocs;
+}
+
+
+/// Utils
+
+/**
+ * Extracts the numerical year from a season sheet title.
+ * @param title Sheet title (Ex. 'WINTER 2015')
+ */
+function extractYear(title: string): number {
+  return parseInt(title.split(' ')[1]);
+}
+
+/**
+ * Extracts the numerical year from a season sheet title.
+ * @param title Sheet title (Ex. 'WINTER 2015')
+ */
+function extractSeason(title: string): Season {
+  return Season[title.split(' ')[0] as keyof typeof Season];
+}
+
+export interface ParsedCellInfo {
+  episode: number;
+  votesFor: number;
+  votesAgainst: number;
+}
+
+/**
+ * @param {number} index column index of this cell
+ * @param {string} value string of the form "Ep. <epNum>: <votesFor> to
+ * <votesAgainst>" to parse into its variable parts.
+ * @return {ParsedCellInfo} Wrapper for episodes, votesFor and
+ * VotesAgainst.
+ */
+export function parseVoteCell(value: string): ParsedCellInfo {
+  const parts = value.split(' ');
+  const episode = parseInt(parts[1].slice(0, -1));
+  const votesFor = parseInt(parts[2]);
+  const votesAgainst = parseInt(parts[4]);
+  return {episode, votesFor, votesAgainst};
 }
