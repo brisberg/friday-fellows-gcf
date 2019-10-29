@@ -9,6 +9,9 @@ import {Scopes} from 'contrib/googleapis';
 /// General configs
 export const LOGS_PATH = 'logs/';
 
+/// GCP and Firebase configs
+export const PROJECT_ID = 'driven-utility-202807';
+
 /// Google Sheets client configs
 export const SCOPES: Scopes = [
   'https://www.googleapis.com/auth/spreadsheets',

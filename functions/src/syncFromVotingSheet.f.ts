@@ -1,10 +1,16 @@
+import {Firestore} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 import {GaxiosResponse} from 'gaxios';
 import {sheets_v4} from 'googleapis';
 
-import {SCOPES, SPREADSHEET_ID} from './config'
+import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
+
+const COLLECTION_NAME = 'sheets-collection';
+const firestore = new Firestore({
+  projectId: PROJECT_ID,
+});
 
 exports = module.exports = functions.https.onRequest(async (_, res) => {
   const api = await getSheetsClient(SCOPES);
@@ -23,7 +29,9 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   });
   try {
     const sheetModel = await request.then(handleSpreadsheetsGetResponse);
-    // This just prints out all Worksheet names as an example
+
+    await firestore.collection(COLLECTION_NAME).add({sheetsData: sheetModel});
+
     res.status(200).send({sheetModel});
   } catch (err) {
     res.status(500).send({err});
