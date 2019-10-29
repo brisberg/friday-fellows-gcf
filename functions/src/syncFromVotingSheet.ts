@@ -3,9 +3,6 @@ import * as functions from 'firebase-functions';
 import {SCOPES, SPREADSHEET_ID} from '../config'
 import {getSheetsClient} from './google.auth';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-
 export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
   const api = await getSheetsClient(SCOPES);
   const request = api.spreadsheets.get({spreadsheetId: SPREADSHEET_ID});
