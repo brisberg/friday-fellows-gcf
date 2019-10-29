@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 
-import {SCOPES, SPREADSHEET_ID} from '../config'
+import {SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 
 export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
