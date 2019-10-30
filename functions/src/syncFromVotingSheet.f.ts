@@ -18,10 +18,10 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   const metadataFields = [
     'spreadsheetId',
     'properties.title',
+    'sheets.developerMetadata',
     'sheets.properties.sheetId',
     'sheets.properties.title',
     'sheets.properties.gridProperties',
-    'developerMetadata',
   ].join(',');
 
   const request = api.spreadsheets.get({
@@ -38,8 +38,8 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     const seasonCollection = firestore.collection(SEASONS_COLLECTION);
 
     for (const season of seasonModels) {
-      const docRef = seasonCollection.doc();
-      batch.create(docRef, season);
+      const docRef = seasonCollection.doc(season.formattedName);
+      batch.set(docRef, season);
     }
 
     await batch.commit();
@@ -67,6 +67,14 @@ function handleSpreadsheetsGetResponse(
   let sheets: WorksheetModel[] = [];
   if (data.sheets) {
     sheets = data.sheets.map((sheet): WorksheetModel => {
+      const combinedMD: {[key: string]: string} = {};
+      if (sheet.developerMetadata) {
+        sheet.developerMetadata.map((metadata) => {
+          if (metadata.metadataKey && metadata.metadataValue) {
+            combinedMD[metadata.metadataKey] = metadata.metadataValue;
+          }
+        })
+      }
       return {
         title: sheet.properties!.title || '',
         sheetId: sheet.properties!.sheetId || 0,
@@ -75,6 +83,7 @@ function handleSpreadsheetsGetResponse(
           columnCount: sheet.properties!.gridProperties!.columnCount || 0,
         },
         data: [],
+        metadata: combinedMD,
       };
     });
   }
@@ -92,13 +101,17 @@ function extractSeasonDocuments(model: SpreadsheetModel) {
   const seasonDocs: SeasonModel[] = [];
 
   model.sheets.map((sheet: WorksheetModel) => {
+    let startDate = '';
+    if (sheet.metadata && sheet.metadata['foobar']) {
+      startDate = sheet.metadata['foobar'];
+    }
+
     seasonDocs.push({
-      documentId: null,
       sheetId: sheet.sheetId,
       formattedName: sheet.title,
       year: extractYear(sheet.title),
       season: extractSeason(sheet.title),
-      startDate: new Date(),
+      startDate,
     });
   });
 

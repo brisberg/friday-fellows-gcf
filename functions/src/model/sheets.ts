@@ -13,8 +13,10 @@ export interface WorksheetModel {
   title: string;
   gridProperties: {rowCount?: number; columnCount?: number;};
   data: WorksheetRowModel[];
+  metadata: {[key: string]: string}
 }
 
 export interface WorksheetRowModel {
   cells: string[];
+  metadata: {[key: string]: string}
 }

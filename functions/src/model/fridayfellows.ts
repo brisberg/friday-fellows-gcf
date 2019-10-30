@@ -15,13 +15,13 @@ export enum Season {
   WINTER,
 }
 
+export const START_DATE_METADATA_KEY = 'season-start-date';
 export interface SeasonModel {
-  documentId: string|null;
   formattedName: string;  // ex. 'WINTER 2014'
   year: number;
   season: Season;
   sheetId: number;  // id of the sheet in the source SpreadSheet
-  startDate: Date;
+  startDate: string;
 }
 
 // Top level collection for all series documents
@@ -33,7 +33,6 @@ export enum SeriesType {
 }
 
 export interface SeriesModel {
-  documentId: string|null;
   titleEn: string;
   type: SeriesType;
   idMal?: number;
@@ -54,7 +53,6 @@ export enum VotingStatus {
 }
 
 export interface SeriesVotingRecord {
-  documentId: string|null;
   series: SeriesModel;
   status: VotingStatus;
   startedWeek: number;
