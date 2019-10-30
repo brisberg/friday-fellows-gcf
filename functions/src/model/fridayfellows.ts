@@ -8,15 +8,16 @@
 export const SEASONS_COLLECTION = 'seasons';
 
 export enum Season {
-  Spring = 0,
-  Summer,
-  Fall,
-  Winter,
+  UNKNOWN = 0,
+  SPRING,
+  SUMMER,
+  FALL,
+  WINTER,
 }
 
 export interface SeasonModel {
   documentId: string|null;
-  formattedName: string;  // ex. 'Winter 2014'
+  formattedName: string;  // ex. 'WINTER 2014'
   year: number;
   season: Season;
   sheetId: number;  // id of the sheet in the source SpreadSheet

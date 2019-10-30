@@ -29,8 +29,9 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     fields: metadataFields,
   });
   try {
-    const sheetModel = await request.then(handleSpreadsheetsGetResponse);
+    const resp = await request;
 
+    const sheetModel = handleSpreadsheetsGetResponse(resp);
     const seasonModels = extractSeasonDocuments(sheetModel);
 
     const batch = firestore.batch();
@@ -43,7 +44,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
 
     await batch.commit();
 
-    res.status(200).send({sheetModel});
+    res.status(200).send({data: resp.data});
   } catch (err) {
     res.status(500).send({err});
   }
@@ -120,7 +121,12 @@ function extractYear(title: string): number {
  * @param title Sheet title (Ex. 'WINTER 2015')
  */
 function extractSeason(title: string): Season {
-  return Season[title.split(' ')[0] as keyof typeof Season];
+  try {
+    return Season[title.split(' ')[0] as keyof typeof Season];
+  } catch (e) {
+    console.warn('Could not parse season name from: ' + title);
+    return Season.UNKNOWN;
+  }
 }
 
 export interface ParsedCellInfo {
