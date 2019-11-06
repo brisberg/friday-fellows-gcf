@@ -18,11 +18,13 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   const metadataFields = [
     'spreadsheetId',
     'properties.title',
-    'sheets.developerMetadata',
+    'sheets.developerMetadata',  // Metadata for the sheet
     'sheets.properties.sheetId',
     'sheets.properties.title',
     'sheets.properties.gridProperties',
   ].join(',');
+
+  // 'sheets.data.rowMetadata' // Metadata for the specific row
 
   const request = api.spreadsheets.get({
     spreadsheetId: SPREADSHEET_ID,
@@ -67,14 +69,15 @@ function handleSpreadsheetsGetResponse(
   let sheets: WorksheetModel[] = [];
   if (data.sheets) {
     sheets = data.sheets.map((sheet): WorksheetModel => {
-      const combinedMD: {[key: string]: string} = {};
+      const metadataMap: {[key: string]: string} = {};
       if (sheet.developerMetadata) {
         sheet.developerMetadata.map((metadata) => {
           if (metadata.metadataKey && metadata.metadataValue) {
-            combinedMD[metadata.metadataKey] = metadata.metadataValue;
+            metadataMap[metadata.metadataKey] = metadata.metadataValue;
           }
         })
       }
+
       return {
         title: sheet.properties!.title || '',
         sheetId: sheet.properties!.sheetId || 0,
@@ -83,7 +86,7 @@ function handleSpreadsheetsGetResponse(
           columnCount: sheet.properties!.gridProperties!.columnCount || 0,
         },
         data: [],
-        metadata: combinedMD,
+        metadata: metadataMap,
       };
     });
   }
