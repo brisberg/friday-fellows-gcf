@@ -17,6 +17,7 @@ import {START_DATE_METADATA_KEY} from './model/fridayfellows';
 
 exports = module.exports = functions.https.onRequest(async (req, res) => {
   const {sheetId, startDate} = req.body;
+  // TODO: Validate date format
 
   const api = await getSheetsClient(SCOPES);
 
