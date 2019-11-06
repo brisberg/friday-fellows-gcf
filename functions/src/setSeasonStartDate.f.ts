@@ -41,6 +41,7 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
 
   let metadataId;
   const matchedMetadata = existingMetadata.data.matchedDeveloperMetadata;
+  // TODO: Maybe we should log an error if more than one metadata match?
   if (matchedMetadata && matchedMetadata.length > 0) {
     metadataId = matchedMetadata[0].developerMetadata!.metadataId;
   }
