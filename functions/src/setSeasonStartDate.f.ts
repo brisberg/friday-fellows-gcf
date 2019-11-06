@@ -18,9 +18,6 @@ import {START_DATE_METADATA_KEY} from './model/fridayfellows';
 exports = module.exports = functions.https.onRequest(async (req, res) => {
   const {sheetId, startDate} = req.body;
 
-  console.log(sheetId);
-  console.log(startDate);
-
   const api = await getSheetsClient(SCOPES);
 
   const lookupReq = api.spreadsheets.developerMetadata.search({
