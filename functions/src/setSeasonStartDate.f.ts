@@ -16,11 +16,36 @@ import {START_DATE_METADATA_KEY} from './model/fridayfellows';
 // https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate
 
 exports = module.exports = functions.https.onRequest(async (req, res) => {
-  const {sheetId, startDate} = req.body;
+  const sheetId: number = req.body['sheetId'];
+  const {startDate} = req.body;
   // TODO: Validate date format
 
   const api = await getSheetsClient(SCOPES);
 
+  const requests = await getUpsertMetadataRequest(api, sheetId, startDate);
+
+  const request = api.spreadsheets.batchUpdate({
+    spreadsheetId: SPREADSHEET_ID,
+    requestBody: {
+      requests,
+    },
+  });
+
+  try {
+    const resp = await request;
+
+    // Maybe update fire store here?
+    // Or trigger a sync again just for this sheet?
+
+    res.status(200).send({data: resp.data});
+  } catch (err) {
+    console.log(JSON.stringify(err));
+    res.status(500).send({err});
+  }
+});
+
+async function getUpsertMetadataRequest(
+    api: sheets_v4.Sheets, sheetId: number, startDate: string) {
   const lookupReq = api.spreadsheets.developerMetadata.search({
     spreadsheetId: SPREADSHEET_ID,
     requestBody: {
@@ -81,22 +106,5 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
     });
   }
 
-  const request = api.spreadsheets.batchUpdate({
-    spreadsheetId: SPREADSHEET_ID,
-    requestBody: {
-      requests,
-    },
-  });
-
-  try {
-    const resp = await request;
-
-    // Maybe update fire store here?
-    // Or trigger a sync again just for this sheet?
-
-    res.status(200).send({data: resp.data});
-  } catch (err) {
-    console.log(JSON.stringify(err));
-    res.status(500).send({err});
-  }
-});
+  return requests;
+}
