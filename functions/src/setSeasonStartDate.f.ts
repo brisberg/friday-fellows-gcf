@@ -1,11 +1,15 @@
 import * as functions from 'firebase-functions';
 
-import {SCOPES} from './config'
+import {SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {START_DATE_METADATA_KEY} from './model/fridayfellows';
 
+// Testing (Made spreadsheet publicly editable for the moment)
+// TODO: Figure out service account editing permissions
+// curl -X POST -H 'Content-Type: application/json' -d '{"sheetId": 1242888778, "startDate": 5432}' https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate
+
 exports = module.exports = functions.https.onRequest(async (req, res) => {
-  const {sheetId, startDate} = req.body.data;
+  const {sheetId, startDate} = req.body;
 
   console.log(sheetId);
   console.log(startDate);
@@ -16,6 +20,7 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
   // Update all values in place (including the new start date)
   // This will create the metadata if none is found
   const request = api.spreadsheets.batchUpdate({
+    spreadsheetId: SPREADSHEET_ID,
     requestBody: {
       requests: [{
         updateDeveloperMetadata: {
@@ -26,7 +31,7 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
           }],
           developerMetadata: {
             metadataKey: START_DATE_METADATA_KEY,
-            metadataValue: startDate,
+            metadataValue: '' + startDate,
             location: {
               sheetId,
             },
@@ -45,6 +50,7 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
 
     res.status(200).send({data: resp.data});
   } catch (err) {
+    console.log(JSON.stringify(err));
     res.status(500).send({err});
   }
 });
