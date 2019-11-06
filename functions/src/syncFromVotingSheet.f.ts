@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions';
 import {GaxiosResponse} from 'gaxios';
 import {sheets_v4} from 'googleapis';
 
-import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
+import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {Season, SeasonModel, SEASONS_COLLECTION} from './model/fridayfellows';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
@@ -13,7 +13,7 @@ const firestore = new Firestore({
 });
 
 exports = module.exports = functions.https.onRequest(async (_, res) => {
-  const api = await getSheetsClient(SCOPES);
+  const api = await getSheetsClient(SCOPES_READONLY);
 
   const metadataFields = [
     'spreadsheetId',

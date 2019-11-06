@@ -15,6 +15,8 @@ export const PROJECT_ID = 'driven-utility-202807';
 /// Google Sheets client configs
 export const SCOPES: Scopes = [
   'https://www.googleapis.com/auth/spreadsheets',
+];
+export const SCOPES_READONLY: Scopes = [
   'https://www.googleapis.com/auth/spreadsheets.readonly',
 ];
 export const TOKEN_PATH = 'credentials.json';
