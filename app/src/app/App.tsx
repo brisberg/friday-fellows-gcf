@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { Icon } from '@material-ui/core';
+import { Icon, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -66,12 +66,13 @@ const App: React.FC = () => {
                     <TableCell align="right">{season.season}</TableCell>
                     <TableCell align="right">{season.year}</TableCell>
                     <TableCell align="right">
-                      {season.startDate === null && <Icon className="push-right warning-icon text-top">warning</Icon>}
+                      {season.startDate === null && <Tooltip title="Missing Start Date">
+                        <Icon className="push-right warning-icon text-top">warning</Icon>
+                      </Tooltip>}
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker
                           disableToolbar
                           variant="inline"
-                          emptyLabel="No Start Date Specified"
                           format="MM/dd/yyyy"
                           autoOk={true}
                           value={season.startDate}
