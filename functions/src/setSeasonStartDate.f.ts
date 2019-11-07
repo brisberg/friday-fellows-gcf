@@ -1,3 +1,4 @@
+import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
 import {sheets_v4} from 'googleapis';
 
@@ -16,6 +17,9 @@ import {START_DATE_METADATA_KEY} from './model/fridayfellows';
 // https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate
 
 exports = module.exports = functions.https.onRequest(async (req, res) => {
+  const cors = Cors({
+    origin: true,
+  });
   const sheetId: number = req.body['sheetId'];
   const {startDate} = req.body;
   // TODO: Validate date format
@@ -37,7 +41,9 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
     // Maybe update fire store here?
     // Or trigger a sync again just for this sheet?
 
-    res.status(200).send({data: resp.data});
+    return cors(req, res, () => {
+      res.status(200).send({data: resp.data});
+    });
   } catch (err) {
     console.log(JSON.stringify(err));
     res.status(500).send({err});
