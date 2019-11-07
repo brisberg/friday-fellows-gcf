@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { reducer, initialState } from '../state/reducer';
+import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { Icon, Tooltip } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +35,19 @@ const App: React.FC = () => {
     const data = await resp.json();
     dispatch(AppActions.fetchSeasons({ json: data }));
   };
+
+  const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel, index: number) => {
+    const resp = await axios.post('https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate', {
+      sheetId: season.sheetId,
+      startDate: newDate ? newDate.getTime() : null,
+    })
+    if (resp.status === 200) {
+      dispatch(AppActions.setSeasonStartDate({
+        seasonIdx: index,
+        startDate: newDate,
+      }))
+    }
+  }
 
   return (
     <div className="App">
@@ -77,12 +91,7 @@ const App: React.FC = () => {
                           format="MM/dd/yyyy"
                           autoOk={true}
                           value={season.startDate}
-                          onChange={(event) => {
-                            dispatch(AppActions.setSeasonStartDate({
-                              seasonIdx: index,
-                              startDate: event,
-                            }))
-                          }}
+                          onChange={(date) => { handleStartDateChanged(date, season, index); }}
                           KeyboardButtonProps={{
                             'aria-label': 'change date',
                           }}
