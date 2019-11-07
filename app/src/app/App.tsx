@@ -57,6 +57,7 @@ const App: React.FC = () => {
                   <TableCell align="right">Sheet&nbsp;ID</TableCell>
                 </TableRow>
               </TableHead>
+              {/* TODO Add an empty state message and a loading spinner */}
               <TableBody>
                 {state.seasons.map((season, index) => (
                   <TableRow key={season.sheetId}>
