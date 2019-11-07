@@ -27,3 +27,15 @@
 .App-footer {
   padding: 10px;
 }
+
+.push-right {
+  margin-right: 10px;
+}
+
+.warning-icon {
+  color: rgb(240, 96, 44);
+}
+
+.text-top {
+  vertical-align: text-top;
+}
