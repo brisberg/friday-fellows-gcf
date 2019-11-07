@@ -69,9 +69,9 @@ const App: React.FC = () => {
                         <KeyboardDatePicker
                           disableToolbar
                           variant="inline"
+                          emptyLabel="No Start Date Specified"
                           format="MM/dd/yyyy"
-                          margin="normal"
-                          label="Date picker inline"
+                          autoOk={true}
                           value={season.startDate}
                           onChange={(event) => {
                             dispatch(AppActions.setSeasonStartDate({
