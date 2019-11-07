@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/friday-fellows-gcf/static/css/main.328efa21.chunk.css",
+    "main.js": "/friday-fellows-gcf/static/js/main.8eb51137.chunk.js",
+    "main.js.map": "/friday-fellows-gcf/static/js/main.8eb51137.chunk.js.map",
+    "runtime-main.js": "/friday-fellows-gcf/static/js/runtime-main.c66ea623.js",
+    "runtime-main.js.map": "/friday-fellows-gcf/static/js/runtime-main.c66ea623.js.map",
+    "static/js/2.b8071cbe.chunk.js": "/friday-fellows-gcf/static/js/2.b8071cbe.chunk.js",
+    "static/js/2.b8071cbe.chunk.js.map": "/friday-fellows-gcf/static/js/2.b8071cbe.chunk.js.map",
+    "index.html": "/friday-fellows-gcf/index.html",
+    "precache-manifest.650ab7f0abf189e2f2b9a8ae3964e91c.js": "/friday-fellows-gcf/precache-manifest.650ab7f0abf189e2f2b9a8ae3964e91c.js",
+    "service-worker.js": "/friday-fellows-gcf/service-worker.js",
+    "static/css/main.328efa21.chunk.css.map": "/friday-fellows-gcf/static/css/main.328efa21.chunk.css.map",
+    "static/media/logo.svg": "/friday-fellows-gcf/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c66ea623.js",
+    "static/js/2.b8071cbe.chunk.js",
+    "static/css/main.328efa21.chunk.css",
+    "static/js/main.8eb51137.chunk.js"
+  ]
+}
