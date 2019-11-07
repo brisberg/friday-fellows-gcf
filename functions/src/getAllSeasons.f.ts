@@ -1,4 +1,5 @@
 import {Firestore} from '@google-cloud/firestore';
+import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
 
 import {PROJECT_ID} from './config'
@@ -11,10 +12,15 @@ const firestore = new Firestore({
 /**
  * Query Firestore for the list of all seasons.
  */
-exports = module.exports = functions.https.onRequest(async (_, res) => {
+exports = module.exports = functions.https.onRequest(async (req, res) => {
+  const cors = Cors({
+    origin: true,
+  });
   try {
     const snapshot = await firestore.collection(SEASONS_COLLECTION).get();
-    res.status(200).send(snapshot.docs.map((docSnap) => docSnap.data()));
+    return cors(req, res, () => {
+      res.status(200).send(snapshot.docs.map((docSnap) => docSnap.data()));
+    })
   } catch (err) {
     res.status(err.status).send({err});
   }
