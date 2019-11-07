@@ -40,7 +40,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     const seasonCollection = firestore.collection(SEASONS_COLLECTION);
 
     for (const season of seasonModels) {
-      const docRef = seasonCollection.doc(season.formattedName);
+      const docRef = seasonCollection.doc(getSeasonId(season.formattedName));
       batch.set(docRef, season);
     }
 
@@ -121,6 +121,14 @@ function extractSeasonDocuments(model: SpreadsheetModel) {
 
 
 /// Utils
+
+/**
+ * Converts a formatted season name to an ID for use in Firestore.
+ * @param title Sheet title (Ex. 'WINTER 2015')
+ */
+function getSeasonId(title: string): string {
+  return title.split(' ').reverse().join(' ');
+}
 
 /**
  * Extracts the numerical year from a season sheet title.
