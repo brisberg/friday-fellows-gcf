@@ -1,4 +1,4 @@
-import {AllActions, FETCH_SEASONS} from './actions';
+import {AllActions, FETCH_SEASONS, SET_SEASON_START_DATE} from './actions';
 
 export enum Season {
   UNKNOWN = 0,
@@ -18,18 +18,33 @@ export interface SeasonModel {
 }
 
 interface AppState {
-  seasonsJson: SeasonModel[]
+  seasons: SeasonModel[]
 }
 
 export const initialState: AppState = {
-  seasonsJson: []
+  seasons: []
 }
 
 export function reducer(state: AppState = initialState, action: AllActions) {
   switch (action.type) {
     case FETCH_SEASONS:
       return {
-        ...state, seasonsJson: action.payload.json,
+        ...state, seasons: action.payload.json,
+      }
+    case SET_SEASON_START_DATE:
+      return {
+        ...state, seasons: state.seasons.map((season, index) => {
+          if (index !== action.payload.seasonIdx) {
+            // This isn't the item we care about - keep it as-is
+            return season
+          }
+
+          // Otherwise, this is the one we want - return an updated value
+          const startDate = action.payload.startDate;
+          return {
+            ...season, startDate: startDate ? startDate.getTime() : null,
+          }
+        })
       }
     default:
       return state;
