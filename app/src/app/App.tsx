@@ -3,23 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 import { reducer, initialState } from '../state/reducer';
 import { AppActions } from '../state/actions';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles({
+  root: {
+    overflowX: 'auto',
+    margin: '0 10px',
+  },
+  table: {
+    minWidth: 650,
+  },
+});
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const classes = useStyles();
 
   const fetchSeasonData = async () => {
     const resp = await fetch('https://us-central1-driven-utility-202807.cloudfunctions.net/getAllSeasons')
     const data = await resp.json();
     dispatch(AppActions.fetchSeasons({ json: data }));
   };
-
-  const renderSeasonItems = (seasons: { sheetId: number }[]) => {
-    return (
-      seasons.map((season) => (
-        <p key={season.sheetId}>{JSON.stringify(season)}</p>
-      ))
-    );
-  }
 
   return (
     <div className="App">
@@ -32,7 +43,32 @@ const App: React.FC = () => {
       <div className="App-body">
         <div>
           <p>Seasons JSON:</p>
-          {renderSeasonItems(state.seasonsJson)}
+          <Paper className={classes.root}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Season Name</TableCell>
+                  <TableCell align="right">Season</TableCell>
+                  <TableCell align="right">Year</TableCell>
+                  <TableCell align="right">Start&nbsp;Date&nbsp;(ms)</TableCell>
+                  <TableCell align="right">Sheet&nbsp;ID</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {state.seasonsJson.map(season => (
+                  <TableRow key={season.sheetId}>
+                    <TableCell component="th" scope="row">
+                      {season.formattedName}
+                    </TableCell>
+                    <TableCell align="right">{season.season}</TableCell>
+                    <TableCell align="right">{season.year}</TableCell>
+                    <TableCell align="right">{season.startDate}</TableCell>
+                    <TableCell align="right">{season.sheetId}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Paper>
         </div>
       </div>
       <div className="App-footer">
