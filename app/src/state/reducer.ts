@@ -1,11 +1,11 @@
 import {AllActions, FETCH_SEASONS} from './actions';
 
 interface AppState {
-  seasonsJson: string
+  seasonsJson: []
 }
 
 export const initialState: AppState = {
-  seasonsJson: '{}'
+  seasonsJson: []
 }
 
 export function reducer(state: AppState = initialState, action: AllActions) {

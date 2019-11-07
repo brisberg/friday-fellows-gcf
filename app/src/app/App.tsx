@@ -10,8 +10,16 @@ const App: React.FC = () => {
   const fetchSeasonData = async () => {
     const resp = await fetch('https://us-central1-driven-utility-202807.cloudfunctions.net/getAllSeasons')
     const data = await resp.json();
-    dispatch(AppActions.fetchSeasons(data));
+    dispatch(AppActions.fetchSeasons({ json: data }));
   };
+
+  const renderSeasonItems = (seasons: { sheetId: number }[]) => {
+    return (
+      seasons.map((season) => (
+        <p key={season.sheetId}>{JSON.stringify(season)}</p>
+      ))
+    );
+  }
 
   return (
     <div className="App">
@@ -24,7 +32,7 @@ const App: React.FC = () => {
       <div className="App-body">
         <div>
           <p>Seasons JSON:</p>
-          <p>{state.seasonsJson}</p>
+          {renderSeasonItems(state.seasonsJson)}
         </div>
       </div>
       <div className="App-footer">
