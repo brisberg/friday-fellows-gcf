@@ -1,28 +1,18 @@
-import {ACTION_INCREASE_COUNT_1, ACTION_INCREASE_COUNT_2, ACTION_RESET_STATE, AllActions} from './actions';
+import {AllActions, FETCH_SEASONS} from './actions';
 
 interface AppState {
-  count1: number;
-  count2: number;
+  seasonsJson: string
 }
 
 export const initialState: AppState = {
-  count1: 0,
-  count2: 0,
+  seasonsJson: '{}'
 }
 
 export function reducer(state: AppState = initialState, action: AllActions) {
   switch (action.type) {
-    case ACTION_INCREASE_COUNT_1:
+    case FETCH_SEASONS:
       return {
-        ...state, count1: state.count1 + 1,
-      }
-    case ACTION_INCREASE_COUNT_2:
-      return {
-        ...state, count2: state.count2 + 1,
-      }
-    case ACTION_RESET_STATE:
-      return {
-        ...initialState
+        ...state, seasonsJson: action.payload.json,
       }
     default:
       return state;
