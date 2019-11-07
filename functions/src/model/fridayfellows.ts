@@ -21,7 +21,8 @@ export interface SeasonModel {
   year: number;
   season: Season;
   sheetId: number;  // id of the sheet in the source SpreadSheet
-  startDate: string;
+  // date of the first episode viewing this season in mills. null if not set
+  startDate: number|null;
 }
 
 // Top level collection for all series documents

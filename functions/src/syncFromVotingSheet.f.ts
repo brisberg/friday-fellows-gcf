@@ -5,7 +5,7 @@ import {sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {Season, SeasonModel, SEASONS_COLLECTION} from './model/fridayfellows';
+import {Season, SeasonModel, SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/fridayfellows';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
 
 const firestore = new Firestore({
@@ -104,17 +104,15 @@ function extractSeasonDocuments(model: SpreadsheetModel) {
   const seasonDocs: SeasonModel[] = [];
 
   model.sheets.map((sheet: WorksheetModel) => {
-    let startDate = '';
-    if (sheet.metadata && sheet.metadata['foobar']) {
-      startDate = sheet.metadata['foobar'];
-    }
+    const startDateString = sheet.metadata[START_DATE_METADATA_KEY] || null;
+    const startDateMs = parseInt(startDateString || '') || null;
 
     seasonDocs.push({
       sheetId: sheet.sheetId,
       formattedName: sheet.title,
       year: extractYear(sheet.title),
       season: extractSeason(sheet.title),
-      startDate,
+      startDate: startDateMs,
     });
   });
 
