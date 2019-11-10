@@ -23,7 +23,8 @@
     "firebase-functions": "^3.3.0",
     "gaxios": "^2.1.0",
     "glob": "^7.1.5",
-    "googleapis": "^44.0.0"
+    "googleapis": "^44.0.0",
+    "node": "^8.13.0"
   },
   "devDependencies": {
     "tslint": "^5.12.0",
