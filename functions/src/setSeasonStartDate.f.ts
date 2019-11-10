@@ -27,36 +27,39 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
   const cors = Cors({
     origin: true,
   });
-  const sheetId: number = req.body['sheetId'];
-  const {startDate} = req.body;
-  // TODO: Validate date format
 
-  const api = await getSheetsClient(SCOPES);
+  return cors(req, res, async () => {
+    const sheetId: number = req.body['sheetId'];
+    const {startDate} = req.body;
+    // TODO: Validate date format
 
-  const requests = await getUpsertMetadataRequest(api, sheetId, startDate);
+    console.log('sheetId: ' + sheetId + ', startDate: ' + startDate);
 
-  const request = api.spreadsheets.batchUpdate({
-    spreadsheetId: SPREADSHEET_ID,
-    requestBody: {
-      requests,
-    },
-  });
+    const api = await getSheetsClient(SCOPES);
 
-  try {
-    const resp = await request;
+    const requests = await getUpsertMetadataRequest(api, sheetId, startDate);
 
-    // Update Firestore if write to sheets suceeded
-    await firestore.collection(SEASONS_COLLECTION)
-        .doc(String(sheetId))
-        .update({startDate});
-
-    return cors(req, res, () => {
-      res.status(200).send({data: resp.data});
+    const request = api.spreadsheets.batchUpdate({
+      spreadsheetId: SPREADSHEET_ID,
+      requestBody: {
+        requests,
+      },
     });
-  } catch (err) {
-    console.log(JSON.stringify(err));
-    res.status(500).send({err});
-  }
+
+    try {
+      const resp = await request;
+
+      // Update Firestore if write to sheets suceeded
+      await firestore.collection(SEASONS_COLLECTION)
+          .doc(String(sheetId))
+          .update({startDate});
+
+      res.status(200).send({data: resp.data});
+    } catch (err) {
+      console.log(JSON.stringify(err));
+      res.status(500).send({err});
+    }
+  });
 });
 
 async function getUpsertMetadataRequest(
