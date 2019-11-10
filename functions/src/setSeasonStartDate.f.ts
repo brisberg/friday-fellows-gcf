@@ -1,10 +1,17 @@
+import {Firestore} from '@google-cloud/firestore';
 import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
 import {sheets_v4} from 'googleapis';
 
-import {SCOPES, SPREADSHEET_ID} from './config'
+import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {START_DATE_METADATA_KEY} from './model/fridayfellows';
+import {SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/fridayfellows';
+
+// Global API Clients declared outside function scope
+// https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations
+const firestore = new Firestore({
+  projectId: PROJECT_ID,
+});
 
 // query for the metadata, if found update it. If not create a  new metadata for
 // the value.
@@ -38,8 +45,10 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
   try {
     const resp = await request;
 
-    // Maybe update fire store here?
-    // Or trigger a sync again just for this sheet?
+    // Update Firestore if write to sheets suceeded
+    await firestore.collection(SEASONS_COLLECTION)
+        .doc(String(sheetId))
+        .update({startDate});
 
     return cors(req, res, () => {
       res.status(200).send({data: resp.data});
