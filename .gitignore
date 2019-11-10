@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 
+# Credentials
+service-credentials.json
+
 # Firebase cache
 .firebase/
 
