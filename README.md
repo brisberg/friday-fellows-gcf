@@ -11,3 +11,19 @@ Serverless Backend is implemented by a series of Cloud Function, located in the 
 ## Web App
 
 React App for viewing and interacting with the voting record is hosted on [Github Pages](http://brisberg.github.io/friday-fellows-gcf), located in the `app` directory.
+
+
+## Testing during Development
+
+Use the Firebase emulator to test functions locally before deploying to cloud resources.
+
+First export environment variables used by the emulator for configuration:
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS=<absolute path>/service-credentials.json
+export FIRESTORE_EMULATOR_HOST=localhost:8080
+```
+
+Then start the emulator and access its emulated function URLs.
+
+`firebase emulators:start`
