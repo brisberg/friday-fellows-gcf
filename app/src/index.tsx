@@ -4,7 +4,8 @@ import './index.css';
 import App from './app/App';
 import config from './config/config';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
+// Using HashRouter instead of BrowserRouter for use on Github Pages
+import { HashRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <Router>
