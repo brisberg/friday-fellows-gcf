@@ -1,10 +1,10 @@
 import {Firestore} from '@google-cloud/firestore';
 import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
-import {sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
+import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata'
 import {SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/fridayfellows';
 
 // Global API Clients declared outside function scope
@@ -34,7 +34,8 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
 
     const api = await getSheetsClient(SCOPES);
 
-    const requests = await getUpsertMetadataRequest(api, sheetId, startDate);
+    const requests = await getUpsertSheetMetadata(
+        api, sheetId, START_DATE_METADATA_KEY, startDate);
 
     const request = api.spreadsheets.batchUpdate({
       spreadsheetId: SPREADSHEET_ID,
@@ -58,73 +59,3 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
     }
   });
 });
-
-/**
- * Implements Upsert sementics for developer metadata. First queries for the
- * metadata by key and location and updates it if found. If not creates a new
- * metadata with the specified value.
- */
-async function getUpsertMetadataRequest(
-    api: sheets_v4.Sheets, sheetId: number, startDate: string) {
-  const lookupReq = api.spreadsheets.developerMetadata.search({
-    spreadsheetId: SPREADSHEET_ID,
-    requestBody: {
-      dataFilters: [{
-        developerMetadataLookup: {
-          metadataKey: START_DATE_METADATA_KEY,
-          metadataLocation: {
-            sheetId,
-          }
-        }
-      }],
-    },
-  });
-
-  const existingMetadata = await lookupReq;
-
-  let metadataId;
-  const matchedMetadata = existingMetadata.data.matchedDeveloperMetadata;
-  // TODO: Maybe we should log an error if more than one metadata match?
-  if (matchedMetadata && matchedMetadata.length > 0) {
-    metadataId = matchedMetadata[0].developerMetadata!.metadataId;
-  }
-
-  const requests: sheets_v4.Schema$Request[] = [];
-  if (metadataId) {
-    // Metadata exists, update it
-    requests.push({
-      updateDeveloperMetadata: {
-        dataFilters: [{
-          developerMetadataLookup: {
-            metadataKey: START_DATE_METADATA_KEY,
-          },
-        }],
-        developerMetadata: {
-          metadataKey: START_DATE_METADATA_KEY,
-          metadataValue: '' + startDate,
-          location: {
-            sheetId,
-          },
-          visibility: 'PROJECT',
-        },
-        fields: 'metadataValue',
-      },
-    });
-  } else {
-    // No metadata exists, need to create it
-    requests.push({
-      createDeveloperMetadata: {
-        developerMetadata: {
-          metadataKey: START_DATE_METADATA_KEY,
-          metadataValue: '' + startDate,
-          location: {
-            sheetId,
-          },
-          visibility: 'PROJECT',
-        }
-      }
-    });
-  }
-
-  return requests;
-}
