@@ -45,7 +45,9 @@ const App: React.FC<AppProps> = (props) => {
           <Route exact={true} path="/">
             <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
-          <Route path="/s/:seasonId" component={SeasonDetail} />
+          <Route path="/s/:seasonId" render={({ match }) => (
+            <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)} />
+          )} />
         </Switch>
       </div>
       <div className="App-footer">
@@ -55,12 +57,13 @@ const App: React.FC<AppProps> = (props) => {
   );
 }
 
-function SeasonDetail() {
+function SeasonDetail({ season }: { season: SeasonModel | undefined }) {
   const { seasonId } = useParams();
   return (
     <div>
       <Link to={"/"}>Back</Link>
       <p>{seasonId}</p>
+      <p>{JSON.stringify(season)}</p>
     </div>
   );
 }
