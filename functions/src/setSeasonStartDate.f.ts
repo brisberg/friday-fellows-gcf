@@ -13,15 +13,12 @@ const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
 
-// query for the metadata, if found update it. If not create a  new metadata for
-// the value.
-
 
 // Testing (Made spreadsheet publicly editable for the moment)
 // TODO: Figure out service account editing permissions
 // curl -X POST -H 'Content-Type: application/json' -d '{"sheetId": 1242888778,
 // "startDate": 5432}'
-// https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate
+// https://localhost:5001/driven-utility-202807/setSeasonStartDate
 
 exports = module.exports = functions.https.onRequest(async (req, res) => {
   const cors = Cors({
@@ -62,6 +59,11 @@ exports = module.exports = functions.https.onRequest(async (req, res) => {
   });
 });
 
+/**
+ * Implements Upsert sementics for developer metadata. First queries for the
+ * metadata by key and location and updates it if found. If not creates a new
+ * metadata with the specified value.
+ */
 async function getUpsertMetadataRequest(
     api: sheets_v4.Sheets, sheetId: number, startDate: string) {
   const lookupReq = api.spreadsheets.developerMetadata.search({
