@@ -25,19 +25,24 @@ const useStyles = makeStyles({
   },
 });
 
-const App: React.FC = () => {
+interface AppProps {
+  backendURI: string;
+}
+
+const App: React.FC<AppProps> = (props) => {
+  const { backendURI } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const classes = useStyles();
 
   const fetchSeasonData = async () => {
-    const resp = await fetch('https://us-central1-driven-utility-202807.cloudfunctions.net/getAllSeasons')
+    const resp = await fetch(backendURI + '/getAllSeasons')
     const data = await resp.json();
     dispatch(AppActions.fetchSeasons({ json: data }));
   };
 
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel, index: number) => {
-    const resp = await axios.post('https://us-central1-driven-utility-202807.cloudfunctions.net/setSeasonStartDate', {
+    const resp = await axios.post(backendURI + '/setSeasonStartDate', {
       sheetId: season.sheetId,
       startDate: newDate ? newDate.getTime() : null,
     })
