@@ -4,7 +4,7 @@ import './App.css';
 import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, Link, Switch, useParams } from 'react-router-dom';
 import SeasonList from '../season-list/SeasonList'
 
 interface AppProps {
@@ -35,25 +35,33 @@ const App: React.FC<AppProps> = (props) => {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Friday Fellows Updater - Season List
-        </p>
-        </header>
-        <div className="App-body">
-          <div>
-            <p>Seasons JSON:</p>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Friday Fellows Updater - Season List</p>
+      </header>
+      <div className="App-body">
+        <Switch>
+          <Route exact={true} path="/">
             <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
-          </div>
-        </div>
-        <div className="App-footer">
-          <button onClick={fetchSeasonData}>Fetch Season Data</button>
-        </div>
+          </Route>
+          <Route path="/s/:seasonId" component={SeasonDetail} />
+        </Switch>
       </div>
-    </Router>
+      <div className="App-footer">
+        <button onClick={fetchSeasonData}>Fetch Season Data</button>
+      </div>
+    </div>
+  );
+}
+
+function SeasonDetail() {
+  const { seasonId } = useParams();
+  return (
+    <div>
+      <Link to={"/"}>Back</Link>
+      <p>{seasonId}</p>
+    </div>
   );
 }
 
