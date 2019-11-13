@@ -13,6 +13,10 @@ const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
 
+const cors = Cors({
+  origin: true,
+});
+
 
 // Testing (Made spreadsheet publicly editable for the moment)
 // TODO: Figure out service account editing permissions
@@ -20,11 +24,7 @@ const firestore = new Firestore({
 // "startDate": 5432}'
 // https://localhost:5001/driven-utility-202807/setSeasonStartDate
 
-exports = module.exports = functions.https.onRequest(async (req, res) => {
-  const cors = Cors({
-    origin: true,
-  });
-
+exports = module.exports = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     const sheetId: number = req.body['sheetId'];
     const {startDate} = req.body;
