@@ -1,6 +1,6 @@
 import React from 'react';
 import { SeasonModel } from '../state/reducer';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
@@ -38,9 +38,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface SeasonDetailProps {
   season: SeasonModel | undefined;
+  onStartDateChanged: Function;
 }
 
-const SeasonDetail: React.FC<SeasonDetailProps> = ({ season }) => {
+const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, onStartDateChanged }) => {
   const { seasonId } = useParams();
   const classes = useStyles();
 
@@ -62,8 +63,7 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ season }) => {
             format="MM/dd/yyyy"
             autoOk={true}
             value={season.startDate}
-            // onChange={(date) => { onStartDateChanged(date, season, index); }}
-            onChange={() => { }}
+            onChange={(date) => { onStartDateChanged(date, season); }}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}

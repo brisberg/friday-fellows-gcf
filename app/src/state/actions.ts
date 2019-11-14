@@ -10,7 +10,7 @@ export const AppActions = {
           FETCH_SEASONS),
   setSeasonStartDate: createActionPayload<
       typeof SET_SEASON_START_DATE,
-      {seasonIdx: number, startDate: Date | null}>(SET_SEASON_START_DATE)
+      {season: SeasonModel, startDate: Date | null}>(SET_SEASON_START_DATE)
 };
 
 export type AllActions = ActionsUnion<typeof AppActions>;

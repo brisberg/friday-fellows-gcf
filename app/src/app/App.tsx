@@ -33,14 +33,14 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     fetchSeasonData();
   }, [backendURI])
 
-  const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel, index: number) => {
+  const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel) => {
     const resp = await axios.post(backendURI + '/setSeasonStartDate', {
       sheetId: season.sheetId,
       startDate: newDate ? newDate.getTime() : null,
     })
     if (resp.status === 200) {
       dispatch(AppActions.setSeasonStartDate({
-        seasonIdx: index,
+        season: season,
         startDate: newDate,
       }))
     }
@@ -69,7 +69,8 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
             <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
           <Route path='/s/:seasonId' render={({ match }) => (
-            <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)} />
+            <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
+              onStartDateChanged={handleStartDateChanged} />
           )} />
         </Switch>
       </div>

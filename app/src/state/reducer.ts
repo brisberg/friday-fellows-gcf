@@ -32,9 +32,10 @@ export function reducer(state: AppState = initialState, action: AllActions) {
         ...state, seasons: action.payload.json,
       }
     case SET_SEASON_START_DATE:
+      const index = state.seasons.indexOf(action.payload.season);
       return {
-        ...state, seasons: state.seasons.map((season, index) => {
-          if (index !== action.payload.seasonIdx) {
+        ...state, seasons: state.seasons.map((season, idx) => {
+          if (idx !== index) {
             // This isn't the item we care about - keep it as-is
             return season
           }
