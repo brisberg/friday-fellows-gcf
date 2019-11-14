@@ -55,7 +55,7 @@ const OnDeck: React.FC = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Series Title (English</TableCell>
+              <TableCell>Series Title (English)</TableCell>
               <TableCell align="right">Episode</TableCell>
             </TableRow>
           </TableHead>
