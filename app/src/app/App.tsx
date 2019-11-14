@@ -14,6 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
 
 interface AppProps {
   backendURI: string;
@@ -26,6 +27,12 @@ const useStyles = makeStyles((theme: Theme) => {
     },
     logo: {
       marginRight: theme.spacing(2),
+    },
+    title: {
+      marginRight: theme.spacing(3),
+    },
+    navButton: {
+      marginRight: theme.spacing(1),
     },
     grow: {
       flexGrow: 1,
@@ -45,9 +52,18 @@ function AppHeader() {
               <img src={logo} className="App-logo" alt="logo" />
             </Link>
           </IconButton>
-          <Typography variant="h6">
+          <Typography variant="h6" className={classes.title}>
             Friday Fellows Updater
           </Typography>
+          <MenuItem component={Link} to={'/'}>
+            <Button variant="contained" className={classes.navButton}>On Deck</Button>
+          </MenuItem>
+          <MenuItem component={Link} to={'/seasons'}>
+            <Button variant="contained" className={classes.navButton}>Seasons</Button>
+          </MenuItem>
+          <MenuItem component={Link} to={'/admin'}>
+            <Button variant="contained" className={classes.navButton} disabled={true}>Admin</Button>
+          </MenuItem>
           <div className={classes.grow} />
           <Button color="inherit">Login</Button>
         </Toolbar>
