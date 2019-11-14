@@ -4,7 +4,7 @@ import './App.css';
 import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import OnDeck from './OnDeck';
@@ -55,13 +55,13 @@ function AppHeader() {
           <Typography variant="h6" className={classes.title}>
             Friday Fellows Updater
           </Typography>
-          <MenuItem component={Link} to={'/'}>
+          <MenuItem disableRipple component={NavLink} to={'/'} activeClassName={'activeLink'} exact={true}>
             <Button variant="contained" className={classes.navButton}>On Deck</Button>
           </MenuItem>
-          <MenuItem component={Link} to={'/seasons'}>
+          <MenuItem disableRipple component={NavLink} to={'/seasons'} activeClassName={'activeLink'}>
             <Button variant="contained" className={classes.navButton}>Seasons</Button>
           </MenuItem>
-          <MenuItem component={Link} to={'/admin'}>
+          <MenuItem disableRipple component={NavLink} to={'/admin'} activeClassName={'activeLink'}>
             <Button variant="contained" className={classes.navButton} disabled={true}>Admin</Button>
           </MenuItem>
           <div className={classes.grow} />

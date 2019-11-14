@@ -13,10 +13,8 @@
 
 .App-header {
   display: flex;
-  /* flex-direction: row; */
   height: 50px;
   align-items: center;
-  /* justify-content: center; */
   font-size: 30px;
   color: white;
 }
@@ -27,4 +25,14 @@
 
 .App-footer {
   padding: 10px;
+}
+
+.activeLink > Button {
+  background-color: #2525ca;
+  color: #e0e0e0;
+}
+
+.activeLink > Button:hover {
+  background-color: #2222be;
+  color: #dbdbdb;
 }
