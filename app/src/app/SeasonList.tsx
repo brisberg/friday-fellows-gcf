@@ -33,7 +33,6 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, onStartDateChanged }) 
 
   return (
     <div>
-      <p>Seasons JSON:</p>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
