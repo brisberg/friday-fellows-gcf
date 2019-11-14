@@ -6,11 +6,21 @@ import config from './config/config';
 import * as serviceWorker from './serviceWorker';
 // Using HashRouter instead of BrowserRouter for use on Github Pages
 import { HashRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core';
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
 
 ReactDOM.render(
-  <Router>
-    <App backendURI={config().BACKEND_URI} />
-  </Router>,
+  <ThemeProvider theme={darkTheme}>
+    <Router>
+      <App backendURI={config().BACKEND_URI} />
+    </Router>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
