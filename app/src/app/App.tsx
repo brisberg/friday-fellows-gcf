@@ -5,7 +5,7 @@ import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
 import { Route, Link, Switch, useParams } from 'react-router-dom';
-import SeasonList from '../season-list/SeasonList'
+import SeasonList from './SeasonList'
 
 interface AppProps {
   backendURI: string;
@@ -34,12 +34,26 @@ const App: React.FC<AppProps> = (props) => {
     }
   }
 
-  return (
-    <div className="App">
+  function AppHeader() {
+    return (
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Friday Fellows Updater - Season List</p>
       </header>
+    );
+  }
+
+  function AppFooter() {
+    return (
+      <div className="App-footer">
+        <button onClick={fetchSeasonData}>Fetch Season Data</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="App">
+      <AppHeader />
       <div className="App-body">
         <Switch>
           <Route exact={true} path="/">
@@ -50,9 +64,7 @@ const App: React.FC<AppProps> = (props) => {
           )} />
         </Switch>
       </div>
-      <div className="App-footer">
-        <button onClick={fetchSeasonData}>Fetch Season Data</button>
-      </div>
+      <AppFooter />
     </div>
   );
 }
