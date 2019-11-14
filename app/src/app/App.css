@@ -9,6 +9,8 @@
 
 .App-body {
   flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
 }
 
 .App-footer {

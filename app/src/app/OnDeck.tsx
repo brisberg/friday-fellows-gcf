@@ -4,7 +4,7 @@ import './OnDeck.css';
 const OnDeck: React.FC = () => {
 
   return (
-    <div className="centered">
+    <div>
       On Deck
     </div>
   );
