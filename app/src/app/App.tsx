@@ -17,9 +17,8 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchSeasonData = async () => {
-    const resp = await fetch(backendURI + '/getAllSeasons')
-    const data = await resp.json();
-    dispatch(AppActions.fetchSeasons({ json: data }));
+    const resp = await axios.get<SeasonModel[]>(backendURI + '/getAllSeasons');
+    dispatch(AppActions.fetchSeasons({ json: resp.data }));
   };
 
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel, index: number) => {
