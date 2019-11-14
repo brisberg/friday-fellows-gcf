@@ -1,0 +1,21 @@
+.App-logo {
+  height: 40px;
+}
+
+.App-body {
+  flex-grow: 1;
+}
+
+.App-footer {
+  padding: 10px;
+}
+
+.activeLink > Button {
+  background-color: #2525ca;
+  color: #e0e0e0;
+}
+
+.activeLink > Button:hover {
+  background-color: #2222be;
+  color: #dbdbdb;
+}
