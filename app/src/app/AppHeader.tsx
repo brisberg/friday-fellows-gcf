@@ -12,9 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
-    root: {
-      flexGrow: 1,
-    },
     logo: {
       marginRight: theme.spacing(2),
     },
@@ -34,7 +31,7 @@ const AppHeader: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.logo} color="inherit" aria-label="logo">
