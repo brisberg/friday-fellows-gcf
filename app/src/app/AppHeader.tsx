@@ -37,7 +37,7 @@ const AppHeader: React.FC = () => {
           <Typography variant="h6" className={classes.title}>
             Friday Fellows Updater
           </Typography>
-          <MenuItem disableRipple component={NavLink} to={'/ondeck'} activeClassName={'activeLink'} exact={true}>
+          <MenuItem disableRipple component={NavLink} to={'/ondeck'} activeClassName={'activeLink'}>
             <Button variant="contained" className={classes.navButton}>On Deck</Button>
           </MenuItem>
           <MenuItem disableRipple component={NavLink} to={'/seasons'} activeClassName={'activeLink'}>
