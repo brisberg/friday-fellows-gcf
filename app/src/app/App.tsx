@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import './App.css';
 import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
@@ -16,10 +16,22 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const fetchSeasonData = async () => {
-    const resp = await axios.get<SeasonModel[]>(backendURI + '/getAllSeasons');
-    dispatch(AppActions.fetchSeasons({ json: resp.data }));
-  };
+  // Load all season data on start using effect Hook
+  // https://www.robinwieruch.de/react-hooks-fetch-data
+  useEffect(() => {
+    const fetchSeasonData = async () => {
+      try {
+        // this.setState({...this.state, isFetching: true});
+        const resp = await axios.get<SeasonModel[]>(backendURI + '/getAllSeasons');
+        dispatch(AppActions.fetchSeasons({ json: resp.data }));
+      } catch (e) {
+        console.log(e);
+        // this.setState({...this.state, isFetching: false});
+      }
+    }
+
+    fetchSeasonData();
+  }, [backendURI])
 
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel, index: number) => {
     const resp = await axios.post(backendURI + '/setSeasonStartDate', {
@@ -37,7 +49,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
   function AppFooter() {
     return (
       <div className="App-footer">
-        <button onClick={fetchSeasonData}>Fetch Season Data</button>
+        <a href="https://github.com/brisberg/friday-fellows-gcf">Github</a>
       </div>
     );
   }
