@@ -4,15 +4,15 @@ import './App.css';
 import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { Route, Link, Switch, useParams } from 'react-router-dom';
-import SeasonList from './SeasonList'
+import { Route, Switch } from 'react-router-dom';
+import SeasonList from './SeasonList';
+import SeasonDetail from './SeasonDetail';
 
 interface AppProps {
   backendURI: string;
 }
 
-const App: React.FC<AppProps> = (props) => {
-  const { backendURI } = props;
+const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchSeasonData = async () => {
@@ -65,17 +65,6 @@ const App: React.FC<AppProps> = (props) => {
         </Switch>
       </div>
       <AppFooter />
-    </div>
-  );
-}
-
-function SeasonDetail({ season }: { season: SeasonModel | undefined }) {
-  const { seasonId } = useParams();
-  return (
-    <div>
-      <Link to={"/"}>Back</Link>
-      <p>{seasonId}</p>
-      <p>{JSON.stringify(season)}</p>
     </div>
   );
 }
