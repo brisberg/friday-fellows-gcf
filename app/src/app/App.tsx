@@ -3,7 +3,7 @@ import './App.css';
 import { reducer, initialState, SeasonModel } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
@@ -47,13 +47,16 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
       <AppHeader />
       <div className="App-body">
         <Switch>
-          <Route exact={true} path="/">
+          <Route exact={true} path='/'>
+            <Redirect to='/ondeck' />
+          </Route>
+          <Route exact={true} path='/ondeck'>
             <OnDeck />
           </Route>
-          <Route exact={true} path="/seasons">
+          <Route exact={true} path='/seasons'>
             <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
-          <Route path="/s/:seasonId" render={({ match }) => (
+          <Route path='/s/:seasonId' render={({ match }) => (
             <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)} />
           )} />
         </Switch>
