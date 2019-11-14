@@ -8,15 +8,16 @@
 }
 
 .App-logo {
-  height: 20vmin;
+  height: 40px;
 }
 
 .App-header {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: row; */
+  height: 50px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* justify-content: center; */
+  font-size: 30px;
   color: white;
 }
 
@@ -26,16 +27,4 @@
 
 .App-footer {
   padding: 10px;
-}
-
-.push-right {
-  margin-right: 10px;
-}
-
-.warning-icon {
-  color: rgb(240, 96, 44);
-}
-
-.text-top {
-  vertical-align: text-top;
 }
