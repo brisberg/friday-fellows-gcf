@@ -1,18 +1,37 @@
 import React from 'react';
 import { SeasonModel } from '../state/reducer';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles({
-  root: {
-    overflowX: 'auto',
-    margin: '0 10px',
-  },
-  table: {
-    minWidth: 650,
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    header: {
+      ...theme.typography.button,
+      padding: theme.spacing(1),
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginBottom: theme.spacing(2),
+      width: 'fit-content',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    title: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(2),
+    },
+    lastSync: {
+      marginRight: theme.spacing(3),
+    },
+    root: {
+      overflowX: 'auto',
+      margin: '0 10px',
+    },
+    table: {
+      minWidth: 650,
+    },
+  }),
+);
 
 interface SeasonListProps {
   seasons: SeasonModel[];
@@ -20,10 +39,14 @@ interface SeasonListProps {
 }
 
 const SeasonList: React.FC<SeasonListProps> = ({ seasons }) => {
-  const classes = useStyles({});
+  const classes = useStyles();
 
   return (
     <div>
+      <Paper className={classes.header}>
+        <span className={classes.title}>All Seasons</span>
+        <span className={classes.lastSync}>Last Sync:</span>
+      </Paper>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
