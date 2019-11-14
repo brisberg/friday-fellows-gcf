@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
+import OnDeck from './OnDeck';
 
 interface AppProps {
   backendURI: string;
@@ -57,6 +58,9 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
       <div className="App-body">
         <Switch>
           <Route exact={true} path="/">
+            <OnDeck />
+          </Route>
+          <Route exact={true} path="/seasons">
             <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
           <Route path="/s/:seasonId" render={({ match }) => (
