@@ -1,16 +1,7 @@
 import React from 'react';
-import './SeasonList.css';
 import { SeasonModel } from '../state/reducer';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import { Icon, Tooltip } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -28,7 +19,7 @@ interface SeasonListProps {
   onStartDateChanged: (date: Date | null, season: SeasonModel, index: number) => void;
 }
 
-const SeasonList: React.FC<SeasonListProps> = ({ seasons, onStartDateChanged }) => {
+const SeasonList: React.FC<SeasonListProps> = ({ seasons }) => {
   const classes = useStyles({});
 
   return (
@@ -46,7 +37,7 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, onStartDateChanged }) 
           </TableHead>
           {/* TODO Add an empty state message and a loading spinner */}
           <TableBody>
-            {seasons.map((season, index) => (
+            {seasons.map((season) => (
               <TableRow key={season.sheetId}>
                 <TableCell component="th" scope="row">
                   <Link to={'/s/' + season.sheetId}>
@@ -55,24 +46,7 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, onStartDateChanged }) 
                 </TableCell>
                 <TableCell align="right">{season.season}</TableCell>
                 <TableCell align="right">{season.year}</TableCell>
-                <TableCell align="right">
-                  {season.startDate === null && <Tooltip title="Missing Start Date">
-                    <Icon className="push-right warning-icon text-top">warning</Icon>
-                  </Tooltip>}
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      disableToolbar
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      autoOk={true}
-                      value={season.startDate}
-                      onChange={(date) => { onStartDateChanged(date, season, index); }}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
-                </TableCell>
+                <TableCell align="right">{season.startDate}</TableCell>
                 <TableCell align="right">{season.sheetId}</TableCell>
               </TableRow>
             ))}

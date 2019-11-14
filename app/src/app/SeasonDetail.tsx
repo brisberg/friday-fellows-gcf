@@ -1,10 +1,11 @@
 import React from 'react';
+import './SeasonDetail.css';
 import { SeasonModel } from '../state/reducer';
 import { useParams } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { Tooltip, Icon, Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,6 +71,9 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, onStartDateChanged 
             margin="dense"
           />
         </MuiPickersUtilsProvider>
+        {season.startDate === null && <Tooltip title="Missing Start Date">
+          <Icon className="push-left warning-icon text-top">warning</Icon>
+        </Tooltip>}
       </Paper>
       <p>{seasonId}</p>
       <p>{JSON.stringify(season)}</p>
