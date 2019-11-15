@@ -47,7 +47,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     // Record the timestamp of the latest sync
     const syncTimestamp = new Date().getTime();
     batch.set(
-        firestore.collection(CONFIG_COLLECTION).doc(SYNC_STATE_KEY),
+        firestore.doc(CONFIG_COLLECTION + '/' + SYNC_STATE_KEY),
         {lastSync: syncTimestamp});
 
     await batch.commit();
