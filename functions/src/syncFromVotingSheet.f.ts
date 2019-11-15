@@ -5,7 +5,7 @@ import {sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {Season, SeasonModel, SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/fridayfellows';
+import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, START_DATE_METADATA_KEY, SYNC_STATE_KEY} from './model/fridayfellows';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
 
 const firestore = new Firestore({
@@ -44,10 +44,17 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
       batch.set(docRef, season);
     }
 
+    // Record the timestamp of the latest sync
+    const syncTimestamp = new Date().getTime();
+    batch.set(
+        firestore.collection(CONFIG_COLLECTION).doc(SYNC_STATE_KEY),
+        {lastSync: syncTimestamp});
+
     await batch.commit();
 
     res.status(200).send({data: resp.data});
   } catch (err) {
+    console.log(err);
     res.status(500).send({err});
   }
 });

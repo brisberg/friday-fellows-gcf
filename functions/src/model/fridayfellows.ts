@@ -4,6 +4,10 @@
  * different service models.
  */
 
+// Top level collection for singleton config and status values
+export const CONFIG_COLLECTION = 'config';
+export const SYNC_STATE_KEY = 'sync-status';
+
 // Top level collection for all season documents
 export const SEASONS_COLLECTION = 'seasons';
 
