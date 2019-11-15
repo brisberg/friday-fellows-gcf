@@ -1,4 +1,4 @@
-import {AllActions, FETCH_SEASONS, SET_SEASON_START_DATE} from './actions';
+import {AllActions, FETCH_SEASONS_START, FETCH_SEASONS_SUCCESS, SET_SEASON_START_DATE} from './actions';
 
 export enum Season {
   UNKNOWN = 0,
@@ -18,18 +18,24 @@ export interface SeasonModel {
 }
 
 interface AppState {
-  seasons: SeasonModel[]
+  seasons: SeasonModel[];
+  loadingSeasons: boolean;
 }
 
 export const initialState: AppState = {
-  seasons: []
+  seasons: [],
+  loadingSeasons: false,
 }
 
 export function reducer(state: AppState = initialState, action: AllActions) {
   switch (action.type) {
-    case FETCH_SEASONS:
+    case FETCH_SEASONS_START:
       return {
-        ...state, seasons: action.payload.json,
+        ...state, loadingSeasons: true,
+      }
+    case FETCH_SEASONS_SUCCESS:
+      return {
+        ...state, seasons: action.payload.json, loadingSeasons: false,
       }
     case SET_SEASON_START_DATE:
       const index = state.seasons.indexOf(action.payload.season);

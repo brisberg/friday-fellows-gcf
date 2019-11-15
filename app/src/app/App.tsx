@@ -21,9 +21,9 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
   useEffect(() => {
     const fetchSeasonData = async () => {
       try {
-        // this.setState({...this.state, isFetching: true});
+        dispatch(AppActions.fetchSeasonsStart());
         const resp = await axios.get<SeasonModel[]>(backendURI + '/getAllSeasons');
-        dispatch(AppActions.fetchSeasons({ json: resp.data }));
+        dispatch(AppActions.fetchSeasonsSuccess({ json: resp.data }));
       } catch (e) {
         console.log(e);
         // this.setState({...this.state, isFetching: false});
@@ -66,7 +66,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
             <OnDeck />
           </Route>
           <Route exact={true} path='/seasons'>
-            <SeasonList seasons={state.seasons} onStartDateChanged={handleStartDateChanged} />
+            <SeasonList seasons={state.seasons} loading={state.loadingSeasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
           <Route path='/s/:seasonId' render={({ match }) => (
             <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}

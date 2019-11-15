@@ -1,7 +1,8 @@
 import React from 'react';
+import './SeasonList.css';
 import { SeasonModel } from '../state/reducer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper, CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,10 +36,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface SeasonListProps {
   seasons: SeasonModel[];
+  loading: boolean;
   onStartDateChanged: (date: Date | null, season: SeasonModel, index: number) => void;
 }
 
-const SeasonList: React.FC<SeasonListProps> = ({ seasons }) => {
+const SeasonList: React.FC<SeasonListProps> = ({ seasons, loading }) => {
   const classes = useStyles();
 
   return (
@@ -59,22 +61,24 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons }) => {
             </TableRow>
           </TableHead>
           {/* TODO Add an empty state message and a loading spinner */}
-          <TableBody>
-            {seasons.map((season) => (
-              <TableRow key={season.sheetId}>
-                <TableCell component="th" scope="row">
-                  <Link to={'/s/' + season.sheetId}>
-                    {season.formattedName}
-                  </Link>
-                </TableCell>
-                <TableCell align="right">{season.season}</TableCell>
-                <TableCell align="right">{season.year}</TableCell>
-                <TableCell align="right">{season.startDate}</TableCell>
-                <TableCell align="right">{season.sheetId}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+          {!loading &&
+            <TableBody>
+              {seasons.map((season) => (
+                <TableRow key={season.sheetId}>
+                  <TableCell component="th" scope="row">
+                    <Link to={'/s/' + season.sheetId}>
+                      {season.formattedName}
+                    </Link>
+                  </TableCell>
+                  <TableCell align="right">{season.season}</TableCell>
+                  <TableCell align="right">{season.year}</TableCell>
+                  <TableCell align="right">{season.startDate}</TableCell>
+                  <TableCell align="right">{season.sheetId}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>}
         </Table>
+        {loading && <CircularProgress size={60} />}
       </Paper>
     </div>
   );
