@@ -36,18 +36,31 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface SeasonListProps {
   seasons: SeasonModel[];
+  lastSyncDate: Date | undefined;
   loading: boolean;
   onStartDateChanged: (date: Date | null, season: SeasonModel, index: number) => void;
 }
 
-const SeasonList: React.FC<SeasonListProps> = ({ seasons, loading }) => {
+function formatLastSyncDate(lastSyncDate: Date | undefined) {
+  if (!lastSyncDate) {
+    return 'Unknown';
+  }
+
+  return new Intl.DateTimeFormat('en-US', {
+    year: '2-digit',
+    month: 'long',
+    day: '2-digit'
+  }).format(lastSyncDate);
+}
+
+const SeasonList: React.FC<SeasonListProps> = ({ seasons, lastSyncDate, loading }) => {
   const classes = useStyles();
 
   return (
     <div>
       <Paper className={classes.header}>
         <span className={classes.title}>All Seasons</span>
-        <span className={classes.lastSync}>Last Sync:</span>
+        <span className={classes.lastSync}>Last Sync:&nbsp;{formatLastSyncDate(lastSyncDate)}</span>
       </Paper>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">

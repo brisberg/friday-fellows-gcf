@@ -19,11 +19,13 @@ export interface SeasonModel {
 
 interface AppState {
   seasons: SeasonModel[];
+  lastSync: Date|undefined;
   loadingSeasons: boolean;
 }
 
 export const initialState: AppState = {
   seasons: [],
+  lastSync: undefined,
   loadingSeasons: false,
 }
 
@@ -35,7 +37,8 @@ export function reducer(state: AppState = initialState, action: AllActions) {
       }
     case FETCH_SEASONS_SUCCESS:
       return {
-        ...state, seasons: action.payload.json, loadingSeasons: false,
+        ...state, seasons: action.payload.json,
+            lastSync: action.payload.lastSync, loadingSeasons: false,
       }
     case SET_SEASON_START_DATE:
       const index = state.seasons.indexOf(action.payload.season);

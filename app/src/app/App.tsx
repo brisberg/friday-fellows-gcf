@@ -13,6 +13,11 @@ interface AppProps {
   backendURI: string;
 }
 
+interface GetAllSeasonsResponse {
+  seasons: SeasonModel[];
+  lastSyncMs?: number;
+}
+
 const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -22,8 +27,11 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     const fetchSeasonData = async () => {
       try {
         dispatch(AppActions.fetchSeasonsStart());
-        const resp = await axios.get<SeasonModel[]>(backendURI + '/getAllSeasons');
-        dispatch(AppActions.fetchSeasonsSuccess({ json: resp.data }));
+        const resp = await axios.get<GetAllSeasonsResponse>(backendURI + '/getAllSeasons');
+
+        const lastSyncMs = resp.data.lastSyncMs;
+        const lastSync = lastSyncMs ? new Date(lastSyncMs) : undefined
+        dispatch(AppActions.fetchSeasonsSuccess({ json: resp.data.seasons, lastSync }));
       } catch (e) {
         console.log(e);
         // this.setState({...this.state, isFetching: false});
@@ -66,7 +74,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
             <OnDeck />
           </Route>
           <Route exact={true} path='/seasons'>
-            <SeasonList seasons={state.seasons} loading={state.loadingSeasons} onStartDateChanged={handleStartDateChanged} />
+            <SeasonList seasons={state.seasons} lastSyncDate={state.lastSync} loading={state.loadingSeasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
           <Route path='/s/:seasonId' render={({ match }) => (
             <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
