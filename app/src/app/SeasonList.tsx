@@ -2,7 +2,7 @@ import React from 'react';
 import './SeasonList.css';
 import { SeasonModel } from '../state/reducer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper, CircularProgress } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper, CircularProgress, Tooltip } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,7 +47,7 @@ function formatLastSyncDate(lastSyncDate: Date | undefined) {
   }
 
   return new Intl.DateTimeFormat('en-US', {
-    year: '2-digit',
+    year: 'numeric',
     month: 'long',
     day: '2-digit'
   }).format(lastSyncDate);
@@ -60,7 +60,9 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, lastSyncDate, loading 
     <div>
       <Paper className={classes.header}>
         <span className={classes.title}>All Seasons</span>
-        <span className={classes.lastSync}>Last Sync:&nbsp;{formatLastSyncDate(lastSyncDate)}</span>
+        <Tooltip title="Last time data was read from GoogleSheets">
+          <span className={classes.lastSync}>Last Sync:&nbsp;{formatLastSyncDate(lastSyncDate)}</span>
+        </Tooltip>
       </Paper>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
