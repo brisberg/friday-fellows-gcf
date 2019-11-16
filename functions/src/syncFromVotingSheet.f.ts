@@ -2,10 +2,11 @@ import {Firestore} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 import {GaxiosResponse} from 'gaxios';
 import {sheets_v4} from 'googleapis';
+import {docs} from 'googleapis/build/src/apis/docs';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
+import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
 import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
@@ -36,14 +37,20 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     const resp = await request;
 
     const sheetModel = handleSpreadsheetsGetResponse(resp);
-    const seasonModels = extractSeasonDocuments(sheetModel);
+    const allDocuments = extractFirestoreDocuments(sheetModel);
 
     const batch = firestore.batch();
     const seasonCollection = firestore.collection(SEASONS_COLLECTION);
 
-    for (const season of seasonModels) {
-      const docRef = seasonCollection.doc(String(season.sheetId));
-      batch.set(docRef, season);
+    for (const docsTuple of allDocuments) {
+      const {season, seriesList} = docsTuple;
+      const seasonRef = seasonCollection.doc(String(season.sheetId));
+      batch.set(seasonRef, season);
+
+      for (const series of seriesList) {
+        const seriesRef = seasonRef.collection(SERIES_COLLECTION).doc();
+        batch.set(seriesRef, series);
+      }
     }
 
     // Record the timestamp of the latest sync
@@ -137,28 +144,49 @@ function handleSheetRowData(data: sheets_v4.Schema$GridData) {
   return result;
 }
 
+interface SeasonSeriesDocuments {
+  season: SeasonModel;
+  seriesList: SeriesModel[];
+}
 /**
  * Extracts Season domain documents from a SpreadsheetModel suitable for storage
  * in Firestore.
  * @param model Domain model of a Voting Spreadsheet from GoogleSheets
  */
-function extractSeasonDocuments(model: SpreadsheetModel) {
-  const seasonDocs: SeasonModel[] = [];
+function extractFirestoreDocuments(model: SpreadsheetModel) {
+  const results: SeasonSeriesDocuments[] = [];
 
   model.sheets.map((sheet: WorksheetModel) => {
     const startDateString = sheet.metadata[START_DATE_METADATA_KEY] || null;
     const startDateMs = parseInt(startDateString || '') || null;
 
-    seasonDocs.push({
-      sheetId: sheet.sheetId,
-      formattedName: sheet.title,
-      year: extractYear(sheet.title),
-      season: extractSeason(sheet.title),
-      startDate: startDateMs,
+    results.push({
+      season: {
+        sheetId: sheet.sheetId,
+        formattedName: sheet.title,
+        year: extractYear(sheet.title),
+        season: extractSeason(sheet.title),
+        startDate: startDateMs,
+      },
+      seriesList: extractSeriesDocuments(sheet.data),
     });
   });
 
-  return seasonDocs;
+  return results;
+}
+
+/** Extracts Firestore Series documents from a worksheet row */
+function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
+  return rows.map((row) => {
+    return {
+      titleEn: row.cells[0],
+      seasonId: null,
+      type: SeriesType.Series,
+      episodes: -1,
+      votingStatus: VotingStatus.Watching,
+      votingRecord: [],
+    };
+  });
 }
 
 

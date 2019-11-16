@@ -40,6 +40,7 @@ export interface SeasonModel {
 export const SERIES_COLLECTION = 'series';
 
 export enum SeriesType {
+  Unknown,
   Series,
   Short,
 }
@@ -50,7 +51,7 @@ export interface SeriesModel {
   idMal?: number;
   idAL?: number;
   episodes: number;
-  seasonId: number;
+  seasonId: number|null;
   votingStatus: VotingStatus;
   votingRecord: SeriesVotingRecord[];
 }
