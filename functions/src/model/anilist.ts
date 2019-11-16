@@ -1,4 +1,4 @@
-import {SeriesModel} from './fridayfellows';
+import {SeriesModel} from './firestore';
 
 /// Export to List Service models
 export enum WatchStatus {

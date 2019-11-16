@@ -5,7 +5,7 @@ import * as functions from 'firebase-functions';
 import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata'
-import {SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/fridayfellows';
+import {SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/firestore';
 
 // Global API Clients declared outside function scope
 // https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations
