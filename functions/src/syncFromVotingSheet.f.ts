@@ -7,7 +7,7 @@ import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel} from './model/sheets';
+import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
 const firestore = new Firestore({
   projectId: PROJECT_ID,
@@ -19,6 +19,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   const metadataFields = [
     'spreadsheetId',
     'properties.title',
+    'sheets.data.rowData.values.effectiveValue',
     'sheets.developerMetadata',  // Metadata for the sheet
     'sheets.properties.sheetId',
     'sheets.properties.title',
@@ -89,6 +90,9 @@ function handleSpreadsheetsGetResponse(
         })
       }
 
+      let rows: WorksheetRowModel[] = [];
+      rows = handleSheetRowData(sheet.data![0]);
+
       return {
         title: sheet.properties!.title || '',
         sheetId: sheet.properties!.sheetId || 0,
@@ -96,7 +100,7 @@ function handleSpreadsheetsGetResponse(
           rowCount: sheet.properties!.gridProperties!.rowCount || 0,
           columnCount: sheet.properties!.gridProperties!.columnCount || 0,
         },
-        data: [],
+        data: rows,
         metadata: metadataMap,
       };
     });
@@ -104,6 +108,33 @@ function handleSpreadsheetsGetResponse(
 
   sheetModel.sheets = sheets.reverse();
   return sheetModel;
+}
+
+/**
+ * Extract a set of WorksheetRowModels from the gridData portion of a
+ * SpreadSheets.get response
+ */
+function handleSheetRowData(data: sheets_v4.Schema$GridData) {
+  let result: WorksheetRowModel[] = [];
+  if (data.rowData) {
+    data.rowData.shift();  // Remove the title row
+    result = data.rowData.map((row): WorksheetRowModel => {
+      if (!row.values) {
+        return {cells: [], metadata: {}};
+      }
+      return {
+        cells: row.values.map((cell) => {
+          if (!cell.effectiveValue) {
+            return '';
+          } else {
+            return cell.effectiveValue.stringValue || '';
+          }
+        }),
+        metadata: {},
+      };
+    })
+  }
+  return result;
 }
 
 /**
