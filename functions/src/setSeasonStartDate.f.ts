@@ -6,6 +6,7 @@ import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata'
 import {SEASONS_COLLECTION, START_DATE_METADATA_KEY} from './model/firestore';
+import {SetSeasonStartDateRequest, SetSeasonStartDateResponse} from './model/service';
 
 // Global API Clients declared outside function scope
 // https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations
@@ -26,16 +27,20 @@ const cors = Cors({
 
 exports = module.exports = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
-    const sheetId: number = req.body['sheetId'];
-    const {startDate} = req.body;
-    // TODO: Validate date format
+    const reqBody: SetSeasonStartDateRequest = req.body;
+    const {sheetId, startDate} = reqBody;
+
+    if (!startDate) {
+      res.status(400).send({err: 'startDate must be set and a number'});
+      return;
+    }
 
     console.log('sheetId: ' + sheetId + ', startDate: ' + startDate);
 
     const api = await getSheetsClient(SCOPES);
 
     const requests = await getUpsertSheetMetadata(
-        api, sheetId, START_DATE_METADATA_KEY, startDate);
+        api, sheetId, START_DATE_METADATA_KEY, String(startDate));
 
     const request = api.spreadsheets.batchUpdate({
       spreadsheetId: SPREADSHEET_ID,
@@ -52,7 +57,10 @@ exports = module.exports = functions.https.onRequest((req, res) => {
           .doc(String(sheetId))
           .update({startDate});
 
-      res.status(200).send({data: resp.data});
+      const payload: SetSeasonStartDateResponse = {
+        data: resp.data,
+      };
+      res.status(200).send(payload);
     } catch (err) {
       console.log(JSON.stringify(err));
       res.status(500).send({err});

@@ -9,6 +9,7 @@ import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
 import OnDeck from './OnDeck';
 import { SeasonModel } from '../../../model/firestore';
+import { SetSeasonStartDateRequest } from '../../../model/service';
 
 interface AppProps {
   backendURI: string;
@@ -43,10 +44,11 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
   }, [backendURI])
 
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel) => {
-    const resp = await axios.post(backendURI + '/setSeasonStartDate', {
+    const payload: SetSeasonStartDateRequest = {
       sheetId: season.sheetId,
       startDate: newDate ? newDate.getTime() : null,
-    })
+    }
+    const resp = await axios.post(backendURI + '/setSeasonStartDate', payload)
     if (resp.status === 200) {
       dispatch(AppActions.setSeasonStartDate({
         season: season,

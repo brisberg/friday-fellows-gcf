@@ -6,6 +6,7 @@ import {sheets_v4} from 'googleapis';
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, START_DATE_METADATA_KEY, SYNC_STATE_KEY} from './model/firestore';
+import {SyncFromVotingSheetResponse} from './model/service';
 import {SpreadsheetModel, WorksheetModel} from './model/sheets';
 
 const firestore = new Firestore({
@@ -52,7 +53,10 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
 
     await batch.commit();
 
-    res.status(200).send({data: resp.data});
+    const payload: SyncFromVotingSheetResponse = {
+      data: resp.data,
+    };
+    res.status(200).send(payload);
   } catch (err) {
     console.log(err);
     res.status(500).send({err});
