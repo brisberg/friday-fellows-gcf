@@ -8,6 +8,12 @@ export interface SpreadsheetModel {
   sheets: WorksheetModel[];
 }
 
+/**
+ * Metadata key for the Sheet level DeveloperMetadata to store the season start
+ * date
+ */
+export const START_DATE_METADATA_KEY = 'season-start-date';
+
 export interface WorksheetModel {
   sheetId: number;
   title: string;

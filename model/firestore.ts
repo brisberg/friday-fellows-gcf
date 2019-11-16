@@ -24,7 +24,6 @@ export enum Season {
   WINTER,
 }
 
-export const START_DATE_METADATA_KEY = 'season-start-date';
 export interface SeasonModel {
   formattedName: string;  // ex. 'WINTER 2014'
   year: number;
@@ -32,9 +31,12 @@ export interface SeasonModel {
   sheetId: number;  // id of the sheet in the source SpreadSheet
   // date of the first episode viewing this season in mills. null if not set
   startDate: number|null;
+  // TODO: {aggregate: totals}
 }
 
-// Top level collection for all series documents
+// Sub-collection for all series documents under a season document
+// All sub collections will use this key so they can be queried as a collection
+// group
 export const SERIES_COLLECTION = 'series';
 
 export enum SeriesType {
@@ -48,11 +50,10 @@ export interface SeriesModel {
   idMal?: number;
   idAL?: number;
   episodes: number;
-  seasonIds: number[];
+  seasonId: number;
+  votingStatus: VotingStatus;
+  votingRecord: SeriesVotingRecord[];
 }
-
-// Top level collection for all series documents
-export const VOTING_RECORDS_COLLECTION = 'voting-records';
 
 // Current voting status of a show
 export enum VotingStatus {
@@ -63,26 +64,9 @@ export enum VotingStatus {
 }
 
 export interface SeriesVotingRecord {
-  series: SeriesModel;
-  status: VotingStatus;
-  startedWeek: number;
-  completedWeek?: number;
-}
-
-
-/// Export to List Service models
-export enum WatchStatus {
-  Watching = 0,
-  Dropped,
-  Completed,
-}
-
-export interface AnimeListRecord {
-  series: SeriesModel;
-  status: WatchStatus;
-  startDate: Date;
-  completedDate?: Date;
-  tags: string[];
-  score?: number;
-  progress: number;
+  seriesId: number;
+  episodeNum: number;
+  weekNum: number;
+  votesFor: number;
+  votesAgainst: number;
 }

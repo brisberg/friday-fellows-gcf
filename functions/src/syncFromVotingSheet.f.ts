@@ -5,9 +5,9 @@ import {sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, START_DATE_METADATA_KEY, SYNC_STATE_KEY} from './model/firestore';
+import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SpreadsheetModel, WorksheetModel} from './model/sheets';
+import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel} from './model/sheets';
 
 const firestore = new Firestore({
   projectId: PROJECT_ID,
