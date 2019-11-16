@@ -2,8 +2,9 @@ import {Firestore} from '@google-cloud/firestore';
 import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
 
+import {CONFIG_COLLECTION, SEASONS_COLLECTION, SYNC_STATE_KEY} from '../../model/firestore';
+
 import {PROJECT_ID} from './config'
-import {CONFIG_COLLECTION, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 
 const firestore = new Firestore({
   projectId: PROJECT_ID,
