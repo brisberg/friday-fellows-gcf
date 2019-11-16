@@ -1,11 +1,11 @@
 import React from 'react';
 import './SeasonDetail.css';
-import { SeasonModel } from '../state/reducer';
 import { useParams } from 'react-router-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { Tooltip, Icon, Paper } from '@material-ui/core';
+import { SeasonModel } from '../../../model/firestore';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

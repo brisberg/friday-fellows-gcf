@@ -1,3 +1,5 @@
+import {SeasonModel} from '../../../model/firestore';
+
 import {AllActions, FETCH_SEASONS_START, FETCH_SEASONS_SUCCESS, SET_SEASON_START_DATE} from './actions';
 
 export enum Season {
@@ -6,15 +8,6 @@ export enum Season {
   SUMMER,
   FALL,
   WINTER,
-}
-
-export interface SeasonModel {
-  formattedName: string;  // ex. 'WINTER 2014'
-  year: number;
-  season: Season;
-  sheetId: number;  // id of the sheet in the source SpreadSheet
-  // date of the first episode viewing this season in mills. null if not set
-  startDate: number|null;
 }
 
 interface AppState {

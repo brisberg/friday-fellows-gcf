@@ -1,9 +1,9 @@
 import React from 'react';
 import './SeasonList.css';
-import { SeasonModel } from '../state/reducer';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableHead, TableRow, Paper, CircularProgress, Tooltip } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { SeasonModel } from '../../../model/firestore';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

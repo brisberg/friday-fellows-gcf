@@ -1,5 +1,7 @@
+import {SeasonModel} from '../../../model/firestore';
+
 import {ActionsUnion, createAction, createActionPayload} from './action_utils';
-import {SeasonModel} from './reducer';
+
 
 export const FETCH_SEASONS_START = 'ACTION_FETCH_SEASONS_START'
 export const FETCH_SEASONS_SUCCESS = 'ACTION_FETCH_SEASONS_SUCCESS';
