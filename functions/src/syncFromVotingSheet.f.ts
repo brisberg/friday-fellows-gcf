@@ -4,9 +4,9 @@ import * as functions from 'firebase-functions';
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
-import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
+import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SERIES_AL_ID_KEY, SERIES_EPISODE_COUNT_KEY, SERIES_TYPE_KEY, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
+import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
 const firestore = new Firestore({
   projectId: PROJECT_ID,
@@ -65,6 +65,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     };
     res.status(200).send(payload);
   } catch (err) {
+    console.warn(err);
     res.status(500).send({err});
   }
 });
@@ -103,26 +104,29 @@ function extractFirestoreDocuments(model: SpreadsheetModel) {
 /** Extracts Firestore Series documents from a worksheet row */
 function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
   return rows.map((row) => {
-    const anilistId = parseInt(row.metadata[SERIES_AL_ID_KEY]);
-    const episodes = parseInt(row.metadata[SERIES_EPISODE_COUNT_KEY]);
-    const typeMetadata = row.metadata[SERIES_TYPE_KEY];
-    let seriesType = SeriesType.Unknown;
-    switch (typeMetadata) {
-      case SeriesType.Series:
-        seriesType = SeriesType.Series;
-        break;
-      case SeriesType.Short:
-        seriesType = SeriesType.Short;
-        break;
-    }
+    // const anilistId = parseInt(row.metadata[SERIES_AL_ID_KEY]);
+    // const episodes = parseInt(row.metadata[SERIES_EPISODE_COUNT_KEY]);
+    const seriesType = SeriesType.Unknown;
+    // const typeMetadata = row.metadata[SERIES_TYPE_KEY];
+    // switch (typeMetadata) {
+    //   case SeriesType.Series:
+    //     seriesType = SeriesType.Series;
+    //     break;
+    //   case SeriesType.Short:
+    //     seriesType = SeriesType.Short;
+    //     break;
+    // }
 
     return {
       titleEn: row.cells[0],
-      seasonId: anilistId || null,
+      // seasonId: anilistId || null,
+      seasonId: null,
       type: seriesType,
-      episodes: episodes || -1,
+      // episodes: episodes || -1,
+      episodes: -1,
       votingStatus: VotingStatus.Watching,
-      votingRecord: extractSeriesVotingRecord(row.cells.slice(1)),
+      // votingRecord: extractSeriesVotingRecord(row.cells.slice(1)),
+      votingRecord: [],
     };
   });
 }
@@ -131,9 +135,18 @@ function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
  * Extracts a list of VotingRecord objects from the raw cell strings from
  * Google Sheets.
  */
-function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
-  return [];  // Unimplemented
-}
+// function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
+//   return cells.map((cell) => {
+//     const parsedCell = parseVoteCell();
+//     return {
+//       seriesId: -1,
+//       episodeNum: parsedCell.episode,
+//       weekNum: -1,
+//       votesFor: parsedCell.votesFor,
+//       votesAgainst: parsedCell.votesAgainst,
+//     };
+//   });
+// }
 
 
 /// Utils
@@ -172,10 +185,11 @@ export interface ParsedCellInfo {
  * @return {ParsedCellInfo} Wrapper for episodes, votesFor and
  * VotesAgainst.
  */
-export function parseVoteCell(value: string): ParsedCellInfo {
-  const parts = value.split(' ');
-  const episode = parseInt(parts[1].slice(0, -1));
-  const votesFor = parseInt(parts[2]);
-  const votesAgainst = parseInt(parts[4]);
-  return {episode, votesFor, votesAgainst};
+export function parseVoteCell(): ParsedCellInfo {
+  // const parts = value.split(' ');
+  // const episode = parseInt(parts[1].slice(0, -1));
+  // const votesFor = parseInt(parts[2]);
+  // const votesAgainst = parseInt(parts[4]);
+  // return {episode, votesFor, votesAgainst};
+  return {episode: 0, votesFor: 1, votesAgainst: 2};
 }

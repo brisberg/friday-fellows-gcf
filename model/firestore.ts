@@ -40,9 +40,9 @@ export interface SeasonModel {
 export const SERIES_COLLECTION = 'series';
 
 export enum SeriesType {
-  Unknown,
-  Series,
-  Short,
+  Unknown = 'Unknown',
+  Series = 'Series',
+  Short = 'Short',
 }
 
 export interface SeriesModel {
@@ -57,7 +57,7 @@ export interface SeriesModel {
 }
 
 // Current voting status of a show
-export enum VotingStatus {
+export const enum VotingStatus {
   Watching = 0,
   Dropped,
   Completed,

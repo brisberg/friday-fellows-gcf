@@ -19,10 +19,25 @@ export interface WorksheetModel {
   title: string;
   gridProperties: {rowCount?: number; columnCount?: number;};
   data: WorksheetRowModel[];
-  metadata: {[key: string]: string}
+  metadata: {[key: string]: string};
 }
+
+/**
+ * Metadata key for the Anilist.co Id for the series associated with this row.
+ */
+export const SERIES_AL_ID_KEY = 'series-anilist-id';
+/**
+ * Metadata key for the type ('SERIES', 'SHORT') of the series associated with
+ * this row.
+ */
+export const SERIES_TYPE_KEY = 'series-type';
+/**
+ * Metadata key for total episode count of the series associated with this
+ * row.
+ */
+export const SERIES_EPISODE_COUNT_KEY = 'series-episode-count';
 
 export interface WorksheetRowModel {
   cells: string[];
-  metadata: {[key: string]: string}
+  metadata: {[key: string]: string};
 }
