@@ -2,7 +2,6 @@ import {Firestore} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 import {GaxiosResponse} from 'gaxios';
 import {sheets_v4} from 'googleapis';
-import {docs} from 'googleapis/build/src/apis/docs';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
@@ -21,6 +20,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     'spreadsheetId',
     'properties.title',
     'sheets.data.rowData.values.effectiveValue',
+    'sheets.data.rowMetadata.developerMetadata',
     'sheets.developerMetadata',  // Metadata for the sheet
     'sheets.properties.sheetId',
     'sheets.properties.title',
@@ -66,7 +66,6 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
     };
     res.status(200).send(payload);
   } catch (err) {
-    console.log(err);
     res.status(500).send({err});
   }
 });
@@ -88,6 +87,7 @@ function handleSpreadsheetsGetResponse(
   let sheets: WorksheetModel[] = [];
   if (data.sheets) {
     sheets = data.sheets.map((sheet): WorksheetModel => {
+      // Extract the developer metadata into key-value pairs
       const metadataMap: {[key: string]: string} = {};
       if (sheet.developerMetadata) {
         sheet.developerMetadata.map((metadata) => {
@@ -121,27 +121,57 @@ function handleSpreadsheetsGetResponse(
  * Extract a set of WorksheetRowModels from the gridData portion of a
  * SpreadSheets.get response
  */
-function handleSheetRowData(data: sheets_v4.Schema$GridData) {
-  let result: WorksheetRowModel[] = [];
-  if (data.rowData) {
+function handleSheetRowData(data: sheets_v4.Schema$GridData):
+    WorksheetRowModel[] {
+  const result: WorksheetRowModel[] = [];
+  if (data.rowData && data.rowMetadata) {
+    const metadataByRow: MetadataMapByRow =
+        extractMetadataByRowIndex(data.rowMetadata);
+
     data.rowData.shift();  // Remove the title row
-    result = data.rowData.map((row): WorksheetRowModel => {
-      if (!row.values) {
-        return {cells: [], metadata: {}};
-      }
-      return {
-        cells: row.values.map((cell) => {
+    for (let i = 0; i < data.rowData.length; i++) {
+      const row = data.rowData[i];
+      const rowMeta = metadataByRow[i + 1] || {};
+
+      result.push({
+        cells: row.values!.map((cell) => {
           if (!cell.effectiveValue) {
             return '';
           } else {
             return cell.effectiveValue.stringValue || '';
           }
         }),
-        metadata: {},
-      };
-    })
+        metadata: rowMeta,
+      });
+    }
   }
   return result;
+}
+
+type MetadataMapByRow = {
+  [key: number]: {[key: string]: string}
+};
+
+function extractMetadataByRowIndex(
+    dimProps: sheets_v4.Schema$DimensionProperties[]): MetadataMapByRow {
+  const metadataMap: MetadataMapByRow = {};
+  dimProps.forEach((rowMetadata) => {
+    if (!rowMetadata.developerMetadata) {
+      return;
+    }
+
+    for (const metadata of rowMetadata.developerMetadata) {
+      const rowIndex = metadata.location!.dimensionRange!.startIndex!;
+      if (!metadataMap[rowIndex]) {
+        metadataMap[rowIndex] = {};
+      }
+      if (metadata.metadataKey && metadata.metadataValue) {
+        metadataMap[rowIndex][metadata.metadataKey] = metadata.metadataValue;
+      }
+    }
+  })
+
+  return metadataMap;
 }
 
 interface SeasonSeriesDocuments {
