@@ -148,6 +148,7 @@ function handleSheetRowData(data: sheets_v4.Schema$GridData):
   return result;
 }
 
+/** Map of RowIndex -> MetadataKey -> MetadataValue */
 type MetadataMapByRow = {
   [key: number]: {[key: string]: string}
 };
