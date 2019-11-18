@@ -1,4 +1,4 @@
-import {SeasonModel} from './firestore';
+import {SeasonModel, SeriesModel} from './firestore';
 
 /**
  * Service messages for Friday Fellows Cloud Functions and client endpoints
@@ -19,6 +19,15 @@ export interface GetAllSeasonsRequest {}
 export interface GetAllSeasonsResponse {
   seasons: SeasonModel[];
   lastSyncMs: number|undefined;
+}
+
+// GetAllSeries
+// Get all series or for a specific season if a season ID is specified
+export interface GetAllSeriesRequest {
+  seasonId?: number;
+}
+export interface GetAllSeriesResponse {
+  series: SeriesModel[];
 }
 
 // SyncFromVotingSheet
