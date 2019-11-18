@@ -120,13 +120,10 @@ function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
     return {
       titleEn: row.cells[0],
       seasonId: anilistId || null,
-      // seasonId: null,
       type: seriesType,
       episodes: episodes || -1,
-      // episodes: -1,
       votingStatus: VotingStatus.Watching,
       votingRecord: extractSeriesVotingRecord(row.cells.slice(1)),
-      // votingRecord: [],
     };
   });
 }
@@ -136,8 +133,8 @@ function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
  * Google Sheets.
  */
 function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
-  return cells.map((_) => {
-    const parsedCell = parseVoteCell();
+  return cells.map((cell) => {
+    const parsedCell = parseVoteCell(cell);
     return {
       seriesId: -1,
       episodeNum: parsedCell.episode,
@@ -185,11 +182,15 @@ export interface ParsedCellInfo {
  * @return {ParsedCellInfo} Wrapper for episodes, votesFor and
  * VotesAgainst.
  */
-export function parseVoteCell(): ParsedCellInfo {
-  // const parts = value.split(' ');
-  // const episode = parseInt(parts[1].slice(0, -1));
-  // const votesFor = parseInt(parts[2]);
-  // const votesAgainst = parseInt(parts[4]);
-  // return {episode, votesFor, votesAgainst};
-  return {episode: 0, votesFor: 1, votesAgainst: 2};
+export function parseVoteCell(value: string): ParsedCellInfo {
+  const parts = value.split(' ');
+  if (parts.length !== 5) {
+    // console.warn('Could not parse voting cell: ' + value);
+    // TODO: Batch together parse errors for reporting
+    return {episode: -1, votesFor: -1, votesAgainst: -1};
+  }
+  const episode = parseInt(parts[1].slice(0, -1));
+  const votesFor = parseInt(parts[2]);
+  const votesAgainst = parseInt(parts[4]);
+  return {episode, votesFor, votesAgainst};
 }
