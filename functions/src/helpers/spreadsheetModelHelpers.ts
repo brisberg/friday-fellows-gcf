@@ -1,17 +1,14 @@
-import {GaxiosResponse} from 'gaxios';
 import {sheets_v4} from 'googleapis';
 
 import {SpreadsheetModel, WorksheetModel, WorksheetRowModel} from '../model/sheets';
 
 
 /**
- * Convert a response from spreadsheets.get into a SpreadsheetModel domain
- * object.
+ * Convert a Spreadsheet Schema from the spreadsheets.get API into a
+ * SpreadsheetModel domain object.
  */
-export function extractSheetModelFromSpreadsheetResponse(
-    res: GaxiosResponse<sheets_v4.Schema$Spreadsheet>): SpreadsheetModel {
-  const data = res.data;
-
+export function extractSheetModelFromSpreadsheetData(
+    data: sheets_v4.Schema$Spreadsheet): SpreadsheetModel {
   const sheetModel: SpreadsheetModel = {
     spreadsheetId: data.spreadsheetId || '',
     title: data.properties!.title || '',

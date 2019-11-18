@@ -3,10 +3,10 @@ import * as functions from 'firebase-functions';
 
 import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
 import {getSheetsClient} from './google.auth';
-import {extractSheetModelFromSpreadsheetResponse} from './helpers/spreadsheetModelHelpers';
-import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
+import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
+import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
+import {SERIES_AL_ID_KEY, SERIES_EPISODE_COUNT_KEY, SERIES_TYPE_KEY, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
 const firestore = new Firestore({
   projectId: PROJECT_ID,
@@ -35,7 +35,7 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
   try {
     const resp = await request;
 
-    const sheetModel = extractSheetModelFromSpreadsheetResponse(resp);
+    const sheetModel = extractSheetModelFromSpreadsheetData(resp.data);
     const allDocuments = extractFirestoreDocuments(sheetModel);
 
     const batch = firestore.batch();
@@ -103,15 +103,36 @@ function extractFirestoreDocuments(model: SpreadsheetModel) {
 /** Extracts Firestore Series documents from a worksheet row */
 function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
   return rows.map((row) => {
+    const anilistId = parseInt(row.metadata[SERIES_AL_ID_KEY]);
+    const episodes = parseInt(row.metadata[SERIES_EPISODE_COUNT_KEY]);
+    const typeMetadata = row.metadata[SERIES_TYPE_KEY];
+    let seriesType = SeriesType.Unknown;
+    switch (typeMetadata) {
+      case SeriesType.Series:
+        seriesType = SeriesType.Series;
+        break;
+      case SeriesType.Short:
+        seriesType = SeriesType.Short;
+        break;
+    }
+
     return {
       titleEn: row.cells[0],
-      seasonId: null,
-      type: SeriesType.Series,
-      episodes: -1,
+      seasonId: anilistId || null,
+      type: seriesType,
+      episodes: episodes || -1,
       votingStatus: VotingStatus.Watching,
-      votingRecord: [],
+      votingRecord: extractSeriesVotingRecord(row.cells.slice(1)),
     };
   });
+}
+
+/**
+ * Extracts a list of VotingRecord objects from the raw cell strings from
+ * Google Sheets.
+ */
+function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
+  return [];  // Unimplemented
 }
 
 
