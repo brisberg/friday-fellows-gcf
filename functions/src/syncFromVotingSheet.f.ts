@@ -47,6 +47,9 @@ exports = module.exports = functions.https.onRequest(async (_, res) => {
       batch.set(seasonRef, season);
 
       for (const series of seriesList) {
+        // TODO: Need to find a stable ID for the series so updates are
+        // itempotent. Maybe drop all records that don't have an Anilist ID in
+        // the metadata (use that as the stable id).
         const seriesRef = seasonRef.collection(SERIES_COLLECTION).doc();
         batch.set(seriesRef, series);
       }
