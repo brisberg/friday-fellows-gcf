@@ -35,21 +35,5 @@
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },
-  "private": true,
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    // speeds up tests. github.com/kulshekhar/ts-jest/issues/259#issuecomment-504088010
-    "maxWorkers": 1,
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  }
+  "private": true
 }
