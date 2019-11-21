@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 export type MethodType = 'GET'|'POST'|'OPTIONS';
 
 /**
