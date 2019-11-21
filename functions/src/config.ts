@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 // tslint:disable-next-line: no-implicit-dependencies
 import {Scopes} from 'contrib/googleapis';
 
