@@ -1,5 +1,6 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
+import * as admin from 'firebase-admin';
 
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
@@ -50,14 +51,28 @@ describe('getSeries', () => {
     getSeries(req, res);
   });
 
-  // test('should return an empty list for an invalid seasonId', (done) => {
-  //   const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
-  //   const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-  //     expect(res.statusCode).toEqual(400);
-  //     expect(res.body).toStrictEqual({err: {}});
-  //     done();
-  //   });
+  class FirebaseError extends Error {
+    constructor(readonly status: number, readonly message: string) {
+      super(message);
+    }
+  }
 
-  //   getSeries(req, res);
-  // });
+  test('should return an empty list for an invalid seasonId', (done) => {
+    const oldCollectionGroup = admin.firestore().collectionGroup;
+    admin.firestore().collectionGroup = jest.fn(() => {
+      throw new FirebaseError(400, 'firebase error');
+    });
+
+    const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
+    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
+      expect(res.statusCode).toEqual(400);
+      expect(res.body).toStrictEqual(
+          {err: new FirebaseError(400, 'firebase error')});
+      done();
+    });
+
+    getSeries(req, res);
+
+    admin.firestore().collectionGroup = oldCollectionGroup;
+  });
 });
