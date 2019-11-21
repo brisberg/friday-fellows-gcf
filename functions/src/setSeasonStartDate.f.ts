@@ -15,7 +15,7 @@ const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
 
-const cors = Cors({
+const cors = Cors.default({
   origin: true,
 });
 

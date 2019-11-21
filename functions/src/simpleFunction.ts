@@ -1,7 +1,7 @@
 import * as Cors from 'cors';
 import * as functions from 'firebase-functions';
 
-const cors = Cors({
+const cors = Cors.default({
   origin: true,
 });
 

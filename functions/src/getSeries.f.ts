@@ -8,7 +8,7 @@ import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 admin.initializeApp({});
 const firestore = admin.firestore();
 
-const cors = Cors({
+const cors = Cors.default({
   origin: true,
 });
 
