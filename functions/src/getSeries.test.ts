@@ -50,14 +50,14 @@ describe('getSeries', () => {
     getSeries(req, res);
   });
 
-  test('should return an empty list for an invalid seasonId', (done) => {
-    const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
-    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      expect(res.statusCode).toEqual(400);
-      expect(res.body).toStrictEqual({err: {}});
-      done();
-    });
+  // test('should return an empty list for an invalid seasonId', (done) => {
+  //   const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
+  //   const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
+  //     expect(res.statusCode).toEqual(400);
+  //     expect(res.body).toStrictEqual({err: {}});
+  //     done();
+  //   });
 
-    getSeries(req, res);
-  });
+  //   getSeries(req, res);
+  // });
 });
