@@ -51,8 +51,4 @@ export class MockResponse {
     this.statusCode = stat;
     return this;
   }
-  // send(cb: (payload: any) => void) {
-  //   cb(this.body);
-  //   return this;
-  // };
 }
