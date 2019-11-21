@@ -1,32 +1,26 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
-// import * as functions from 'firebase-functions-test';
+import {MockRequest, MockResponse} from './testing/express-helpers';
 
-import {makePayment} from './simpleFunction';
-
-// const testEnv = functions();
+const makePayment = require('./simpleFunction');
 
 /// HTTP
 describe('makePayment', () => {
   test('it returns a successful response with a valid card', () => {
-    const req = {body: {card: '4242424242424242'}};
-    const res = {
-      send: (payload: any) => {
-        expect(payload).toBe('Payment processed!');
-      },
-    };
+    const req =
+        new MockRequest().setMethod('GET').setBody({card: '4242424242424242'});
+    const res = new MockResponse();
 
-    makePayment(req as any, res as any);
+    makePayment(req, res);
+    expect(res.body).toBe('Payment processed!');
   });
 
-  test('it returns a successful response with a valid card', () => {
-    const req = {body: {}};
-    const res = {
-      send: (payload: any) => {
-        expect(payload).toBe('Missing card!');
-      },
-    };
+  test('it returns a successful response warning of a missing card', () => {
+    const req = new MockRequest().setBody({});
+    const res = new MockResponse().send((payload: any) => {
+      expect(payload).toBe('Missing card!');
+    });
 
-    makePayment(req as any, res as any);
+    makePayment(req, res);
   });
 });
