@@ -5,10 +5,10 @@ export type MethodType = 'GET'|'POST'|'OPTIONS';
 /**
  * Mocking utility which will mock Express requests used in the cloud functions
  */
-export class MockRequest {
+export class MockRequest<T> {
   method: MethodType = 'GET';
   headers: {[header: string]: string} = {};
-  body: any = {};
+  body?: T = {} as T;  // TODO: Convenient but might not be safe in all cases
 
   setMethod(method: MethodType) {
     this.method = method;
@@ -21,7 +21,7 @@ export class MockRequest {
   getHeader(header: string) {
     return this.headers[header];
   }
-  setBody(payload: any) {
+  setBody(payload: T) {
     this.body = payload;
     return this;
   }
@@ -31,9 +31,9 @@ export class MockRequest {
  * Mocking utility which will mock Express responses used in the cloud
  * functions
  */
-export class MockResponse {
+export class MockResponse<T> {
   headers: {[header: string]: string} = {};
-  body: any = {};
+  body?: T;
   statusCode: number = 200;
 
   setHeader(header: string, value: string) {
@@ -43,7 +43,7 @@ export class MockResponse {
   getHeader(header: string) {
     return this.headers[header];
   }
-  send(payload: any) {
+  send(payload: T) {
     this.body = payload;
     return this;
   }
