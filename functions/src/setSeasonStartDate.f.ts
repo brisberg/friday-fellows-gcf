@@ -1,5 +1,5 @@
 import {Firestore} from '@google-cloud/firestore';
-import * as Cors from 'cors';
+import Cors from 'cors';
 import * as functions from 'firebase-functions';
 
 import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
@@ -15,7 +15,7 @@ const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
 
-const cors = Cors.default({
+const cors = Cors({
   origin: true,
 });
 

@@ -1,4 +1,4 @@
-import * as Cors from 'cors';
+import Cors from 'cors';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
@@ -8,7 +8,7 @@ import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 admin.initializeApp({});
 const firestore = admin.firestore();
 
-const cors = Cors.default({
+const cors = Cors({
   origin: true,
 });
 
