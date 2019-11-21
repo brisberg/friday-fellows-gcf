@@ -36,6 +36,9 @@
       "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/functions/node_modules/jest/bin/jest",
+      },
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json"
       }
     },
     {
