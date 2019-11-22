@@ -14,7 +14,7 @@ const firestore = new Firestore({
   projectId: PROJECT_ID,
 });
 
-interface DocumentModel {
+export interface DocumentModel {
   id: string;
   data: FirebaseFirestore.DocumentData;
 }
@@ -25,7 +25,7 @@ interface DocumentModel {
  * more collection types.
  */
 async function dumpTestDataToFile() {
-  process.stdout.write('Firestore emulator data dump....');
+  process.stdout.write('Starting Firestore emulator data dump....');
   const dataFile = 'src/testing/test-data/firestore.json';
 
   const configSnap = await firestore.collection(CONFIG_COLLECTION).get();
@@ -34,16 +34,16 @@ async function dumpTestDataToFile() {
   const seasonSnap = await firestore.collection(SEASONS_COLLECTION).get();
   const seasonData = snapshotToJson(SEASONS_COLLECTION, seasonSnap);
 
-  const seriesData = [];
+  let seriesData: DocumentModel[] = [];
   for (const season of seasonSnap.docs) {
     const seriesSnap =
         await firestore
             .collection(
                 `${SEASONS_COLLECTION}/${season.id}/${SERIES_COLLECTION}`)
             .get();
-    const seriesDoc = snapshotToJson(
+    const seriesDocs = snapshotToJson(
         `${SEASONS_COLLECTION}/${season.id}/${SERIES_COLLECTION}`, seriesSnap);
-    seriesData.push(seriesDoc);
+    seriesData = seriesData.concat(seriesDocs);
   }
 
   const data = JSON.stringify(
