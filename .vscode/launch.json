@@ -11,13 +11,18 @@
       "runtimeExecutable": "${workspaceFolder}/functions/node_modules/.bin/node",
       "program": "${workspaceFolder}/functions/node_modules/.bin/jest",
       "args": [
-        "--runInBand"
+        "--runInBand",
+        "--config",
+        "functions/jest.config.js"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/functions/node_modules/jest/bin/jest",
+      },
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json"
       }
     },
     {
