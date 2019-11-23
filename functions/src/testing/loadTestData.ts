@@ -18,10 +18,10 @@ const firestore = new Firestore({
  * Loads the test data file and pushes it into the Firestore Emulator for
  * further testing.
  */
-async function loadTestDataToFirestore() {
+export async function loadTestDataToFirestore() {
   process.stdout.write('Starting load of test data to Firestore Emulator....');
-  const testData = JSON.parse(
-      fs.readFileSync('src/testing/test-data/firestore.json', 'UTF-8'));
+  const testData = JSON.parse(fs.readFileSync(
+      'functions/src/testing/test-data/firestore.json', 'UTF-8'));
   const batch = firestore.batch();
 
   testData.map((doc: DocumentModel) => {
@@ -32,6 +32,3 @@ async function loadTestDataToFirestore() {
   await batch.commit();
   console.log('done');
 }
-
-// tslint:disable-next-line: no-floating-promises
-loadTestDataToFirestore();

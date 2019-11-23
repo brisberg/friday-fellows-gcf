@@ -22,7 +22,8 @@
         "program": "${workspaceFolder}/functions/node_modules/jest/bin/jest",
       },
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json"
+        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json",
+        "FIRESTORE_EMULATOR_HOST": "localhost:8080"
       }
     },
     {
@@ -43,7 +44,8 @@
         "program": "${workspaceFolder}/functions/node_modules/jest/bin/jest",
       },
       "env": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json"
+        "GOOGLE_APPLICATION_CREDENTIALS": "${workspaceFolder}/service-credentials.json",
+        "FIRESTORE_EMULATOR_HOST": "localhost:8080"
       }
     },
     {

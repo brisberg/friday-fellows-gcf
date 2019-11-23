@@ -4,6 +4,7 @@ import * as admin from 'firebase-admin';
 
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
+import {loadTestDataToFirestore} from './testing/loadTestData';
 
 const testEnv = require('firebase-functions-test')({
   // credential: admin.credential.applicationDefault(),
@@ -12,6 +13,9 @@ const testEnv = require('firebase-functions-test')({
 const getSeries = require('./getSeries.f');
 
 describe('getSeries', () => {
+  beforeEach(async () => {
+    await loadTestDataToFirestore();
+  });
   afterEach(() => {
     testEnv.cleanup();
   });
@@ -57,7 +61,7 @@ describe('getSeries', () => {
     }
   }
 
-  test('should return an empty list for an invalid seasonId', (done) => {
+  test('should return an error if Firebase returns one', (done) => {
     const oldCollectionGroup = admin.firestore().collectionGroup;
     admin.firestore().collectionGroup = jest.fn(() => {
       throw new FirebaseError(400, 'firebase error');
