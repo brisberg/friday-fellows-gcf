@@ -6,6 +6,7 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
 
 import {Firestore} from '@google-cloud/firestore';
 import fs from 'fs';
+import path from 'path';
 
 import {PROJECT_ID} from '../config';
 import {CONFIG_COLLECTION, SEASONS_COLLECTION, SERIES_COLLECTION} from '../model/firestore';
@@ -25,8 +26,7 @@ export interface DocumentModel {
  * more collection types.
  */
 async function dumpTestDataToFile() {
-  process.stdout.write('Starting Firestore emulator data dump....');
-  const dataFile = 'src/testing/test-data/firestore.json';
+  const dataFile = path.resolve(__dirname, './test-data/firestore.json');
 
   const configSnap = await firestore.collection(CONFIG_COLLECTION).get();
   const configData = snapshotToJson(CONFIG_COLLECTION, configSnap);
@@ -54,7 +54,6 @@ async function dumpTestDataToFile() {
       ],
       null, 2);
   fs.writeFileSync(dataFile, data);
-  console.log('done');
 }
 
 /**

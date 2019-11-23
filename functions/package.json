@@ -6,7 +6,8 @@
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "test": "node_modules/.bin/jest --coverage",
+    "test": "npm run build && FIRESTORE_EMULATOR_HOST='localhost:8080' firebase emulators:exec --only firestore 'npm run test:jest'",
+    "test:jest": "node_modules/.bin/jest --coverage",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },

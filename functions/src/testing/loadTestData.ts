@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 if (!process.env['FIRESTORE_EMULATOR_HOST']) {
   console.warn(
       'Error: FIRESTORE_EMULATOR_HOST must be set to avoid pushing data to production.')
@@ -6,6 +8,7 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
 
 import {Firestore} from '@google-cloud/firestore';
 import fs from 'fs';
+import path from 'path';
 
 import {PROJECT_ID} from '../config';
 import {DocumentModel} from './dumpTestData';
@@ -19,9 +22,8 @@ const firestore = new Firestore({
  * further testing.
  */
 export async function loadTestDataToFirestore() {
-  process.stdout.write('Starting load of test data to Firestore Emulator....');
-  const testData = JSON.parse(fs.readFileSync(
-      'functions/src/testing/test-data/firestore.json', 'UTF-8'));
+  const fileName = path.resolve(__dirname, './test-data/firestore.json');
+  const testData = JSON.parse(fs.readFileSync(fileName, 'UTF-8'));
   const batch = firestore.batch();
 
   testData.map((doc: DocumentModel) => {
@@ -30,5 +32,4 @@ export async function loadTestDataToFirestore() {
   });
 
   await batch.commit();
-  console.log('done');
 }
