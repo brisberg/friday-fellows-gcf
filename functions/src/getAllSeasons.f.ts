@@ -1,14 +1,12 @@
-import {Firestore} from '@google-cloud/firestore';
 import Cors from 'cors';
+import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
-import {PROJECT_ID} from './config'
 import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsResponse} from './model/service';
 
-const firestore = new Firestore({
-  projectId: PROJECT_ID,
-});
+admin.initializeApp({});
+const firestore = admin.firestore();
 
 const cors = Cors({
   origin: true,
