@@ -18,6 +18,7 @@ describe('getAllSeasons', () => {
   beforeAll(() => {
     admin.initializeApp({});
     getAllSeasons = require('./getAllSeasons.f');
+    console.log('hi from CI');
   });
   beforeEach(async () => {
     await loadTestDataToFirestore();
