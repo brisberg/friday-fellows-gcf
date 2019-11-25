@@ -1,5 +1,8 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
+
+import {sheets_v4} from 'googleapis';
+
 import {extractSheetModelFromSpreadsheetData} from './spreadsheetModelHelpers';
 import {mockResponse} from './testing/mockSpreadsheetResponse';
 
@@ -18,7 +21,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
     expect(model.sheets.length).toBe(2);
     expect(model.sheets[1].title).toBe('SPRING 2018');
     expect(model.sheets[1].sheetId).toBe(1242888778);
-    expect(model.sheets[1].gridProperties).toEqual({
+    expect(model.sheets[1].gridProperties).toStrictEqual({
       rowCount: 20,
       columnCount: 11,
     });
@@ -35,7 +38,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   test('should extract the sheet dev-metadata into a key-value map', () => {
     const model = extractSheetModelFromSpreadsheetData(mockResponse);
 
-    expect(model.sheets[1].metadata).toEqual({
+    expect(model.sheets[1].metadata).toStrictEqual({
       'foo': 'bar sheet',
       'season-start-date': '1573772820000',
       'SPRING 2018 Start Date': 'Sat, 14 Apr 2018 07:00:00 GMT',
@@ -45,12 +48,37 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   test('should extract a row model for each row of the sheet', () => {
     const model = extractSheetModelFromSpreadsheetData(mockResponse);
 
-    const rowData = model.sheets[0].data;
-    expect(rowData.length).toBe(17);
+    const rowData = model.sheets[1].data;
+    expect(rowData.length).toBe(14);
     expect(rowData[0].cells).toEqual([
-      'Gakuen Babysitters',
-      'Ep. 01: 0 to 7',
+      'Ginga Eiyuu Densetsu: Die Neue These - Kaikou', 'Ep. 01: 4 to 4', 'BYE',
+      'Ep. 02: 3 to 7'
     ]);
-    expect(rowData[0].metadata).toEqual({});  // TODO: fill once we have data
+    expect(rowData[0].metadata).toStrictEqual({'foobar key': 'barbaz val'});
+  });
+
+  test('should provide safe default values for missing fields', () => {
+    const mockEmptyRes: sheets_v4.Schema$Spreadsheet = {
+      properties: {},
+      sheets: [{
+        properties: {gridProperties: {}},
+        data: [{
+          rowData: [{} /* title row */, {values: [{}]}],
+          rowMetadata: [],
+        }],
+      }]
+    };
+    const model = extractSheetModelFromSpreadsheetData(mockEmptyRes);
+
+    expect(model.title).toBe('');
+    expect(model.spreadsheetId).toBe('');
+    expect(model.sheets[0].title).toBe('');
+    expect(model.sheets[0].sheetId).toBe(0);
+    expect(model.sheets[0].gridProperties.rowCount).toBe(0);
+    expect(model.sheets[0].gridProperties.columnCount).toBe(0);
+    expect(model.sheets[0].metadata).toStrictEqual({});
+    const rowData = model.sheets[0].data;
+    expect(rowData[0].cells).toStrictEqual(['']);
+    expect(rowData[0].metadata).toStrictEqual({});
   });
 });
