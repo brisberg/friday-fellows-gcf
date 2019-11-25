@@ -54,7 +54,10 @@ describe('extractSheetModelFromSpreadsheetData', () => {
       'Ginga Eiyuu Densetsu: Die Neue These - Kaikou', 'Ep. 01: 4 to 4', 'BYE',
       'Ep. 02: 3 to 7'
     ]);
-    expect(rowData[0].metadata).toStrictEqual({'foobar key': 'barbaz val'});
+    expect(rowData[0].metadata).toStrictEqual({
+      'foobar key': 'barbaz val',
+      'barbar key': 'bebe val',
+    });
   });
 
   test('should provide safe default values for missing fields', () => {
@@ -63,8 +66,8 @@ describe('extractSheetModelFromSpreadsheetData', () => {
       sheets: [{
         properties: {gridProperties: {}},
         data: [{
-          rowData: [{} /* title row */, {values: [{}]}],
-          rowMetadata: [],
+          rowData: [{} /* title row */, {values: [{}, {effectiveValue: {}}]}],
+          rowMetadata: [{}],
         }],
       }]
     };
@@ -78,7 +81,66 @@ describe('extractSheetModelFromSpreadsheetData', () => {
     expect(model.sheets[0].gridProperties.columnCount).toBe(0);
     expect(model.sheets[0].metadata).toStrictEqual({});
     const rowData = model.sheets[0].data;
-    expect(rowData[0].cells).toStrictEqual(['']);
+    expect(rowData[0].cells).toStrictEqual(['', '']);
     expect(rowData[0].metadata).toStrictEqual({});
+  });
+
+  test('should return empty sheets list if missing sheet data', () => {
+    const mockRes: sheets_v4.Schema$Spreadsheet = {
+      properties: {},
+    };
+    const model = extractSheetModelFromSpreadsheetData(mockRes);
+
+    expect(model.sheets).toEqual([]);
+  });
+
+  test('should return empty row list if missing row data or metadata', () => {
+    const mockRes: sheets_v4.Schema$Spreadsheet = {
+      properties: {},
+      sheets: [{
+        properties: {gridProperties: {}},
+        data: [{}],
+      }],
+    };
+    const model = extractSheetModelFromSpreadsheetData(mockRes);
+
+    expect(model.sheets[0].data).toEqual([]);
+  });
+
+  test('should drop metadata if metadataKey or metadataValue missing', () => {
+    const mockRes: sheets_v4.Schema$Spreadsheet = {
+      properties: {},
+      sheets: [{
+        properties: {gridProperties: {}},
+        developerMetadata: [{metadataId: 1234}]
+      }]
+    };
+    const model = extractSheetModelFromSpreadsheetData(mockRes);
+
+    expect(model.sheets[0].metadata).toEqual({});
+  });
+
+  test('should drop row metadata if missing key or value', () => {
+    const mockRes: sheets_v4.Schema$Spreadsheet = {
+      properties: {},
+      sheets: [{
+        properties: {gridProperties: {}},
+        developerMetadata: [],
+        data: [{
+          rowData: [{}, {values:[]}],  // includes title row
+          rowMetadata: [
+            {},
+            {
+              developerMetadata: [
+                {location: {dimensionRange: {dimension: 'ROWS', startIndex:0}}},
+              ],
+            },
+          ],
+        }],
+      }]
+    };
+    const model = extractSheetModelFromSpreadsheetData(mockRes);
+
+    expect(model.sheets[0].data[0].metadata).toEqual({});
   });
 });

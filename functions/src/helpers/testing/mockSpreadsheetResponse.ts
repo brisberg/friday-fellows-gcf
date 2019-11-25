@@ -194,6 +194,23 @@ export const mockResponse: sheets_v4.Schema$Spreadsheet = {
           },
           {
             'developerMetadata': [{
+              'metadataId': 123452,
+              'metadataKey': 'barbar key',
+              'metadataValue': 'bebe val',
+              'location': {
+                'locationType': 'ROW',
+                'dimensionRange': {
+                  'sheetId': 1242888778,
+                  'dimension': 'ROWS',
+                  'startIndex': 1,
+                  'endIndex': 2
+                }
+              },
+              'visibility': 'DOCUMENT'
+            }]
+          },
+          {
+            'developerMetadata': [{
               'metadataId': 1686640482,
               'metadataKey': 'foo',
               'metadataValue': 'bar',

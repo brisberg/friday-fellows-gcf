@@ -25,11 +25,13 @@ export function extractSheetModelFromSpreadsheetData(
           if (metadata.metadataKey && metadata.metadataValue) {
             metadataMap[metadata.metadataKey] = metadata.metadataValue;
           }
-        })
+        });
       }
 
       let rows: WorksheetRowModel[] = [];
-      rows = handleSheetRowData(sheet.data![0]);
+      if (sheet.data) {
+        rows = handleSheetRowData(sheet.data[0]);
+      }
 
       return {
         title: sheet.properties!.title || '',
@@ -101,7 +103,7 @@ function extractMetadataByRowIndex(
         metadataMap[rowIndex][metadata.metadataKey] = metadata.metadataValue;
       }
     }
-  })
+  });
 
   return metadataMap;
 }
