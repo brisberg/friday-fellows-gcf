@@ -26,3 +26,4 @@ jobs:
       env:
         CI: true
         FIRESTORE_EMULATOR_HOST: 'localhost:8080'
+        GCLOUD_PROJECT: 'driven-utility-202807'
