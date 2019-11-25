@@ -2,7 +2,7 @@
 
 if (!process.env['FIRESTORE_EMULATOR_HOST']) {
   console.warn(
-      'Error: FIRESTORE_EMULATOR_HOST must be set to avoid pushing data to production.')
+      'Error: FIRESTORE_EMULATOR_HOST must be set to avoid pushing data to production.');
   process.exit(1);
 }
 

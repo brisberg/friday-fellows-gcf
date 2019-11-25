@@ -19,6 +19,7 @@ describe('getSeries', () => {
   });
   beforeEach(async () => {
     await loadTestDataToFirestore();
+    console.log('test data loaded');
   });
   afterEach(() => {
     testEnv.cleanup();
