@@ -1,6 +1,6 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
-import * as admin from 'firebase-admin';
+import admin from 'firebase-admin';
 
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
@@ -10,9 +10,13 @@ const testEnv = require('firebase-functions-test')({
   // credential: admin.credential.applicationDefault(),
   databaseUrl: 'https://localhost:8080',
 });
-const getSeries = require('./getSeries.f');
+let getSeries: any;
 
 describe('getSeries', () => {
+  beforeAll(() => {
+    admin.initializeApp({});
+    getSeries = require('./getSeries.f');
+  });
   beforeEach(async () => {
     await loadTestDataToFirestore();
   });

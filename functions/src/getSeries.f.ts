@@ -1,11 +1,10 @@
 import Cors from 'cors';
-import * as admin from 'firebase-admin';
+import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
 import {SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel} from './model/firestore';
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 
-admin.initializeApp({});
 const firestore = admin.firestore();
 
 const cors = Cors({

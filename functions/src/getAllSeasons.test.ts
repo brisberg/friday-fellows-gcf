@@ -1,7 +1,7 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 
-import * as admin from 'firebase-admin';
+import admin from 'firebase-admin';
 
 import {CONFIG_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsRequest, GetAllSeasonsResponse} from './model/service';
@@ -12,9 +12,13 @@ const testEnv = require('firebase-functions-test')({
   // credential: admin.credential.applicationDefault(),
   databaseUrl: 'https://localhost:8080',
 });
-const getAllSeasons = require('./getAllSeasons.f');
+let getAllSeasons: any;
 
 describe('getAllSeasons', () => {
+  beforeAll(() => {
+    admin.initializeApp({});
+    getAllSeasons = require('./getAllSeasons.f');
+  });
   beforeEach(async () => {
     await loadTestDataToFirestore();
   });

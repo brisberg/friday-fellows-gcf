@@ -9,7 +9,10 @@
  *     https://github.com/firebase/functions-samples/issues/170
  */
 import camelCase from 'camelcase';
+import admin from 'firebase-admin';
 import {sync} from 'glob';
+
+admin.initializeApp({});
 
 const files =
     sync('./**/*.f.js', {cwd: __dirname, ignore: './node_modules/**'});
