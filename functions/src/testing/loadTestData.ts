@@ -22,7 +22,8 @@ const firestore = new Firestore({
  * further testing.
  */
 export async function loadTestDataToFirestore() {
-  const fileName = path.resolve(__dirname, './test-data/firestore.json');
+  const fileName =
+      path.resolve(__dirname, '../../src/testing/test-data/firestore.json');
   const testData = JSON.parse(fs.readFileSync(fileName, 'UTF-8'));
   const batch = firestore.batch();
 
@@ -30,6 +31,8 @@ export async function loadTestDataToFirestore() {
     const ref = firestore.doc(doc.id);
     batch.set(ref, doc.data);
   });
+  console.log('starting batch');
 
   await batch.commit();
+  console.log('ending batch');
 }
