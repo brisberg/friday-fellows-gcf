@@ -1,22 +1,17 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 import admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
+import functionsTest from 'firebase-functions-test';
 
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
-const testEnv = require('firebase-functions-test')({
-  // credential: admin.credential.applicationDefault(),
-  databaseUrl: 'https://localhost:8080',
-});
-let getSeries: any;
+const testEnv = functionsTest();
+import {getSeries} from './getSeries.f';
 
 describe('getSeries', () => {
-  beforeAll(() => {
-    admin.initializeApp({});
-    getSeries = require('./getSeries.f');
-  });
   beforeEach(async () => {
     await loadTestDataToFirestore();
   });
@@ -32,7 +27,9 @@ describe('getSeries', () => {
       done();
     });
 
-    getSeries(req, res);
+    getSeries(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
   });
 
   test('should return all series for a given seasonId', (done) => {
@@ -44,7 +41,9 @@ describe('getSeries', () => {
       done();
     });
 
-    getSeries(req, res);
+    getSeries(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
   });
 
   test('should return an empty list for an invalid seasonId', (done) => {
@@ -56,7 +55,9 @@ describe('getSeries', () => {
       done();
     });
 
-    getSeries(req, res);
+    getSeries(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
   });
 
   class FirebaseError extends Error {
@@ -79,7 +80,9 @@ describe('getSeries', () => {
       done();
     });
 
-    getSeries(req, res);
+    getSeries(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
 
     admin.firestore().collectionGroup = oldCollectionGroup;
   });
