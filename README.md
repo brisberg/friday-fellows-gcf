@@ -12,6 +12,8 @@ Serverless Backend is implemented by a series of Cloud Function, located in the 
 
 React App for viewing and interacting with the voting record is hosted on [Github Pages](http://brisberg.github.io/friday-fellows-gcf), located in the `app` directory.
 
+Deploy a new version to gh-pages with: `npm run deploy`
+
 
 ## Testing during Development
 
