@@ -17,12 +17,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v1
+    - name: actions/cache (.npm)
+      uses: actions/cache@v1
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+    - name: actions/cache (firebase emulators)
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/firebase/emulators
+        key: ${{ runner.os }}-emulators-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-emulators-
     - name: npm install, build, and test
       run: |
         cd functions/
