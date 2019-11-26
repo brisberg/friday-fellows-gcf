@@ -2,23 +2,17 @@
 import 'jest';
 
 import admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
 
 import {CONFIG_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsRequest, GetAllSeasonsResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
-const testEnv = require('firebase-functions-test')({
-  // credential: admin.credential.applicationDefault(),
-  databaseUrl: 'https://localhost:8080',
-});
-let getAllSeasons: any;
+const testEnv = require('firebase-functions-test')();
+import {getAllSeasons} from './getAllSeasons.f';
 
 describe('getAllSeasons', () => {
-  beforeAll(() => {
-    admin.initializeApp({});
-    getAllSeasons = require('./getAllSeasons.f');
-  });
   beforeEach(async () => {
     await loadTestDataToFirestore();
   });
@@ -36,7 +30,9 @@ describe('getAllSeasons', () => {
       done();
     });
 
-    getAllSeasons(req, res);
+    getAllSeasons(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
   });
 
   test('should undefined for last sync if it is missing', async (done) => {
@@ -51,7 +47,9 @@ describe('getAllSeasons', () => {
       done();
     });
 
-    getAllSeasons(req, res);
+    getAllSeasons(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
   });
 
   class FirebaseError extends Error {
@@ -74,7 +72,9 @@ describe('getAllSeasons', () => {
       done();
     });
 
-    getAllSeasons(req, res);
+    getAllSeasons(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
 
     admin.firestore().collection = oldCollection;
   });
