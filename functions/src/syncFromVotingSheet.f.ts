@@ -1,18 +1,16 @@
-import {Firestore} from '@google-cloud/firestore';
-import * as functions from 'firebase-functions';
+import admin from 'firebase-admin';
+import functions from 'firebase-functions';
 
-import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config';
+import {SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
 import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
 import {SERIES_AL_ID_KEY, SERIES_EPISODE_COUNT_KEY, SERIES_TYPE_KEY, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
-const firestore = new Firestore({
-  projectId: PROJECT_ID,
-});
+const firestore = admin.firestore();
 
-exports = module.exports = functions.https.onRequest(async (_, res) => {
+export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
   const api = await getSheetsClient(SCOPES_READONLY);
 
   const metadataFields = [

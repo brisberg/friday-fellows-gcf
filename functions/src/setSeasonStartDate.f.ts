@@ -1,8 +1,8 @@
-import {Firestore} from '@google-cloud/firestore';
 import Cors from 'cors';
-import * as functions from 'firebase-functions';
+import admin from 'firebase-admin';
+import functions from 'firebase-functions';
 
-import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config';
+import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata';
 import {SEASONS_COLLECTION} from './model/firestore';
@@ -11,9 +11,7 @@ import {START_DATE_METADATA_KEY} from './model/sheets';
 
 // Global API Clients declared outside function scope
 // https://cloud.google.com/functions/docs/bestpractices/tips#use_global_variables_to_reuse_objects_in_future_invocations
-const firestore = new Firestore({
-  projectId: PROJECT_ID,
-});
+const firestore = admin.firestore();
 
 const cors = Cors({
   origin: true,
@@ -26,7 +24,7 @@ const cors = Cors({
 // "startDate": 5432}'
 // https://localhost:5001/driven-utility-202807/setSeasonStartDate
 
-exports = module.exports = functions.https.onRequest((req, res) => {
+export const setSeasonStartDate = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     const reqBody: SetSeasonStartDateRequest = req.body;
     const {sheetId, startDate} = reqBody;

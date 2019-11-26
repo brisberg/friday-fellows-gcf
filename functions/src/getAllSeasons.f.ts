@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
+import functions from 'firebase-functions';
 
 import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsResponse} from './model/service';
@@ -15,7 +15,7 @@ const cors = Cors({
  * Query Firestore for the list of all seasons and the timestamp of the last
  * sync from sheets.
  */
-exports = module.exports = functions.https.onRequest((req, res) => {
+export const getAllSeasons = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     try {
       const seasonsQuery = firestore.collection(SEASONS_COLLECTION).get();

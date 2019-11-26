@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
+import functions from 'firebase-functions';
 
 import {SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel} from './model/firestore';
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
@@ -16,7 +16,7 @@ const cors = Cors({
  *
  * If a season ID is specified restrict to just series for that season.
  */
-exports = module.exports = functions.https.onRequest((req, res) => {
+export const getSeries = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     const reqBody: GetAllSeriesRequest = req.body;
     const {seasonId} = reqBody;
