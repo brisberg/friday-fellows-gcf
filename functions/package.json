@@ -23,6 +23,7 @@
     "firebase-functions": "^3.3.0",
     "gaxios": "^2.1.0",
     "googleapis": "^45.0.0",
+    "graphql-request": "^1.8.2",
     "node": "^8.13.0"
   },
   "devDependencies": {

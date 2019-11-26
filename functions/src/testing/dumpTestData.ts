@@ -4,16 +4,20 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
   process.exit(1);
 }
 
-import {Firestore} from '@google-cloud/firestore';
+import admin from 'firebase-admin';
 import fs from 'fs';
 import path from 'path';
 
-import {PROJECT_ID} from '../config';
 import {CONFIG_COLLECTION, SEASONS_COLLECTION, SERIES_COLLECTION} from '../model/firestore';
 
-const firestore = new Firestore({
-  projectId: PROJECT_ID,
-});
+if (!admin.apps.find((app: admin.app.App|null) => {
+      return app ? app.name === '[DEFAULT]' : false;
+    })) {
+  admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+  });
+}
+const firestore = admin.firestore();
 
 export interface DocumentModel {
   id: string;
