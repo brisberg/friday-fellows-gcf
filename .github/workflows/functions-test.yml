@@ -3,7 +3,7 @@ name: Cloud Functions Test
 on: [push]
 
 jobs:
-  build:
+  functions-tests:
 
     runs-on: ubuntu-latest
 
