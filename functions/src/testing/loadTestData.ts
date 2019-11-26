@@ -35,8 +35,6 @@ export async function loadTestDataToFirestore() {
     const ref = firestore.doc(doc.id);
     batch.set(ref, doc.data);
   });
-  console.log('starting batch');
 
   await batch.commit();
-  console.log('ending batch');
 }

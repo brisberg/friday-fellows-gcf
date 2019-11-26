@@ -34,8 +34,6 @@ export const setSeasonStartDate = functions.https.onRequest((req, res) => {
       return;
     }
 
-    console.log('sheetId: ' + sheetId + ', startDate: ' + startDate);
-
     const api = await getSheetsClient(SCOPES);
 
     const requests = await getUpsertSheetMetadata(
@@ -61,7 +59,6 @@ export const setSeasonStartDate = functions.https.onRequest((req, res) => {
       };
       res.status(200).send(payload);
     } catch (err) {
-      console.log(JSON.stringify(err));
       res.status(500).send({err});
     }
   });

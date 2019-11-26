@@ -14,7 +14,6 @@ import {getSeries} from './getSeries.f';
 describe('getSeries', () => {
   beforeEach(async () => {
     await loadTestDataToFirestore();
-    console.log('test data loaded');
   });
   afterEach(() => {
     testEnv.cleanup();
@@ -23,7 +22,6 @@ describe('getSeries', () => {
   test('should return all series when invoked with no arguments', (done) => {
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
     const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      console.log(JSON.stringify(res));
       expect(res.statusCode).toEqual(200);
       expect(res.body!.series.length).toEqual(41);  // 19 + 22 from both seasons
       done();
@@ -38,7 +36,6 @@ describe('getSeries', () => {
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET').setBody(
         {seasonId: 281991772});  // WINTER 2018
     const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      console.log(JSON.stringify(res));
       expect(res.statusCode).toEqual(200);
       expect(res.body!.series.length).toEqual(22);
       done();

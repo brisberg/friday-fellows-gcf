@@ -23,7 +23,6 @@ describe('getAllSeasons', () => {
   test('should return all season documents and the last sync date', (done) => {
     const req = new MockRequest<GetAllSeasonsRequest>().setMethod('GET');
     const res = new MockResponse<GetAllSeasonsResponse>().onSend(() => {
-      console.log(JSON.stringify(res));
       expect(res.statusCode).toEqual(200);
       expect(res.body!.seasons.length).toEqual(2);
       expect(res.body!.lastSyncMs).toEqual(1574413847579);
