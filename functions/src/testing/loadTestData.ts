@@ -6,23 +6,28 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
   process.exit(1);
 }
 
-import {Firestore} from '@google-cloud/firestore';
+import admin from 'firebase-admin';
 import fs from 'fs';
 import path from 'path';
 
-import {PROJECT_ID} from '../config';
 import {DocumentModel} from './dumpTestData';
 
-const firestore = new Firestore({
-  projectId: PROJECT_ID,
-});
+if (!admin.apps.find((app: admin.app.App|null) => {
+      return app ? app.name === '[DEFAULT]' : false;
+    })) {
+  admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+  });
+}
+const firestore = admin.firestore();
 
 /**
  * Loads the test data file and pushes it into the Firestore Emulator for
  * further testing.
  */
 export async function loadTestDataToFirestore() {
-  const fileName = path.resolve(__dirname, './test-data/firestore.json');
+  const fileName =
+      path.resolve(__dirname, '../../src/testing/test-data/firestore.json');
   const testData = JSON.parse(fs.readFileSync(fileName, 'UTF-8'));
   const batch = firestore.batch();
 

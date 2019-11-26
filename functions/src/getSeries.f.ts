@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
-import functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
 import {SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel} from './model/firestore';
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';

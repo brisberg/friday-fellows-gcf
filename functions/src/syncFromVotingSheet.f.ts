@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
 import {SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';

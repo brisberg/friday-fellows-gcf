@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
-import functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
 import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsResponse} from './model/service';

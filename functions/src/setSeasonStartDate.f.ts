@@ -1,6 +1,6 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
-import functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
 import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
