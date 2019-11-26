@@ -1,6 +1,6 @@
 if (!process.env['FIRESTORE_EMULATOR_HOST']) {
   console.warn(
-      'Error: FIRESTORE_EMULATOR_HOST must be set to avoid querying production data.')
+      'Error: FIRESTORE_EMULATOR_HOST must be set to avoid querying production data.');
   process.exit(1);
 }
 

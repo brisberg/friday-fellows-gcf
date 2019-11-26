@@ -1,7 +1,7 @@
 import {Firestore} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 
-import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config'
+import {PROJECT_ID, SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
 import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
