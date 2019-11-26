@@ -32,4 +32,10 @@ Then start the emulator and access its emulated function URLs.
 
 Cloud function unit tests use the firebase emulator (above) to mock interacts with Firestore. Follow the instructions above to launch the emulator, then from the `functions` directory run the tests with:
 
+`npm run test:jest`
+
+or
+
+To run the emulator and tests in a single step use just:
+
 `npm test`
