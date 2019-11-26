@@ -35,9 +35,9 @@ export class MockResponse<T> {
   headers: {[header: string]: string} = {};
   body?: T;
   statusCode: number = 200;
-  sendCb = () => {
+  sendCb() {
     return;
-  };
+  }
 
   setHeader(header: string, value: string) {
     this.headers[header] = value;

@@ -2,9 +2,9 @@ import {Firestore} from '@google-cloud/firestore';
 import Cors from 'cors';
 import * as functions from 'firebase-functions';
 
-import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config'
+import {PROJECT_ID, SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
-import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata'
+import {getUpsertSheetMetadata} from './helpers/upsertDevMetadata';
 import {SEASONS_COLLECTION} from './model/firestore';
 import {SetSeasonStartDateRequest, SetSeasonStartDateResponse} from './model/service';
 import {START_DATE_METADATA_KEY} from './model/sheets';

@@ -26,12 +26,12 @@ exports = module.exports = functions.https.onRequest((req, res) => {
         const snapshot = await firestore.collection(SEASONS_COLLECTION)
                              .doc(String(seasonId))
                              .collection(SERIES_COLLECTION)
-                             .get()
+                             .get();
         seriesList =
             snapshot.docs.map((docSnap) => docSnap.data() as SeriesModel);
       } else {
         const snapshot =
-            await firestore.collectionGroup(SERIES_COLLECTION).get()
+            await firestore.collectionGroup(SERIES_COLLECTION).get();
         seriesList =
             snapshot.docs.map((docSnap) => docSnap.data() as SeriesModel);
       }

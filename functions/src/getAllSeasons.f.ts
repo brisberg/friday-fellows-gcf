@@ -22,7 +22,7 @@ exports = module.exports = functions.https.onRequest((req, res) => {
       const lastSyncQuery =
           firestore.doc(CONFIG_COLLECTION + '/' + SYNC_STATE_KEY).get();
       const [snapshot, lastSync] =
-          await Promise.all([seasonsQuery, lastSyncQuery])
+          await Promise.all([seasonsQuery, lastSyncQuery]);
 
       const seasons = snapshot.docs.map((docSnap) => docSnap.data());
       const lastSyncMs =
