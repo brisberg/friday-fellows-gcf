@@ -4,11 +4,11 @@ import 'jest';
 import {sheets_v4} from 'googleapis';
 
 import {extractSheetModelFromSpreadsheetData} from './spreadsheetModelHelpers';
-import {mockResponse} from './testing/mockSpreadsheetResponse';
+import {mockSpreadsheetGetResponse} from './testing/mockSpreadsheetResponse';
 
 describe('extractSheetModelFromSpreadsheetData', () => {
   test('should extract spreadsheet title and id from response', () => {
-    const model = extractSheetModelFromSpreadsheetData(mockResponse);
+    const model = extractSheetModelFromSpreadsheetData(mockSpreadsheetGetResponse);
 
     expect(model.title).toBe('Dev Version Anime Voting.xlsx');
     expect(model.spreadsheetId)
@@ -16,7 +16,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   });
 
   test('should extract the a season model for each sheet', () => {
-    const model = extractSheetModelFromSpreadsheetData(mockResponse);
+    const model = extractSheetModelFromSpreadsheetData(mockSpreadsheetGetResponse);
 
     expect(model.sheets.length).toBe(2);
     expect(model.sheets[1].title).toBe('SPRING 2018');
@@ -28,7 +28,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   });
 
   test('should reverse the order of sheet models to be chronological', () => {
-    const model = extractSheetModelFromSpreadsheetData(mockResponse);
+    const model = extractSheetModelFromSpreadsheetData(mockSpreadsheetGetResponse);
 
     expect(model.sheets.length).toBe(2);
     expect(model.sheets[0].title).toBe('WINTER 2018');
@@ -36,7 +36,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   });
 
   test('should extract the sheet dev-metadata into a key-value map', () => {
-    const model = extractSheetModelFromSpreadsheetData(mockResponse);
+    const model = extractSheetModelFromSpreadsheetData(mockSpreadsheetGetResponse);
 
     expect(model.sheets[1].metadata).toStrictEqual({
       'foo': 'bar sheet',
@@ -46,7 +46,7 @@ describe('extractSheetModelFromSpreadsheetData', () => {
   });
 
   test('should extract a row model for each row of the sheet', () => {
-    const model = extractSheetModelFromSpreadsheetData(mockResponse);
+    const model = extractSheetModelFromSpreadsheetData(mockSpreadsheetGetResponse);
 
     const rowData = model.sheets[1].data;
     expect(rowData.length).toBe(14);
