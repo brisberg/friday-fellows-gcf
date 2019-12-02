@@ -23,45 +23,45 @@ describe('getSeries', () => {
     testEnv.cleanup();
   });
 
-  test('should return all series when invoked with no arguments', (done) => {
+  test('should return all series when invoked with no arguments', async () => {
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
-    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body!.series.length).toEqual(41);  // 19 + 22 from both seasons
-      done();
-    });
+    const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
         req as unknown as functions.Request,
         res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body!.series.length).toEqual(41);  // 19 + 22 from both seasons
   });
 
-  test('should return all series for a given seasonId', (done) => {
+  test('should return all series for a given seasonId', async () => {
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET').setBody(
         {seasonId: 281991772});  // WINTER 2018
-    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body!.series.length).toEqual(22);
-      done();
-    });
+    const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
         req as unknown as functions.Request,
         res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body!.series.length).toEqual(22);
   });
 
-  test('should return an empty list for an invalid seasonId', (done) => {
+  test('should return an empty list for an invalid seasonId', async () => {
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET').setBody(
         {seasonId: 12345});
-    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body).toStrictEqual<GetAllSeriesResponse>({series: []});
-      done();
-    });
+    const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
         req as unknown as functions.Request,
         res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toStrictEqual<GetAllSeriesResponse>({series: []});
   });
 
   class FirebaseError extends Error {
@@ -70,23 +70,23 @@ describe('getSeries', () => {
     }
   }
 
-  test('should return an error if Firebase returns one', (done) => {
+  test('should return an error if Firebase returns one', async () => {
     const oldCollectionGroup = admin.firestore().collectionGroup;
     admin.firestore().collectionGroup = jest.fn(() => {
       throw new FirebaseError(400, 'firebase error');
     });
 
     const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET');
-    const res = new MockResponse<GetAllSeriesResponse>().onSend(() => {
-      expect(res.statusCode).toEqual(400);
-      expect(res.body).toStrictEqual(
-          {err: new FirebaseError(400, 'firebase error')});
-      done();
-    });
+    const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
         req as unknown as functions.Request,
         res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(400);
+    expect(res.body).toStrictEqual(
+        {err: new FirebaseError(400, 'firebase error')});
 
     admin.firestore().collectionGroup = oldCollectionGroup;
   });

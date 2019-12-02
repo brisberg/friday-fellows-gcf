@@ -40,9 +40,6 @@ export class MockResponse<T> {
   sent: Promise<void> = new Promise((resolve) => {
     this._sent = resolve;
   });
-  sendCb() {
-    return;
-  }
 
   setHeader(header: string, value: string) {
     this.headers[header] = value;
@@ -57,14 +54,9 @@ export class MockResponse<T> {
   }
   send(payload: T) {
     this.body = payload;
-    this.sendCb();
     if (this._sent) {
       this._sent();
     }
-    return this;
-  }
-  onSend(cb: () => void) {
-    this.sendCb = cb;
     return this;
   }
 }
