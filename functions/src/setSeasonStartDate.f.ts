@@ -64,7 +64,7 @@ export const setSeasonStartDate = functions.https.onRequest((req, res) => {
       };
       res.status(200).send(payload);
     } catch (err) {
-      res.status(500).send({err});
+      res.status(err.status).send({err});
     }
   });
 });
