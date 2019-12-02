@@ -1,18 +1,22 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
+
+import * as firebase from '@firebase/testing';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
 
+import {PROJECT_ID} from './config';
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
-const testEnv = functionsTest();
+const testEnv = functionsTest({projectId: PROJECT_ID});
 import {getSeries} from './getSeries.f';
 
 describe('getSeries', () => {
   beforeEach(async () => {
+    await firebase.clearFirestoreData({projectId: PROJECT_ID});
     await loadTestDataToFirestore();
   });
   afterEach(() => {

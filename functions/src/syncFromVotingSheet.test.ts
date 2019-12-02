@@ -1,22 +1,27 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 
+import * as firebase from '@firebase/testing';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
 
+import {PROJECT_ID} from './config';
 import {mockResponse} from './helpers/testing/mockSpreadsheetResponse';
 import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetRequest, SyncFromVotingSheetResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 
-const testEnv = functionsTest();
+const testEnv = functionsTest({projectId: PROJECT_ID});
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
 });
 import {syncFromVotingSheet} from './syncFromVotingSheet.f';
 
 describe('syncFromVotingSheet', () => {
+  beforeEach(async () => {
+    await firebase.clearFirestoreData({projectId: PROJECT_ID});
+  });
   afterEach(() => {
     testEnv.cleanup();
   });
