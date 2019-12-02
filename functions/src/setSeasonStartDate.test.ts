@@ -109,7 +109,7 @@ describe('setSeasonStartDate', () => {
         res as unknown as functions.Response);
     await res.sent;
 
-    expect(res.statusCode).toEqual(500);
+    expect(res.statusCode).toEqual(400);
     expect(res.body).toStrictEqual(
         {err: new FirebaseError(400, 'firebase error')});
 
