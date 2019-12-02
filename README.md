@@ -14,8 +14,6 @@ React App for viewing and interacting with the voting record is hosted on [Githu
 
 Deploy a new version to gh-pages with: `npm run deploy`
 
-Another test
-
 
 ## Testing during Development
 
