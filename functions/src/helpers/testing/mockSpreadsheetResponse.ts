@@ -1,7 +1,7 @@
 import {sheets_v4} from 'googleapis';
 
 /** Cached response for Spreadsheets.get of a valid voting sheet */
-export const mockResponse: sheets_v4.Schema$Spreadsheet = {
+export const mockSpreadsheetGetResponse: sheets_v4.Schema$Spreadsheet = {
   'spreadsheetId': '1w9ADt88UpKwZigx6xrP_Oohc3VTPVLWqC3-ATLCyExg',
   'properties': {'title': 'Dev Version Anime Voting.xlsx'},
   'sheets': [

@@ -7,7 +7,7 @@ import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
 
 import {PROJECT_ID} from './config';
-import {mockResponse} from './helpers/testing/mockSpreadsheetResponse';
+import {mockSpreadsheetGetResponse} from './helpers/testing/mockSpreadsheetResponse';
 import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetRequest, SyncFromVotingSheetResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
@@ -36,7 +36,7 @@ describe('syncFromVotingSheet', () => {
     await res.sent;
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body!.data).toEqual(mockResponse);
+    expect(res.body!.data).toEqual(mockSpreadsheetGetResponse);
   });
 
   test('should save last sync date to Firestore', async () => {
