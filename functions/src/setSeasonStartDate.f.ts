@@ -34,6 +34,11 @@ export const setSeasonStartDate = functions.https.onRequest((req, res) => {
       return;
     }
 
+    if (!sheetId) {
+      res.status(400).send({err: 'sheetId must be set and a number'});
+      return;
+    }
+
     const api = await getSheetsClient(SCOPES);
 
     const requests = await getUpsertSheetMetadata(

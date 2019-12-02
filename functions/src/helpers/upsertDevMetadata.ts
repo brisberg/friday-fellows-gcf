@@ -20,7 +20,7 @@ export function getUpsertSpreadsheetMetadata(
       spreadsheet: true,
     },
     visibility: 'PROJECT',
-  })
+  });
 }
 
 /** Convenience wrapper to upsert metadata on a specific sheet. */
@@ -34,7 +34,7 @@ export function getUpsertSheetMetadata(
       sheetId,
     },
     visibility: 'PROJECT',
-  })
+  });
 }
 
 /**

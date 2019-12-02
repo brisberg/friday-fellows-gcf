@@ -12,6 +12,7 @@ export interface SetSeasonStartDateRequest {
 }
 export interface SetSeasonStartDateResponse {
   data?: {};  // sheets_v4.Schema$BatchUpdateSpreadsheetResponse
+  err?: string;
 }
 
 // GetAllSeasons
@@ -28,6 +29,7 @@ export interface GetAllSeriesRequest {
 }
 export interface GetAllSeriesResponse {
   series: SeriesModel[];
+  err?: string;
 }
 
 // SyncFromVotingSheet
