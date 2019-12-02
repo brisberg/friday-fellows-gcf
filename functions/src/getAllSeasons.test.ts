@@ -8,6 +8,7 @@ import * as functions from 'firebase-functions';
 import {PROJECT_ID} from './config';
 import {CONFIG_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {GetAllSeasonsRequest, GetAllSeasonsResponse} from './model/service';
+import {FirebaseError} from './testing/errors';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
@@ -53,12 +54,6 @@ describe('getAllSeasons', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body!.lastSyncMs).toEqual(undefined);
   });
-
-  class FirebaseError extends Error {
-    constructor(readonly status: number, readonly message: string) {
-      super(message);
-    }
-  }
 
   test('should return an error if Firebase returns one', async () => {
     const oldCollection = admin.firestore().collection;
