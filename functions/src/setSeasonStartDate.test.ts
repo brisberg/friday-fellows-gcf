@@ -9,6 +9,7 @@ import {google, sheets_v4} from 'googleapis';
 
 import {PROJECT_ID, SPREADSHEET_ID} from './config';
 import {SetSeasonStartDateRequest, SetSeasonStartDateResponse} from './model/service';
+import {FirebaseError} from './testing/errors';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 
 const testEnv = functionsTest({projectId: PROJECT_ID});
@@ -90,5 +91,28 @@ describe('setSeasonStartDate', () => {
             }],
           },
         });
+  });
+
+  test('should return a 400 and an error if Firebase returns one', async () => {
+    const oldCollection = admin.firestore().collection;
+    admin.firestore().collection = jest.fn(() => {
+      throw new FirebaseError(400, 'firebase error');
+    });
+
+    const req =
+        new MockRequest<SetSeasonStartDateRequest>().setMethod('GET').setBody(
+            {sheetId: 1242888778, startDate: 12345});
+    const res = new MockResponse<SetSeasonStartDateResponse>();
+
+    setSeasonStartDate(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(500);
+    expect(res.body).toStrictEqual(
+        {err: new FirebaseError(400, 'firebase error')});
+
+    admin.firestore().collection = oldCollection;
   });
 });

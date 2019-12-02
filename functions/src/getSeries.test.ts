@@ -8,6 +8,7 @@ import functionsTest from 'firebase-functions-test';
 
 import {PROJECT_ID} from './config';
 import {GetAllSeriesRequest, GetAllSeriesResponse} from './model/service';
+import {FirebaseError} from './testing/errors';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
@@ -63,12 +64,6 @@ describe('getSeries', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body).toStrictEqual<GetAllSeriesResponse>({series: []});
   });
-
-  class FirebaseError extends Error {
-    constructor(readonly status: number, readonly message: string) {
-      super(message);
-    }
-  }
 
   test('should return an error if Firebase returns one', async () => {
     const oldCollectionGroup = admin.firestore().collectionGroup;
