@@ -54,7 +54,7 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
     }
 
     // Record the timestamp of the latest sync
-    const syncTimestamp = new Date().getTime();
+    const syncTimestamp = new Date(Date.now()).getTime();
     batch.set(
         firestore.doc(CONFIG_COLLECTION + '/' + SYNC_STATE_KEY),
         {lastSync: syncTimestamp});

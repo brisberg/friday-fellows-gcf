@@ -35,6 +35,11 @@ export class MockResponse<T> {
   headers: {[header: string]: string} = {};
   body?: T;
   statusCode: number = 200;
+
+  private _sent?: Function;
+  sent: Promise<void> = new Promise((resolve) => {
+    this._sent = resolve;
+  });
   sendCb() {
     return;
   }
@@ -53,6 +58,9 @@ export class MockResponse<T> {
   send(payload: T) {
     this.body = payload;
     this.sendCb();
+    if (this._sent) {
+      this._sent();
+    }
     return this;
   }
   onSend(cb: () => void) {
