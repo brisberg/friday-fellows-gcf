@@ -1,7 +1,11 @@
 import Cors from 'cors';
 import * as functions from 'firebase-functions';
 
+import {SCOPES, SPREADSHEET_ID} from './config';
+import {getSheetsClient} from './google.auth';
+import {getUpsertSheetRowMetadata} from './helpers/upsertDevMetadata';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
+import {SERIES_AL_ID_KEY} from './model/sheets';
 
 const cors = Cors({
   origin: true,
@@ -64,6 +68,20 @@ query ($id: Int) {
     try {
       // Make the HTTP Api request
       const data = await fetch(url, options).then(resp => resp.json());
+
+      const api = await getSheetsClient(SCOPES);
+      const sheetsReqs = await getUpsertSheetRowMetadata(
+          api, seasonId, row, SERIES_AL_ID_KEY, String(data.data.Media.id));
+
+      const request = api.spreadsheets.batchUpdate({
+        spreadsheetId: SPREADSHEET_ID,
+        requestBody: {
+          requests: sheetsReqs,
+        },
+      });
+
+      await request;
+
       const payload: SetSeriesIdResponse = {
         data: data,
       };
