@@ -21,7 +21,6 @@ import {loadTestDataToFirestore} from './testing/loadTestData';
 import {mockSetStartDateMetadataResponse} from './helpers/testing/mockSetStartDateResponse';
 import {START_DATE_METADATA_KEY} from './model/sheets';
 
-
 describe('setSeasonStartDate', () => {
   beforeEach(async () => {
     await firebase.clearFirestoreData({projectId: PROJECT_ID});

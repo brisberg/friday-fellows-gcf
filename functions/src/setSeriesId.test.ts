@@ -17,7 +17,6 @@ admin.initializeApp({
 import {setSeriesId} from './setSeriesId.f';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 
-
 describe('setSeriesId', () => {
   beforeEach(async () => {
     await loadTestDataToFirestore();
@@ -69,5 +68,28 @@ describe('setSeriesId', () => {
 
     expect(res.statusCode).toEqual(400);
     expect(res.body!.err).toEqual('seriesId must be set and a number');
+  });
+
+  test('should query AniList', async () => {
+    const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
+      seasonId: 12345,
+      row: 1,
+      seriesId: 15125,  // Teekyu
+    });
+    const res = new MockResponse<SetSeriesIdResponse>();
+
+    setSeriesId(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
+    await res.sent;
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body!.data).toMatchObject({
+      data: {
+        Media: {
+          title: {romaji: 'Teekyuu'},
+        },
+      }
+    });
   });
 });
