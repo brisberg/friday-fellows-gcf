@@ -11,11 +11,13 @@ admin.initializeApp({
 import {getAllSeasons} from './getAllSeasons.f';
 import {getSeries} from './getSeries.f';
 import {setSeasonStartDate} from './setSeasonStartDate.f';
+import {setSeriesId} from './setSeriesId.f';
 import {syncFromVotingSheet} from './syncFromVotingSheet.f';
 
 export {
   getAllSeasons,
   getSeries,
   setSeasonStartDate,
+  setSeriesId,
   syncFromVotingSheet,
 };
