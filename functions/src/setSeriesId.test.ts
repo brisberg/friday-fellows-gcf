@@ -1,15 +1,17 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
-import 'jest-fetch-mock';
 
 import * as firebase from '@firebase/testing';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
+import {GlobalWithFetchMock} from 'jest-fetch-mock';
 
 import {PROJECT_ID} from './config';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
+
+const {fetchMock} = global as GlobalWithFetchMock;
 
 const testEnv = functionsTest({projectId: PROJECT_ID});
 admin.initializeApp({
@@ -24,7 +26,7 @@ describe('setSeriesId', () => {
   });
   afterEach(async () => {
     testEnv.cleanup();
-    fetch.resetMocks();
+    fetchMock.resetMocks();
     await firebase.clearFirestoreData({projectId: PROJECT_ID});
   });
 
@@ -73,6 +75,8 @@ describe('setSeriesId', () => {
   });
 
   test('should query AniList', async () => {
+    fetchMock.mockResponseOnce(
+        JSON.stringify({data: {Media: {title: {romaji: 'Teekyuu'}}}}));
     const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
       seasonId: 12345,
       row: 1,
