@@ -1,5 +1,6 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
+import 'jest-fetch-mock';
 
 import * as firebase from '@firebase/testing';
 import admin from 'firebase-admin';
@@ -23,6 +24,7 @@ describe('setSeriesId', () => {
   });
   afterEach(async () => {
     testEnv.cleanup();
+    fetch.resetMocks();
     await firebase.clearFirestoreData({projectId: PROJECT_ID});
   });
 
