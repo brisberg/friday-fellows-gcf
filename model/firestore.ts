@@ -39,10 +39,11 @@ export interface SeasonModel {
 // group
 export const SERIES_COLLECTION = 'series';
 
+// Pulled from AniList.co schema
 export enum SeriesType {
   Unknown = 'Unknown',
-  Series = 'Series',
-  Short = 'Short',
+  Series = 'TV',
+  Short = 'TV_SHORT',
 }
 
 export interface SeriesModel {

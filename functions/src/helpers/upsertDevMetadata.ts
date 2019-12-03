@@ -37,6 +37,25 @@ export function getUpsertSheetMetadata(
   });
 }
 
+/** Convenience wrapper to upsert metadata on a specific sheet row. */
+export function getUpsertSheetRowMetadata(
+    api: sheets_v4.Sheets, sheetId: number, row: number, key: string,
+    value: string) {
+  return getUpsertMetadataRequest(api, {
+    spreadsheetId: SPREADSHEET_ID,
+    metadataKey: key,
+    metadataValue: value,
+    location: {
+      sheetId,
+      dimensionRange: {
+        startIndex: row,
+        endIndex: row + 1,
+      }
+    },
+    visibility: 'PROJECT',
+  });
+}
+
 /**
  * Implements Upsert sementics for developer metadata. First queries for the
  * metadata by key and location and updates it if found. If not creates a new
