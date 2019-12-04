@@ -11,7 +11,7 @@ import {GlobalWithFetchMock} from 'jest-fetch-mock';
 import {PROJECT_ID, SPREADSHEET_ID} from './config';
 import {mockAnilistQueryMediaResponse} from './helpers/testing/mockAnilistQueryMediaResponse';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
-import {SERIES_AL_ID_KEY} from './model/sheets';
+import {SERIES_AL_ID_KEY, SeriesMetadataPayload} from './model/sheets';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 
 const {fetchMock} = global as GlobalWithFetchMock;
@@ -22,6 +22,7 @@ admin.initializeApp({
 });
 import {setSeriesId} from './setSeriesId.f';
 import {loadTestDataToFirestore} from './testing/loadTestData';
+import { SeriesType } from './model/firestore';
 
 describe('setSeriesId', () => {
   beforeEach(async () => {
@@ -110,6 +111,13 @@ describe('setSeriesId', () => {
         res as unknown as functions.Response);
     await res.sent;
 
+    const expectedPayload: SeriesMetadataPayload = {
+      titleEn: 'Teekyuu',
+      alId: 15125,
+      malId: 15125,
+      type: SeriesType.Short,
+      episodes: 12,
+    }
     expect(google.sheets({version: 'v4'}).spreadsheets.batchUpdate)
         .toHaveBeenCalledWith<
             sheets_v4.Params$Resource$Spreadsheets$Batchupdate[]>({
@@ -119,7 +127,7 @@ describe('setSeriesId', () => {
               createDeveloperMetadata: {
                 developerMetadata: {
                   metadataKey: SERIES_AL_ID_KEY,
-                  metadataValue: '15125',
+                  metadataValue: JSON.stringify(expectedPayload),
                   location: {
                     sheetId: 12345,
                     dimensionRange: {
