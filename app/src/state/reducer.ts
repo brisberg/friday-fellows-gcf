@@ -43,7 +43,7 @@ export function reducer(state: AppState = initialState, action: AllActions) {
       }
     case FETCH_SERIES_SUCCESS:
       return {
-        ...state, seasons: action.payload.json, loadingSeries: false,
+        ...state, seriesForSeason: action.payload.json, loadingSeries: false,
       }
     case SET_SEASON_START_DATE:
       const seasonIdx = state.seasons.indexOf(action.payload.season);
@@ -73,7 +73,7 @@ export function reducer(state: AppState = initialState, action: AllActions) {
           // Otherwise, this is the one we want - return an updated value
           const seriesId = action.payload.seriesId;
           return {
-            ...series, idAL: seriesId || null,
+            ...series, idAL: seriesId || -1,
           }
         })
       }

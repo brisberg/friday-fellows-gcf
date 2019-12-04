@@ -106,7 +106,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
           <Route path='/s/:seasonId' render={({ match }) => (
             <SeasonDetail
               season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
-              seriesList={state.seriesList}
+              seriesList={state.seriesForSeason}
               onStartDateChanged={handleStartDateChanged}
               onSeriesIdChanged={handleSeriesIdChanged} />
           )} />
