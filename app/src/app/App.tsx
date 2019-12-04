@@ -43,6 +43,26 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     fetchSeasonData();
   }, [backendURI])
 
+  // Load all season data on start using effect Hook
+  // https://www.robinwieruch.de/react-hooks-fetch-data
+  useEffect(() => {
+    const fetchSeasonData = async () => {
+      try {
+        dispatch(AppActions.fetchSeasonsStart());
+        const resp = await axios.get<GetAllSeasonsResponse>(backendURI + '/getAllSeasons');
+
+        const lastSyncMs = resp.data.lastSyncMs;
+        const lastSync = lastSyncMs ? new Date(lastSyncMs) : undefined
+        dispatch(AppActions.fetchSeasonsSuccess({ json: resp.data.seasons, lastSync }));
+      } catch (e) {
+        console.log(e);
+        // this.setState({...this.state, isFetching: false});
+      }
+    }
+
+    fetchSeasonData();
+  }, [backendURI])
+
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel) => {
     const payload: SetSeasonStartDateRequest = {
       sheetId: season.sheetId,
@@ -55,6 +75,10 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
         startDate: newDate,
       }))
     }
+  }
+
+  const handleSeriesIdChanged = () => {
+    console.log("handleSeriesIdChanged unimplemented");
   }
 
   function AppFooter() {
@@ -80,8 +104,11 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
             <SeasonList seasons={state.seasons} lastSyncDate={state.lastSync} loading={state.loadingSeasons} onStartDateChanged={handleStartDateChanged} />
           </Route>
           <Route path='/s/:seasonId' render={({ match }) => (
-            <SeasonDetail season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
-              onStartDateChanged={handleStartDateChanged} />
+            <SeasonDetail
+              season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
+              seriesList={state.seriesList}
+              onStartDateChanged={handleStartDateChanged}
+              onSeriesIdChanged={handleSeriesIdChanged} />
           )} />
         </Switch>
       </div>
