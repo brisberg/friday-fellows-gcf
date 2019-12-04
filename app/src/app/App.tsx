@@ -3,7 +3,7 @@ import './App.css';
 import { reducer, initialState } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useParams } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
@@ -22,26 +22,6 @@ interface GetAllSeasonsResponse {
 
 const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // Load all season data on start using effect Hook
-  // https://www.robinwieruch.de/react-hooks-fetch-data
-  useEffect(() => {
-    const fetchSeasonData = async () => {
-      try {
-        dispatch(AppActions.fetchSeasonsStart());
-        const resp = await axios.get<GetAllSeasonsResponse>(backendURI + '/getAllSeasons');
-
-        const lastSyncMs = resp.data.lastSyncMs;
-        const lastSync = lastSyncMs ? new Date(lastSyncMs) : undefined
-        dispatch(AppActions.fetchSeasonsSuccess({ json: resp.data.seasons, lastSync }));
-      } catch (e) {
-        console.log(e);
-        // this.setState({...this.state, isFetching: false});
-      }
-    }
-
-    fetchSeasonData();
-  }, [backendURI])
 
   // Load all season data on start using effect Hook
   // https://www.robinwieruch.de/react-hooks-fetch-data
@@ -105,6 +85,8 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
           </Route>
           <Route path='/s/:seasonId' render={({ match }) => (
             <SeasonDetail
+              dispatch={dispatch}
+              backendURI={backendURI}
               season={state.seasons.find((season) => String(season.sheetId) === match.params.seasonId)}
               seriesList={state.seriesForSeason}
               onStartDateChanged={handleStartDateChanged}

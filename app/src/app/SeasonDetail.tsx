@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SeasonDetail.css';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
+import { AppActions } from '../state/actions';
+import { GetAllSeriesResponse } from '../../../model/service';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,15 +45,35 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface SeasonDetailProps {
+  dispatch: Function;
+  backendURI: string;
   season: SeasonModel | undefined;
   seriesList: SeriesModel[];
   onStartDateChanged: Function;
   onSeriesIdChanged: Function;
 }
 
-const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
+const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
   const { seasonId } = useParams();
   const classes = useStyles();
+
+  // Load all season data on start using effect Hook
+  // https://www.robinwieruch.de/react-hooks-fetch-data
+  useEffect(() => {
+    const fetchSeriesData = async () => {
+      try {
+        dispatch(AppActions.fetchSeriesStart());
+        const resp = await axios.get<GetAllSeriesResponse>(backendURI + '/getSeries?seasonId=' + seasonId);
+
+        dispatch(AppActions.fetchSeriesSuccess({ json: resp.data.series }));
+      } catch (e) {
+        console.log(e);
+        // this.setState({...this.state, isFetching: false});
+      }
+    }
+
+    fetchSeriesData();
+  }, [dispatch, backendURI, seasonId])
 
   if (!season) {
     return null;
