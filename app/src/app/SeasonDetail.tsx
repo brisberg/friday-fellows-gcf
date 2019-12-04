@@ -1,11 +1,11 @@
 import React from 'react';
 import './SeasonDetail.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { Tooltip, Icon, Paper } from '@material-ui/core';
-import { SeasonModel } from '../../../model/firestore';
+import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
+import { SeasonModel, SeriesModel } from '../../../model/firestore';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 'auto',
       maxWidth: '60vw',
     },
+    root: {
+      overflowX: 'auto',
+      margin: '0 10px',
+    },
     table: {
       minWidth: 650,
     },
@@ -39,10 +43,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface SeasonDetailProps {
   season: SeasonModel | undefined;
+  seriesList: SeriesModel[];
   onStartDateChanged: Function;
+  onSeriesIdChanged: Function;
 }
 
-const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, onStartDateChanged }) => {
+const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
   const { seasonId } = useParams();
   const classes = useStyles();
 
@@ -75,8 +81,32 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ season, onStartDateChanged 
           <Icon className="push-left warning-icon text-top">warning</Icon>
         </Tooltip>}
       </Paper>
-      <p>{seasonId}</p>
-      <p>{JSON.stringify(season)}</p>
+      <Paper className={classes.root}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Series Name</TableCell>
+              <TableCell align="right">AniList&nbsp;ID</TableCell>
+              <TableCell align="right">MAL&nbsp;ID</TableCell>
+              <TableCell align="right">Type</TableCell>
+              <TableCell align="right">Episodes</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {seriesList.map((series) => (
+              <TableRow key={series.titleEn}>
+                <TableCell component="th" scope="row">
+                  {series.titleEn}
+                </TableCell>
+                <TableCell align="right">{series.idAL}</TableCell>
+                <TableCell align="right">{series.idMal}</TableCell>
+                <TableCell align="right">{series.type}</TableCell>
+                <TableCell align="right">{series.episodes}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
     </div>
   );
 }
