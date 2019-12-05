@@ -47,7 +47,11 @@ export enum SeriesType {
 }
 
 export interface SeriesModel {
-  titleEn: string;
+  // Row Index in the voting sheet of this series. Used to uniquely identify the
+  // series if a AL Id has not been set
+  rowIndex: number;
+  titleRaw: string;  // Raw title from Voting Sheet
+  titleEn: string;   // English title from AniList
   type: SeriesType;
   idMal?: number;
   idAL?: number;

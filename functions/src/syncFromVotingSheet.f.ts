@@ -6,7 +6,7 @@ import {getSheetsClient} from './google.auth';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
 import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SERIES_AL_ID_KEY, SERIES_EPISODE_COUNT_KEY, SERIES_TYPE_KEY, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
+import {SERIES_AL_ID_KEY, SeriesMetadataPayload, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
 const firestore = admin.firestore();
 
@@ -94,7 +94,7 @@ function extractFirestoreDocuments(model: SpreadsheetModel) {
         season: extractSeason(sheet.title),
         startDate: startDateMs,
       },
-      seriesList: extractSeriesDocuments(sheet.data),
+      seriesList: extractSeriesDocuments(sheet.sheetId, sheet.data),
     });
   });
 
@@ -102,13 +102,15 @@ function extractFirestoreDocuments(model: SpreadsheetModel) {
 }
 
 /** Extracts Firestore Series documents from a worksheet row */
-function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
-  return rows.map((row) => {
-    const anilistId = parseInt(row.metadata[SERIES_AL_ID_KEY]);
-    const episodes = parseInt(row.metadata[SERIES_EPISODE_COUNT_KEY]);
+function extractSeriesDocuments(
+    seasonId: number, rows: WorksheetRowModel[]): SeriesModel[] {
+  return rows.map((row, index): SeriesModel => {
+    const metadataPayload: SeriesMetadataPayload =
+        JSON.parse(row.metadata[SERIES_AL_ID_KEY] || '{}');
+    const {alId, malId, episodes, titleEn, type} = metadataPayload;
+
     let seriesType = SeriesType.Unknown;
-    const typeMetadata = row.metadata[SERIES_TYPE_KEY];
-    switch (typeMetadata) {
+    switch (type) {
       case SeriesType.Series:
         seriesType = SeriesType.Series;
         break;
@@ -118,9 +120,13 @@ function extractSeriesDocuments(rows: WorksheetRowModel[]): SeriesModel[] {
     }
 
     return {
-      titleEn: row.cells[0],
-      seasonId: anilistId || null,
-      type: seriesType,
+      titleRaw: row.cells[0],
+      titleEn: titleEn || '',
+      rowIndex: index,
+      idAL: alId || -1,
+      idMal: malId || -1,
+      seasonId: seasonId,
+      type: seriesType || '',
       episodes: episodes || -1,
       votingStatus: VotingStatus.Watching,
       votingRecord: extractSeriesVotingRecord(row.cells.slice(1)),
