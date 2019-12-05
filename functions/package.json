@@ -20,6 +20,7 @@
   "dependencies": {
     "@types/cors": "^2.8.6",
     "@types/node": "^12.12.11",
+    "@types/node-fetch": "^2.5.4",
     "@types/request-promise": "^4.1.45",
     "cors": "^2.8.5",
     "firebase-admin": "^8.8.0",
@@ -28,7 +29,7 @@
     "googleapis": "^45.0.0",
     "graphql-request": "^1.8.2",
     "node": "^8.13.0",
-    "request-promise": "^4.2.5"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@firebase/testing": "^0.16.0",

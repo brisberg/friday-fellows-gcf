@@ -6,15 +6,14 @@ import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
 import {google, sheets_v4} from 'googleapis';
-import {GlobalWithFetchMock} from 'jest-fetch-mock';
+import {FetchMock} from 'jest-fetch-mock';
+const fetchMock: FetchMock = require('node-fetch');
 
 import {PROJECT_ID, SPREADSHEET_ID} from './config';
 import {mockAnilistQueryMediaResponse} from './helpers/testing/mockAnilistQueryMediaResponse';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
 import {SERIES_AL_ID_KEY, SeriesMetadataPayload} from './model/sheets';
 import {MockRequest, MockResponse} from './testing/express-helpers';
-
-const {fetchMock} = global as GlobalWithFetchMock;
 
 const testEnv = functionsTest({projectId: PROJECT_ID});
 admin.initializeApp({
@@ -128,8 +127,9 @@ describe('setSeriesId', () => {
                   metadataKey: SERIES_AL_ID_KEY,
                   metadataValue: JSON.stringify(expectedPayload),
                   location: {
-                    sheetId: 1242888778,
                     dimensionRange: {
+                      sheetId: 1242888778,
+                      dimension: 'ROWS',
                       startIndex: 1,
                       endIndex: 2,
                     },

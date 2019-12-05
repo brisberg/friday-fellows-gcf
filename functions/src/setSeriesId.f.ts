@@ -1,7 +1,7 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import requestPromise from 'request-promise';
+import fetch from 'node-fetch';
 
 import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
@@ -73,8 +73,8 @@ query ($id: Int) {
     let data: any;
     try {
       // Make the HTTP Api request
-      const alResp = await requestPromise(url, options);
-      data = JSON.parse(alResp);
+      const alResp = await fetch(url, options);
+      data = await alResp.json();
     } catch (e) {
       console.log(e);
       res.status(500).send({err: e});
