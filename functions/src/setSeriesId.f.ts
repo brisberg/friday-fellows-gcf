@@ -1,6 +1,7 @@
 import Cors from 'cors';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import requestPromise from 'request-promise';
 
 import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
@@ -69,10 +70,18 @@ query ($id: Int) {
       body: JSON.stringify({query: query, variables: variables})
     };
 
+    let data: any;
     try {
       // Make the HTTP Api request
-      const data = await fetch(url, options).then(resp => resp.json());
+      const alResp = await requestPromise(url, options);
+      data = JSON.parse(alResp);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({err: e});
+      return;
+    }
 
+    try {
       // Commit AniList metadata to Voting Sheet as Dev Metadata
       const api = await getSheetsClient(SCOPES);
 
@@ -95,7 +104,13 @@ query ($id: Int) {
       });
 
       await request;
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({err: e});
+      return;
+    }
 
+    try {
       // Commit AniList metadata to Firestore
       await firestore.collection(SEASONS_COLLECTION)
           .doc(String(seasonId))
@@ -109,13 +124,15 @@ query ($id: Int) {
             episodes: data.data.Media.episodes,
             seasonId,
           });
-
-      const payload: SetSeriesIdResponse = {
-        data: data,
-      };
-      res.status(200).send(payload);
     } catch (err) {
+      console.log(err);
       res.status(500).send({err});
+      return;
     }
+
+    const payload: SetSeriesIdResponse = {
+      data: data,
+    };
+    res.status(200).send(payload);
   });
 });
