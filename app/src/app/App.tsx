@@ -8,7 +8,7 @@ import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
 import OnDeck from './OnDeck';
-import { SeasonModel } from '../../../model/firestore';
+import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { SetSeasonStartDateRequest } from '../../../model/service';
 
 interface AppProps {
@@ -57,8 +57,8 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     }
   }
 
-  const handleSeriesIdChanged = () => {
-    console.log("handleSeriesIdChanged unimplemented");
+  const handleSeriesIdChanged = (series: SeriesModel, seriesId: number) => {
+    console.log("handleSeriesIdChanged unimplemented: new ID: " + seriesId);
   }
 
   function AppFooter() {

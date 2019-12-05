@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import './SeasonDetail.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
+import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody, Dialog, DialogTitle, Button, DialogActions, DialogContent, TextField } from '@material-ui/core';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { AppActions } from '../state/actions';
 import { GetAllSeriesResponse } from '../../../model/service';
@@ -44,17 +44,70 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+export interface SetSeriesIdDialog {
+  open: boolean;
+  initialValue?: number;
+  onClose: (value: number) => void;
+}
+
+function SetSeriesIdDialog(props: SetSeriesIdDialog) {
+  // const classes = useStyles();
+  const { onClose, open, initialValue = 0 } = props;
+  const [value, setValue] = useState(initialValue);
+
+  const handleClose = () => {
+    onClose(value);
+  };
+
+  const valueChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(parseInt(e.target.value));
+  }
+
+  return (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="set-id-dialog-title"
+      aria-describedby="set-id-dialog-description"
+    >
+      <DialogTitle id="set-id-dialog-title">{"Set AniList.co Id for Series"}</DialogTitle>
+      <DialogContent>
+        <TextField
+          id="id-input"
+          label="AniList Id"
+          type="number"
+          variant="outlined"
+          // className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+          value={value}
+          onChange={valueChanged}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Confirm
+          </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
 interface SeasonDetailProps {
   dispatch: Function;
   backendURI: string;
   season: SeasonModel | undefined;
   seriesList: SeriesModel[];
-  onStartDateChanged: Function;
-  onSeriesIdChanged: Function;
+  onStartDateChanged: (newDate: Date | null, season: SeasonModel) => void;
+  onSeriesIdChanged: (series: SeriesModel, seriesId: number) => void;
 }
 
 const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
   const { seasonId } = useParams();
+  const [idDialogOpen, setDialogOpen] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(-1);
   const classes = useStyles();
 
   // Load all season data on start using effect Hook
@@ -77,6 +130,27 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
 
   if (!season) {
     return null;
+  }
+
+  const openSeriesIdDialog = (row: number) => {
+    setEditingIndex(row);
+    setDialogOpen(true);
+  }
+
+  const handleSeriesIdDialogConfirm = (seriesId: number) => {
+    setDialogOpen(false);
+    const series = seriesList[editingIndex];
+    // dispatch(AppActions.setSeriesId({ series, seriesId }));
+    onSeriesIdChanged(series, seriesId);
+    setEditingIndex(-1);
+  }
+
+  const DialogButton = ({ onClick, index }: { onClick: Function, index: number }) => {
+    const handleClick = () => {
+      onClick(index);
+    };
+
+    return (<Button onClick={handleClick}>Edit</Button>);
   }
 
   return (
@@ -116,7 +190,7 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
             </TableRow>
           </TableHead>
           <TableBody>
-            {seriesList.map((series) => (
+            {seriesList.map((series, index) => (
               <TableRow key={series.titleEn}>
                 <TableCell component="th" scope="row">
                   {series.titleEn}
@@ -125,11 +199,15 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
                 <TableCell align="right">{series.idMal}</TableCell>
                 <TableCell align="right">{series.type}</TableCell>
                 <TableCell align="right">{series.episodes}</TableCell>
+                <TableCell>
+                  <DialogButton onClick={openSeriesIdDialog} index={index} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </Paper>
+      <SetSeriesIdDialog open={idDialogOpen} onClose={handleSeriesIdDialogConfirm} initialValue={0}></SetSeriesIdDialog>
     </div>
   );
 }
