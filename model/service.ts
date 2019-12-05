@@ -43,7 +43,7 @@ export interface SyncFromVotingSheetResponse {
 export interface SetSeriesIdRequest {
   seasonId?: number;
   row?: number;
-  seriesId?: number
+  seriesId?: number;
 }
 export interface SetSeriesIdResponse {
   data?: {};  // wip
