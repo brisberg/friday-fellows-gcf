@@ -46,14 +46,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface SetSeriesIdDialog {
   open: boolean;
-  initialValue?: number;
+  series: SeriesModel | null;
   onClose: (value: number) => void;
 }
 
 function SetSeriesIdDialog(props: SetSeriesIdDialog) {
-  // const classes = useStyles();
-  const { onClose, open, initialValue = 0 } = props;
-  const [value, setValue] = useState(initialValue);
+  const { onClose, open, series } = props;
+  const [value, setValue] = useState<number>(series ? series.idAL || 0 : 0);
 
   const handleClose = () => {
     onClose(value);
@@ -101,13 +100,13 @@ interface SeasonDetailProps {
   season: SeasonModel | undefined;
   seriesList: SeriesModel[];
   onStartDateChanged: (newDate: Date | null, season: SeasonModel) => void;
-  onSeriesIdChanged: (series: SeriesModel, seasonId: number, index: number, seriesId: number) => void;
+  onSeriesIdChanged: (series: SeriesModel, seasonId: number, seriesId: number) => void;
 }
 
 const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
   const { seasonId } = useParams();
   const [idDialogOpen, setDialogOpen] = useState(false);
-  const [editingIndex, setEditingIndex] = useState(-1);
+  const [selectedSeries, setSelectedSeries] = useState<SeriesModel | null>(null);
   const classes = useStyles();
 
   // Load all season data on start using effect Hook
@@ -132,21 +131,22 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
     return null;
   }
 
-  const openSeriesIdDialog = (row: number) => {
-    setEditingIndex(row);
+  const openSeriesIdDialog = (series: SeriesModel) => {
+    setSelectedSeries(series);
     setDialogOpen(true);
   }
 
   const handleSeriesIdDialogConfirm = (seriesId: number) => {
     setDialogOpen(false);
-    const series = seriesList[editingIndex];
-    onSeriesIdChanged(series, season.sheetId, editingIndex, seriesId);
-    setEditingIndex(-1);
+    if (selectedSeries) {
+      onSeriesIdChanged(selectedSeries, season.sheetId, seriesId);
+    }
+    setSelectedSeries(null);
   }
 
-  const DialogButton = ({ onClick, index }: { onClick: Function, index: number }) => {
+  const DialogButton = ({ onClick, series }: { onClick: Function, series: SeriesModel }) => {
     const handleClick = () => {
-      onClick(index);
+      onClick(series);
     };
 
     return (<Button onClick={handleClick}>Edit</Button>);
@@ -181,7 +181,8 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Series Name</TableCell>
+              <TableCell>Series Name&nbsp;(Raw)</TableCell>
+              <TableCell>Series Name&nbsp;(AniList)</TableCell>
               <TableCell align="right">AniList&nbsp;ID</TableCell>
               <TableCell align="right">MAL&nbsp;ID</TableCell>
               <TableCell align="right">Type</TableCell>
@@ -189,24 +190,25 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
             </TableRow>
           </TableHead>
           <TableBody>
-            {seriesList.map((series, index) => (
-              <TableRow key={series.titleEn}>
+            {seriesList.map((series) => (
+              <TableRow key={series.rowIndex}>
                 <TableCell component="th" scope="row">
-                  {series.titleEn}
+                  {series.titleRaw}
                 </TableCell>
+                <TableCell>{series.titleEn}</TableCell>
                 <TableCell align="right">{series.idAL}</TableCell>
                 <TableCell align="right">{series.idMal}</TableCell>
                 <TableCell align="right">{series.type}</TableCell>
                 <TableCell align="right">{series.episodes}</TableCell>
                 <TableCell>
-                  <DialogButton onClick={openSeriesIdDialog} index={index} />
+                  <DialogButton onClick={openSeriesIdDialog} series={series} />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </Paper>
-      <SetSeriesIdDialog open={idDialogOpen} onClose={handleSeriesIdDialogConfirm} initialValue={0}></SetSeriesIdDialog>
+      <SetSeriesIdDialog open={idDialogOpen} onClose={handleSeriesIdDialogConfirm} series={selectedSeries}></SetSeriesIdDialog>
     </div>
   );
 }

@@ -2,7 +2,7 @@
   {
     "id": "config/sync-status",
     "data": {
-      "lastSync": 1575513546186
+      "lastSync": 1575575097253
     }
   },
   {
@@ -66,10 +66,14 @@
           "votesFor": 2
         }
       ],
-      "type": "Unknown",
-      "titleEn": "Tada-kun wa Koi wo Shinai",
-      "seasonId": null,
-      "episodes": -1
+      "idMal": 36902,
+      "type": "TV",
+      "titleEn": "Magical Girl Ore",
+      "seasonId": 1242888778,
+      "idAL": 100715,
+      "titleRaw": "Tada-kun wa Koi wo Shinai",
+      "rowIndex": 0,
+      "episodes": 12
     }
   },
   {
@@ -85,9 +89,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Mahou Shoujo Ore",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Mahou Shoujo Ore",
+      "rowIndex": 1,
       "episodes": -1
     }
   },
@@ -118,9 +126,13 @@
           "votesFor": -1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Shiyan Pin Jiating (Jikken-hin Kazoku)",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Shiyan Pin Jiating (Jikken-hin Kazoku)",
+      "rowIndex": 10,
       "episodes": -1
     }
   },
@@ -151,9 +163,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Comic Girls",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Comic Girls",
+      "rowIndex": 11,
       "episodes": -1
     }
   },
@@ -198,9 +214,13 @@
           "votesFor": 5
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Boku no Hero Academia S3",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Boku no Hero Academia S3",
+      "rowIndex": 12,
       "episodes": -1
     }
   },
@@ -245,9 +265,13 @@
           "votesFor": 2
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Golden Kamuy",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Golden Kamuy",
+      "rowIndex": 13,
       "episodes": -1
     }
   },
@@ -271,9 +295,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Persona 5 the Animation",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Persona 5 the Animation",
+      "rowIndex": 14,
       "episodes": -1
     }
   },
@@ -304,9 +332,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Piano no Mori",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Piano no Mori",
+      "rowIndex": 15,
       "episodes": -1
     }
   },
@@ -330,9 +362,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Sword Art Online: Gun Gale Online",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Sword Art Online: Gun Gale Online",
+      "rowIndex": 16,
       "episodes": -1
     }
   },
@@ -356,9 +392,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Last Period: Owarinaki Rasen no Monogatari",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Last Period: Owarinaki Rasen no Monogatari",
+      "rowIndex": 17,
       "episodes": -1
     }
   },
@@ -403,9 +443,13 @@
           "votesFor": 5
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Hinamatsuri",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Hinamatsuri",
+      "rowIndex": 18,
       "episodes": -1
     }
   },
@@ -422,9 +466,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Mahou Shoujo Site",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Mahou Shoujo Site",
+      "rowIndex": 2,
       "episodes": -1
     }
   },
@@ -441,9 +489,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Uma Musume: Pretty Derby",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Uma Musume: Pretty Derby",
+      "rowIndex": 3,
       "episodes": -1
     }
   },
@@ -488,9 +540,13 @@
           "votesFor": 5
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Megalo Box",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Megalo Box",
+      "rowIndex": 4,
       "episodes": -1
     }
   },
@@ -521,9 +577,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou",
+      "rowIndex": 5,
       "episodes": -1
     }
   },
@@ -547,9 +607,13 @@
           "votesFor": -1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Gurazeni",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Gurazeni",
+      "rowIndex": 6,
       "episodes": -1
     }
   },
@@ -594,9 +658,13 @@
           "votesFor": 5
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Lupin the Third: Part V",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Lupin the Third: Part V",
+      "rowIndex": 7,
       "episodes": -1
     }
   },
@@ -627,9 +695,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Gegege no Kitaro (2018)",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Gegege no Kitaro (2018)",
+      "rowIndex": 8,
       "episodes": -1
     }
   },
@@ -674,9 +746,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Wotakoi",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 1242888778,
+      "idAL": -1,
+      "titleRaw": "Wotakoi",
+      "rowIndex": 9,
       "episodes": -1
     }
   },
@@ -707,9 +783,13 @@
           "votesFor": 1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Mitsuboshi Colors",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Mitsuboshi Colors",
+      "rowIndex": 0,
       "episodes": -1
     }
   },
@@ -726,9 +806,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Karakai Jouzu no Takagi-san",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Karakai Jouzu no Takagi-san",
+      "rowIndex": 1,
       "episodes": -1
     }
   },
@@ -759,9 +843,13 @@
           "votesFor": 0
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Beatless",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Beatless",
+      "rowIndex": 10,
       "episodes": -1
     }
   },
@@ -792,9 +880,13 @@
           "votesFor": 2
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Darling in the Franxx",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Darling in the Franxx",
+      "rowIndex": 11,
       "episodes": -1
     }
   },
@@ -825,9 +917,13 @@
           "votesFor": 1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Hakumei to Mikochi",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Hakumei to Mikochi",
+      "rowIndex": 12,
       "episodes": -1
     }
   },
@@ -851,9 +947,13 @@
           "votesFor": 1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Toji no Miko",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Toji no Miko",
+      "rowIndex": 13,
       "episodes": -1
     }
   },
@@ -898,9 +998,13 @@
           "votesFor": 5
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Pop Team Epic",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Pop Team Epic",
+      "rowIndex": 14,
       "episodes": -1
     }
   },
@@ -924,9 +1028,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Citrus",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Citrus",
+      "rowIndex": 15,
       "episodes": -1
     }
   },
@@ -957,9 +1065,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Death March kara Hajimaru Isekai Kyousoukyoku",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Death March kara Hajimaru Isekai Kyousoukyoku",
+      "rowIndex": 16,
       "episodes": -1
     }
   },
@@ -983,9 +1095,13 @@
           "votesFor": 0
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Dame x Prince Anime Caravan",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Dame x Prince Anime Caravan",
+      "rowIndex": 17,
       "episodes": -1
     }
   },
@@ -1030,9 +1146,13 @@
           "votesFor": 1
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Ito Junji: Collection",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Ito Junji: Collection",
+      "rowIndex": 18,
       "episodes": -1
     }
   },
@@ -1056,9 +1176,13 @@
           "votesFor": 0
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Sanrio Danshi",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Sanrio Danshi",
+      "rowIndex": 19,
       "episodes": -1
     }
   },
@@ -1075,9 +1199,13 @@
           "votesFor": 2
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Hakata Tonkotsu Ramens",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Hakata Tonkotsu Ramens",
+      "rowIndex": 2,
       "episodes": -1
     }
   },
@@ -1122,9 +1250,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Yurucamp",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Yurucamp",
+      "rowIndex": 20,
       "episodes": -1
     }
   },
@@ -1155,9 +1287,13 @@
           "votesFor": 0
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Mahoutsukai no Yome",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Mahoutsukai no Yome",
+      "rowIndex": 21,
       "episodes": -1
     }
   },
@@ -1202,9 +1338,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Koi wa Ameagari no You ni",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Koi wa Ameagari no You ni",
+      "rowIndex": 3,
       "episodes": -1
     }
   },
@@ -1235,9 +1375,13 @@
           "votesFor": 2
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Ryuuou no Oshigoto",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Ryuuou no Oshigoto",
+      "rowIndex": 4,
       "episodes": -1
     }
   },
@@ -1254,9 +1398,13 @@
           "votesFor": 0
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Gakuen Babysitters",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Gakuen Babysitters",
+      "rowIndex": 5,
       "episodes": -1
     }
   },
@@ -1301,9 +1449,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Sora yori mo Tooi Basho",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Sora yori mo Tooi Basho",
+      "rowIndex": 6,
       "episodes": -1
     }
   },
@@ -1348,9 +1500,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Violet Evergarden",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Violet Evergarden",
+      "rowIndex": 7,
       "episodes": -1
     }
   },
@@ -1367,9 +1523,13 @@
           "votesFor": 3
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Märchen Mädchen",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Märchen Mädchen",
+      "rowIndex": 8,
       "episodes": -1
     }
   },
@@ -1414,9 +1574,13 @@
           "votesFor": 4
         }
       ],
+      "idMal": -1,
       "type": "Unknown",
-      "titleEn": "Devilman Crybaby",
-      "seasonId": null,
+      "titleEn": "",
+      "seasonId": 281991772,
+      "idAL": -1,
+      "titleRaw": "Devilman Crybaby",
+      "rowIndex": 9,
       "episodes": -1
     }
   }

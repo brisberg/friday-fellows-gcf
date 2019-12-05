@@ -57,10 +57,10 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     }
   }
 
-  const handleSeriesIdChanged = async (series: SeriesModel, seasonId: number, index: number, seriesId: number) => {
+  const handleSeriesIdChanged = async (series: SeriesModel, seasonId: number, seriesId: number) => {
     const payload: SetSeriesIdRequest = {
       seasonId: seasonId,
-      row: index,
+      row: series.rowIndex,
       seriesId: seriesId,
     }
     const resp = await axios.post(backendURI + '/setSeriesId', payload)
