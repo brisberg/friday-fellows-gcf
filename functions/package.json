@@ -21,7 +21,6 @@
     "@types/cors": "^2.8.6",
     "@types/node": "^12.12.11",
     "@types/node-fetch": "^2.5.4",
-    "@types/request-promise": "^4.1.45",
     "cors": "^2.8.5",
     "firebase-admin": "^8.8.0",
     "firebase-functions": "^3.3.0",
