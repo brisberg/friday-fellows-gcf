@@ -2,7 +2,7 @@
   {
     "id": "config/sync-status",
     "data": {
-      "lastSync": 1574413847579
+      "lastSync": 1575513546186
     }
   },
   {
@@ -12,7 +12,7 @@
       "formattedName": "SPRING 2018",
       "sheetId": 1242888778,
       "season": 1,
-      "startDate": 1573686420000
+      "startDate": 1573600020000
     }
   },
   {
@@ -22,310 +22,11 @@
       "formattedName": "WINTER 2018",
       "sheetId": 281991772,
       "season": 4,
-      "startDate": 1573686420000
+      "startDate": 1573600020000
     }
   },
   {
-    "id": "seasons/1242888778/series/17keqGTcVEyuXGee2XZI",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 5,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Persona 5 the Animation",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/1omHdjdDCF6FxEi0JsTQ",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 6,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Last Period: Owarinaki Rasen no Monogatari",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/39kxGfXm5k6by7TU2CNG",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 1,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 6
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 7
-        },
-        {
-          "votesAgainst": 4,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Wotakoi",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/FMM2Huo3nUVBHcNQYOLk",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 4,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 7
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 2
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Golden Kamuy",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/Lk2w1nKakc0yxLg9duPr",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Gurazeni",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/VR9C7JRwlTucnO48HypT",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": 5,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Gegege no Kitaro (2018)",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/Vaen3KIewT3yZX47PpBW",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 0,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 8
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 6
-        },
-        {
-          "votesAgainst": 0,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Hinamatsuri",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/eEdyGdIQlPCCuY5RjS0C",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 2,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 7
-        },
-        {
-          "votesAgainst": 1,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 6
-        },
-        {
-          "votesAgainst": 1,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Megalo Box",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/jJcyxPTRHjZTzNiVvzr1",
+    "id": "seasons/1242888778/series/1242888778-0",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -372,45 +73,12 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/jgAbN5gilcElajYQhR1p",
+    "id": "seasons/1242888778/series/1242888778-1",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
         {
-          "votesAgainst": 4,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 7,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/l1eKL2rJSTz3H2vmyKvq",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 4,
+          "votesAgainst": 5,
           "episodeNum": 1,
           "seriesId": -1,
           "weekNum": -1,
@@ -418,13 +86,13 @@
         }
       ],
       "type": "Unknown",
-      "titleEn": "Uma Musume: Pretty Derby",
+      "titleEn": "Mahou Shoujo Ore",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/1242888778/series/nIfK28qIJ21dUm9sGryV",
+    "id": "seasons/1242888778/series/1242888778-10",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -457,7 +125,7 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/oVRoDZjWiz4avnCm7oWv",
+    "id": "seasons/1242888778/series/1242888778-11",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -490,26 +158,7 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/tX6ADylxNGvVBjh4Zgen",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 5,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Mahou Shoujo Site",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/1242888778/series/v9VH24qapaqxYSN4VDqJ",
+    "id": "seasons/1242888778/series/1242888778-12",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -556,7 +205,80 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/vY89QK5AeeZLB9LnMgd6",
+    "id": "seasons/1242888778/series/1242888778-13",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 4,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": 3,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 7
+        },
+        {
+          "votesAgainst": 3,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 2
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Golden Kamuy",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-14",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 5,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Persona 5 the Animation",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-15",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -589,7 +311,106 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/w9MVyRm8ksgnyFdut8O0",
+    "id": "seasons/1242888778/series/1242888778-16",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 5,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Sword Art Online: Gun Gale Online",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-17",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 6,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Last Period: Owarinaki Rasen no Monogatari",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-18",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 0,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 8
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 6
+        },
+        {
+          "votesAgainst": 0,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Hinamatsuri",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-2",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -602,13 +423,138 @@
         }
       ],
       "type": "Unknown",
-      "titleEn": "Mahou Shoujo Ore",
+      "titleEn": "Mahou Shoujo Site",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/1242888778/series/yPgk54vH6R4eIILFcZCj",
+    "id": "seasons/1242888778/series/1242888778-3",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 4,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Uma Musume: Pretty Derby",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-4",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 2,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 7
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 6
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Megalo Box",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-5",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 4,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 7,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-6",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Gurazeni",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/1242888778/series/1242888778-7",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -655,7 +601,7 @@
     }
   },
   {
-    "id": "seasons/1242888778/series/zP1LiDu7PlKdevY5ZUeK",
+    "id": "seasons/1242888778/series/1242888778-8",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -667,21 +613,28 @@
           "votesFor": -1
         },
         {
-          "votesAgainst": 5,
+          "votesAgainst": 3,
           "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": 5,
+          "episodeNum": 2,
           "seriesId": -1,
           "weekNum": -1,
           "votesFor": 4
         }
       ],
       "type": "Unknown",
-      "titleEn": "Sword Art Online: Gun Gale Online",
+      "titleEn": "Gegege no Kitaro (2018)",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/281991772/series/1V9qOYqHP3cVhGXhNLIp",
+    "id": "seasons/1242888778/series/1242888778-9",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -695,186 +648,26 @@
         {
           "votesAgainst": 1,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Yurucamp",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/3ObndhT8BK6NmmtumlXu",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 1,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 3,
           "seriesId": -1,
           "weekNum": -1,
           "votesFor": 6
         },
         {
-          "votesAgainst": 2,
-          "episodeNum": 4,
+          "votesAgainst": 3,
+          "episodeNum": 2,
           "seriesId": -1,
           "weekNum": -1,
-          "votesFor": 4
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Violet Evergarden",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/5XIoHAbonO1uD0HNfaMq",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
+          "votesFor": 7
         },
         {
           "votesAgainst": 4,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 2
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Darling in the Franxx",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/EpNaUT6tABGnIQ259CeP",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 5,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 2
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Ryuuou no Oshigoto",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/FQwmzCXdVriDw8bGFKLE",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 1,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 5
-        },
-        {
-          "votesAgainst": 2,
           "episodeNum": 3,
           "seriesId": -1,
           "weekNum": -1,
-          "votesFor": 5
+          "votesFor": 4
         },
         {
-          "votesAgainst": 1,
+          "votesAgainst": 2,
           "episodeNum": 4,
           "seriesId": -1,
           "weekNum": -1,
@@ -882,46 +675,13 @@
         }
       ],
       "type": "Unknown",
-      "titleEn": "Sora yori mo Tooi Basho",
+      "titleEn": "Wotakoi",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/281991772/series/GlMxuXVLTgIpJUO9JQYD",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 5,
-          "episodeNum": 14,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 0
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Mahoutsukai no Yome",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/JjsC5sIzBmQnxRyvZn0j",
+    "id": "seasons/281991772/series/281991772-0",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -954,17 +714,10 @@
     }
   },
   {
-    "id": "seasons/281991772/series/Lg0ZktD6dnuOYZSUpqTu",
+    "id": "seasons/281991772/series/281991772-1",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
         {
           "votesAgainst": 4,
           "episodeNum": 1,
@@ -974,13 +727,13 @@
         }
       ],
       "type": "Unknown",
-      "titleEn": "Citrus",
+      "titleEn": "Karakai Jouzu no Takagi-san",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/281991772/series/NleFTXzdfO14OS972Pgy",
+    "id": "seasons/281991772/series/281991772-10",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1013,26 +766,99 @@
     }
   },
   {
-    "id": "seasons/281991772/series/QxOkpWRgVrtoAGRvUkgL",
+    "id": "seasons/281991772/series/281991772-11",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
         {
-          "votesAgainst": 4,
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 2,
           "episodeNum": 1,
           "seriesId": -1,
           "weekNum": -1,
-          "votesFor": 3
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 4,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 2
         }
       ],
       "type": "Unknown",
-      "titleEn": "Märchen Mädchen",
+      "titleEn": "Darling in the Franxx",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/281991772/series/cChZfvA6DU0NgDf1C46R",
+    "id": "seasons/281991772/series/281991772-12",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        },
+        {
+          "votesAgainst": 4,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 1
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Hakumei to Mikochi",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-13",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 6,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 1
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Toji no Miko",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-14",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1079,26 +905,33 @@
     }
   },
   {
-    "id": "seasons/281991772/series/fKrWskwEgfsaLqHQausG",
+    "id": "seasons/281991772/series/281991772-15",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
         {
-          "votesAgainst": 7,
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 4,
           "episodeNum": 1,
           "seriesId": -1,
           "weekNum": -1,
-          "votesFor": 0
+          "votesFor": 3
         }
       ],
       "type": "Unknown",
-      "titleEn": "Gakuen Babysitters",
+      "titleEn": "Citrus",
       "seasonId": null,
       "episodes": -1
     }
   },
   {
-    "id": "seasons/281991772/series/gZmraSJLmKo07ni4gW1w",
+    "id": "seasons/281991772/series/281991772-16",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1131,177 +964,7 @@
     }
   },
   {
-    "id": "seasons/281991772/series/iuFYV1f8wpE6dtZk8cJ8",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        },
-        {
-          "votesAgainst": 4,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 1
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Hakumei to Mikochi",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/j8kHmmXAExC0qN3BufvU",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 3,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 6
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        },
-        {
-          "votesAgainst": 2,
-          "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 4
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Devilman Crybaby",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/jEVJZjH6Db4ID26BtHmU",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 6,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 1
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Toji no Miko",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/mrLhyjjIOV8Cz0YbbU7a",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 4,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 3
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Karakai Jouzu no Takagi-san",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/nosfgYzSUGBhDuXzKdXo",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": 5,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 2
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Hakata Tonkotsu Ramens",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/pfSDliltkR9E8bYx7sSR",
-    "data": {
-      "votingStatus": 0,
-      "votingRecord": [
-        {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
-        },
-        {
-          "votesAgainst": 4,
-          "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": 0
-        }
-      ],
-      "type": "Unknown",
-      "titleEn": "Sanrio Danshi",
-      "seasonId": null,
-      "episodes": -1
-    }
-  },
-  {
-    "id": "seasons/281991772/series/sf33g4cvvo3yyxWhA1L5",
+    "id": "seasons/281991772/series/281991772-17",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1327,7 +990,7 @@
     }
   },
   {
-    "id": "seasons/281991772/series/uABDJWqC8goTWeHxI1Ci",
+    "id": "seasons/281991772/series/281991772-18",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1374,7 +1037,132 @@
     }
   },
   {
-    "id": "seasons/281991772/series/zkpqzd65tTryfLYHA2j7",
+    "id": "seasons/281991772/series/281991772-19",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 4,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 0
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Sanrio Danshi",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-2",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 5,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 2
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Hakata Tonkotsu Ramens",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-20",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        },
+        {
+          "votesAgainst": 3,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Yurucamp",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-21",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 5,
+          "episodeNum": 14,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 0
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Mahoutsukai no Yome",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-3",
     "data": {
       "votingStatus": 0,
       "votingRecord": [
@@ -1416,6 +1204,218 @@
       ],
       "type": "Unknown",
       "titleEn": "Koi wa Ameagari no You ni",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-4",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 5,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 2
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Ryuuou no Oshigoto",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-5",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 7,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 0
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Gakuen Babysitters",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-6",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Sora yori mo Tooi Basho",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-7",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 1,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 5
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 6
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Violet Evergarden",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-8",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 4,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 3
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Märchen Mädchen",
+      "seasonId": null,
+      "episodes": -1
+    }
+  },
+  {
+    "id": "seasons/281991772/series/281991772-9",
+    "data": {
+      "votingStatus": 0,
+      "votingRecord": [
+        {
+          "votesAgainst": 3,
+          "episodeNum": 1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": -1,
+          "episodeNum": -1,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": -1
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 2,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 6
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 3,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        },
+        {
+          "votesAgainst": 2,
+          "episodeNum": 4,
+          "seriesId": -1,
+          "weekNum": -1,
+          "votesFor": 4
+        }
+      ],
+      "type": "Unknown",
+      "titleEn": "Devilman Crybaby",
       "seasonId": null,
       "episodes": -1
     }

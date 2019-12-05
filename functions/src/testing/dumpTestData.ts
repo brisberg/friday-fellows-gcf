@@ -30,7 +30,8 @@ export interface DocumentModel {
  * more collection types.
  */
 async function dumpTestDataToFile() {
-  const dataFile = path.resolve(__dirname, './test-data/firestore.json');
+  const dataFile =
+      path.resolve(__dirname, '../../src/testing/test-data/firestore.json');
 
   const configSnap = await firestore.collection(CONFIG_COLLECTION).get();
   const configData = snapshotToJson(CONFIG_COLLECTION, configSnap);

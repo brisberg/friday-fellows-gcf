@@ -44,13 +44,12 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
       const seasonRef = seasonCollection.doc(String(season.sheetId));
       batch.set(seasonRef, season);
 
-      for (const series of seriesList) {
-        // TODO: Need to find a stable ID for the series so updates are
-        // itempotent. Maybe drop all records that don't have an Anilist ID in
-        // the metadata (use that as the stable id).
-        const seriesRef = seasonRef.collection(SERIES_COLLECTION).doc();
+      seriesList.forEach((series, index) => {
+        // Using seasonId + index as a stable ID
+        const seriesRef = seasonRef.collection(SERIES_COLLECTION)
+                              .doc(season.sheetId + '-' + index);
         batch.set(seriesRef, series);
-      }
+      });
     }
 
     // Record the timestamp of the latest sync
