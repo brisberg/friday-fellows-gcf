@@ -19,8 +19,8 @@ const cors = Cors({
 export const getSeries = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     const query: GetAllSeriesRequest = req.query;
-    console.log(JSON.stringify(query));
     const {seasonId} = query;
+
     try {
       let seriesList: SeriesModel[];
       if (seasonId) {

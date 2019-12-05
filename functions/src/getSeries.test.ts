@@ -38,8 +38,8 @@ describe('getSeries', () => {
   });
 
   test('should return all series for a given seasonId', async () => {
-    const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET').setBody(
-        {seasonId: 281991772});  // WINTER 2018
+    const req = new MockRequest<GetAllSeriesRequest>();
+    req.setMethod('GET').setQuery({seasonId: 281991772});  // WINTER 2018
     const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
@@ -52,8 +52,8 @@ describe('getSeries', () => {
   });
 
   test('should return an empty list for an invalid seasonId', async () => {
-    const req = new MockRequest<GetAllSeriesRequest>().setMethod('GET').setBody(
-        {seasonId: 12345});
+    const req = new MockRequest<GetAllSeriesRequest>();
+    req.setMethod('GET').setQuery({seasonId: 12345});
     const res = new MockResponse<GetAllSeriesResponse>();
 
     getSeries(
