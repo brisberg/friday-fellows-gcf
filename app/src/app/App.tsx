@@ -3,7 +3,7 @@ import './App.css';
 import { reducer, initialState } from '../state/reducer';
 import { AppActions } from '../state/actions';
 import axios from 'axios';
-import { Route, Switch, Redirect, useParams } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
