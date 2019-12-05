@@ -46,6 +46,10 @@ export enum SeriesType {
   Short = 'TV_SHORT',
 }
 
+export function genSeriesId(seasonId: number, rowIndex: number): string {
+  return `${seasonId}-${String(rowIndex).padStart(3, '0')}`;
+}
+
 export interface SeriesModel {
   // Row Index in the voting sheet of this series. Used to uniquely identify the
   // series if a AL Id has not been set

@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {getUpsertSheetRowMetadata} from './helpers/upsertDevMetadata';
-import {SEASONS_COLLECTION, SERIES_COLLECTION} from './model/firestore';
+import {genSeriesId, SEASONS_COLLECTION, SERIES_COLLECTION} from './model/firestore';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
 import {SERIES_AL_ID_KEY, SeriesMetadataPayload} from './model/sheets';
 
@@ -115,7 +115,7 @@ query ($id: Int) {
       await firestore.collection(SEASONS_COLLECTION)
           .doc(String(seasonId))
           .collection(SERIES_COLLECTION)
-          .doc(seasonId + '-' + row)
+          .doc(genSeriesId(seasonId, row))
           .update({
             titleEn: data.data.Media.title.english,
             type: data.data.Media.format,
