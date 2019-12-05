@@ -23,11 +23,11 @@ import {START_DATE_METADATA_KEY} from './model/sheets';
 
 describe('setSeasonStartDate', () => {
   beforeEach(async () => {
-    await firebase.clearFirestoreData({projectId: PROJECT_ID});
     await loadTestDataToFirestore();
   });
-  afterEach(() => {
+  afterEach(async () => {
     testEnv.cleanup();
+    await firebase.clearFirestoreData({projectId: PROJECT_ID});
   });
 
   test('should return a 400 if startDate missing', async () => {
