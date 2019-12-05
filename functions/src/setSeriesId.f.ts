@@ -21,17 +21,17 @@ export const setSeriesId = functions.https.onRequest((req, res) => {
     const reqBody: SetSeriesIdRequest = req.body;
     const {seasonId, row, seriesId} = reqBody;
 
-    if (!seasonId) {
+    if (seasonId === undefined) {
       res.status(400).send({err: 'seasonId must be set and a number'});
       return;
     }
 
-    if (!row) {
+    if (row === undefined) {
       res.status(400).send({err: 'row must be set and a number'});
       return;
     }
 
-    if (!seriesId) {
+    if (seriesId === undefined) {
       res.status(400).send({err: 'seriesId must be set and a number'});
       return;
     }
