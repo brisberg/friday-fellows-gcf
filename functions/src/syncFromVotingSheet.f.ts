@@ -4,7 +4,7 @@ import * as functions from 'firebase-functions';
 import {SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
-import {CONFIG_COLLECTION, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
+import {CONFIG_COLLECTION, genSeriesId, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
 import {SERIES_AL_ID_KEY, SeriesMetadataPayload, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
@@ -44,12 +44,13 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
       const seasonRef = seasonCollection.doc(String(season.sheetId));
       batch.set(seasonRef, season);
 
-      seriesList.forEach((series, index) => {
+      for (const series of seriesList) {
         // Using seasonId + index as a stable ID
-        const seriesRef = seasonRef.collection(SERIES_COLLECTION)
-                              .doc(season.sheetId + '-' + index);
+        const seriesRef =
+            seasonRef.collection(SERIES_COLLECTION)
+                .doc(genSeriesId(season.sheetId, series.rowIndex));
         batch.set(seriesRef, series);
-      });
+      }
     }
 
     // Record the timestamp of the latest sync
@@ -75,8 +76,8 @@ interface SeasonSeriesDocuments {
   seriesList: SeriesModel[];
 }
 /**
- * Extracts Season domain documents from a SpreadsheetModel suitable for storage
- * in Firestore.
+ * Extracts Season domain documents from a SpreadsheetModel suitable for
+ * storage in Firestore.
  * @param model Domain model of a Voting Spreadsheet from GoogleSheets
  */
 function extractFirestoreDocuments(model: SpreadsheetModel) {
@@ -122,7 +123,7 @@ function extractSeriesDocuments(
     return {
       titleRaw: row.cells[0],
       titleEn: titleEn || '',
-      rowIndex: index,
+      rowIndex: index + 1,  // offset for Title row being dropped
       idAL: alId || -1,
       idMal: malId || -1,
       seasonId: seasonId,

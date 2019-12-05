@@ -160,7 +160,7 @@ describe('setSeriesId', () => {
                            .collection(SEASONS_COLLECTION)
                            .doc(String(1242888778))
                            .collection(SERIES_COLLECTION)
-                           .doc('1242888778-1')
+                           .doc('1242888778-001')
                            .get();
     const series = seriesSnap.data() as SeriesModel;
 
