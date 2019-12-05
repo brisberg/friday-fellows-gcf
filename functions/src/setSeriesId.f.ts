@@ -1,15 +1,19 @@
 import Cors from 'cors';
+import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
 import {SCOPES, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
 import {getUpsertSheetRowMetadata} from './helpers/upsertDevMetadata';
+import {SEASONS_COLLECTION, SERIES_COLLECTION} from './model/firestore';
 import {SetSeriesIdRequest, SetSeriesIdResponse} from './model/service';
 import {SERIES_AL_ID_KEY, SeriesMetadataPayload} from './model/sheets';
 
 const cors = Cors({
   origin: true,
 });
+
+const firestore = admin.firestore();
 
 export const setSeriesId = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
@@ -69,6 +73,7 @@ query ($id: Int) {
       // Make the HTTP Api request
       const data = await fetch(url, options).then(resp => resp.json());
 
+      // Commit AniList metadata to Voting Sheet as Dev Metadata
       const api = await getSheetsClient(SCOPES);
 
       const metadataPayload: SeriesMetadataPayload = {
@@ -90,6 +95,20 @@ query ($id: Int) {
       });
 
       await request;
+
+      // Commit AniList metadata to Firestore
+      await firestore.collection(SEASONS_COLLECTION)
+          .doc(String(seasonId))
+          .collection(SERIES_COLLECTION)
+          .doc(seasonId + '-' + row)
+          .update({
+            titleEn: data.data.Media.title.english,
+            type: data.data.Media.format,
+            idMal: data.data.Media.idMal,
+            idAL: data.data.Media.id,
+            episodes: data.data.Media.episodes,
+            seasonId,
+          });
 
       const payload: SetSeriesIdResponse = {
         data: data,

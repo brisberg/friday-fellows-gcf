@@ -22,7 +22,7 @@ admin.initializeApp({
 });
 import {setSeriesId} from './setSeriesId.f';
 import {loadTestDataToFirestore} from './testing/loadTestData';
-import { SeriesType } from './model/firestore';
+import {SeriesType, SERIES_COLLECTION, SEASONS_COLLECTION, SeriesModel} from './model/firestore';
 
 describe('setSeriesId', () => {
   beforeEach(async () => {
@@ -49,7 +49,7 @@ describe('setSeriesId', () => {
 
   test('should return a 400 if row missing', async () => {
     const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
-      seasonId: 12345,
+      seasonId: 1242888778,
     });
     const res = new MockResponse<SetSeriesIdResponse>();
 
@@ -81,7 +81,7 @@ describe('setSeriesId', () => {
   test('should return a successful response from AniList', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(mockAnilistQueryMediaResponse));
     const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
-      seasonId: 12345,
+      seasonId: 1242888778,
       row: 1,
       seriesId: 15125,  // Teekyu
     });
@@ -97,10 +97,9 @@ describe('setSeriesId', () => {
   });
 
   test('should store the AniList metadata into Voting Sheet', async () => {
-    // TODO: Store more than just the Anilist ID
     fetchMock.mockResponseOnce(JSON.stringify(mockAnilistQueryMediaResponse));
     const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
-      seasonId: 12345,
+      seasonId: 1242888778,
       row: 1,
       seriesId: 15125,  // Teekyu
     });
@@ -117,7 +116,7 @@ describe('setSeriesId', () => {
       malId: 15125,
       type: SeriesType.Short,
       episodes: 12,
-    }
+    };
     expect(google.sheets({version: 'v4'}).spreadsheets.batchUpdate)
         .toHaveBeenCalledWith<
             sheets_v4.Params$Resource$Spreadsheets$Batchupdate[]>({
@@ -129,7 +128,7 @@ describe('setSeriesId', () => {
                   metadataKey: SERIES_AL_ID_KEY,
                   metadataValue: JSON.stringify(expectedPayload),
                   location: {
-                    sheetId: 12345,
+                    sheetId: 1242888778,
                     dimensionRange: {
                       startIndex: 1,
                       endIndex: 2,
@@ -141,5 +140,35 @@ describe('setSeriesId', () => {
             }],
           },
         });
+  });
+
+  test('should store the AniList metadata into Firestore', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify(mockAnilistQueryMediaResponse));
+    const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
+      seasonId: 1242888778,
+      row: 1,
+      seriesId: 15125,  // Teekyu
+    });
+    const res = new MockResponse<SetSeriesIdResponse>();
+
+    setSeriesId(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
+    await res.sent;
+
+    const seriesSnap = await admin.firestore()
+                           .collection(SEASONS_COLLECTION)
+                           .doc(String(1242888778))
+                           .collection(SERIES_COLLECTION)
+                           .doc('1242888778-1')
+                           .get();
+    const series = seriesSnap.data() as SeriesModel;
+
+    expect(series.titleEn).toBe('Teekyuu');
+    expect(series.idAL).toBe(15125);
+    expect(series.idMal).toBe(15125);
+    expect(series.type).toBe('TV_SHORT');
+    expect(series.episodes).toBe(12);
+    expect(series.seasonId).toBe(1242888778);
   });
 });
