@@ -9,6 +9,7 @@ export class MockRequest<T> {
   method: MethodType = 'GET';
   headers: {[header: string]: string} = {};
   body?: T = {} as T;  // TODO: Convenient but might not be safe in all cases
+  query? = {};         // For GET query params
 
   setMethod(method: MethodType) {
     this.method = method;
@@ -23,6 +24,10 @@ export class MockRequest<T> {
   }
   setBody(payload: T) {
     this.body = payload;
+    return this;
+  }
+  setQuery(queryParams: {}) {
+    this.query = queryParams;
     return this;
   }
 }
