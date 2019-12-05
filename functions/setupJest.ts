@@ -1,5 +1,6 @@
-import {GlobalWithFetchMock} from 'jest-fetch-mock';
+// tslint:disable-next-line: no-import-side-effect
+import 'jest';
 
-const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock;
-customGlobal.fetch = require('jest-fetch-mock');
-customGlobal.fetchMock = customGlobal.fetch;
+const fetch = require('jest-fetch-mock');
+
+jest.setMock('node-fetch', fetch);
