@@ -46,8 +46,9 @@ export function getUpsertSheetRowMetadata(
     metadataKey: key,
     metadataValue: value,
     location: {
-      sheetId,
       dimensionRange: {
+        sheetId,
+        dimension: 'ROWS',
         startIndex: row,
         endIndex: row + 1,
       }

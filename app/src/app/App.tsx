@@ -9,7 +9,7 @@ import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
 import OnDeck from './OnDeck';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
-import { SetSeasonStartDateRequest } from '../../../model/service';
+import { SetSeasonStartDateRequest, SetSeriesIdRequest } from '../../../model/service';
 
 interface AppProps {
   backendURI: string;
@@ -57,8 +57,19 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
     }
   }
 
-  const handleSeriesIdChanged = (series: SeriesModel, seriesId: number) => {
-    console.log("handleSeriesIdChanged unimplemented: new ID: " + seriesId);
+  const handleSeriesIdChanged = async (series: SeriesModel, seasonId: number, index: number, seriesId: number) => {
+    const payload: SetSeriesIdRequest = {
+      seasonId: seasonId,
+      row: index,
+      seriesId: seriesId,
+    }
+    const resp = await axios.post(backendURI + '/setSeriesId', payload)
+    if (resp.status === 200) {
+      dispatch(AppActions.setSeriesId({
+        series: series,
+        seriesId: seriesId,
+      }))
+    }
   }
 
   function AppFooter() {

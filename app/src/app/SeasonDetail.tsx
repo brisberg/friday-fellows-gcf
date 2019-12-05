@@ -101,7 +101,7 @@ interface SeasonDetailProps {
   season: SeasonModel | undefined;
   seriesList: SeriesModel[];
   onStartDateChanged: (newDate: Date | null, season: SeasonModel) => void;
-  onSeriesIdChanged: (series: SeriesModel, seriesId: number) => void;
+  onSeriesIdChanged: (series: SeriesModel, seasonId: number, index: number, seriesId: number) => void;
 }
 
 const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, season, seriesList = [], onStartDateChanged, onSeriesIdChanged }) => {
@@ -140,8 +140,7 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
   const handleSeriesIdDialogConfirm = (seriesId: number) => {
     setDialogOpen(false);
     const series = seriesList[editingIndex];
-    // dispatch(AppActions.setSeriesId({ series, seriesId }));
-    onSeriesIdChanged(series, seriesId);
+    onSeriesIdChanged(series, season.sheetId, editingIndex, seriesId);
     setEditingIndex(-1);
   }
 
