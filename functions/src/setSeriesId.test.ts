@@ -81,7 +81,7 @@ describe('setSeriesId', () => {
     fetchMock.mockResponseOnce(JSON.stringify(mockAnilistQueryMediaResponse));
     const req = new MockRequest<SetSeriesIdRequest>().setMethod('GET').setBody({
       seasonId: 1242888778,
-      row: 0,
+      row: 1,
       seriesId: 15125,  // Teekyu
     });
     const res = new MockResponse<SetSeriesIdResponse>();
