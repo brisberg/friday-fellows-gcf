@@ -35,7 +35,7 @@ describe('getAllSeasons', () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body!.seasons.length).toEqual(2);
-    expect(res.body!.lastSyncMs).toEqual(1575575097253);
+    expect(res.body!.lastSyncMs).toEqual(1575591324504);
   });
 
   test('should undefined for last sync if it is missing', async () => {
