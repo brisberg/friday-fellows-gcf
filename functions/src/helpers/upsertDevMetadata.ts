@@ -93,6 +93,7 @@ export async function getUpsertMetadataRequest(
         dataFilters: [{
           developerMetadataLookup: {
             metadataKey: options.metadataKey,
+            metadataLocation: options.location,
           },
         }],
         developerMetadata: {
