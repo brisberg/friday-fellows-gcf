@@ -1,8 +1,8 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 
-import {Season} from '../model/firestore';
-import {SpreadsheetModel, START_DATE_METADATA_KEY} from '../model/sheets';
+import {Season, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
+import {SERIES_AL_ID_KEY, SeriesMetadataPayload, SpreadsheetModel, START_DATE_METADATA_KEY} from '../model/sheets';
 
 import {extractFirestoreDocuments} from './firestoreDocumentHelpers';
 
@@ -31,5 +31,49 @@ describe('extractFirestoreDocuments', () => {
     expect(season.year).toEqual(2018);
     expect(season.season).toEqual(Season.SPRING);
     expect(season.startDate).toEqual(123456789);
+  });
+
+  test('should build a series model for row model in the sheet', () => {
+    const metaPayload: SeriesMetadataPayload = {
+      titleEn: 'Teekyuu English',
+      alId: 12345,
+      malId: 54321,
+      type: SeriesType.Short,
+      episodes: 12,
+    };
+    const mockData: SpreadsheetModel = {
+      spreadsheetId: 'foobar',
+      title: 'MockSpreadSheet',
+      sheets: [{
+        sheetId: 12345,
+        title: 'SPRING 2018',
+        gridProperties: {},
+        metadata: {},
+        data: [{
+          metadata: {
+            [SERIES_AL_ID_KEY]: JSON.stringify(metaPayload),
+          },
+          cells: ['Teekyuu', 'Ep 1: 4 to 2']
+        }],
+      }],
+    };
+
+    const docs = extractFirestoreDocuments(mockData);
+    const seriesList = docs[0].seriesList;
+
+    expect(seriesList.length).toEqual(1);
+    const series = seriesList[0];
+    expect(series.titleRaw).toEqual('Teekyuu');
+    expect(series.titleEn).toEqual('Teekyuu English');
+    expect(series.episodes).toEqual(12);
+    expect(series.idAL).toEqual(12345);
+    expect(series.idMal).toEqual(54321);
+    expect(series.votingStatus).toEqual(VotingStatus.Unknown);
+    expect(series.votingRecord).toEqual<SeriesVotingRecord[]>([{
+      episodeNum: 1,
+      weekNum: 1,
+      votesFor: 4,
+      votesAgainst: 2,
+    }]);
   });
 });
