@@ -3,10 +3,10 @@ import * as functions from 'firebase-functions';
 
 import {SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
+import {extractFirestoreDocuments} from './helpers/firestoreDocumentHelpers';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
-import {CONFIG_COLLECTION, genSeriesId, Season, SeasonModel, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SeriesType, SeriesVotingRecord, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
+import {CONFIG_COLLECTION, genSeriesId, SEASONS_COLLECTION, SERIES_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
-import {SERIES_AL_ID_KEY, SeriesMetadataPayload, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from './model/sheets';
 
 const firestore = admin.firestore();
 
