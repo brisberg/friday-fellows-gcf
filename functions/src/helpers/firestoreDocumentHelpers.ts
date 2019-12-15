@@ -57,7 +57,7 @@ function extractSeriesDocuments(
     const votingRecords = extractSeriesVotingRecord(row.cells.slice(1));
 
     return {
-      titleRaw: row.cells[0],
+      titleRaw: row.cells[0] || '',
       titleEn: titleEn || '',
       rowIndex: index + 1,  // offset for Title row being dropped
       idAL: alId || -1,
@@ -80,7 +80,7 @@ function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
     const parsedCell = parseVoteCell(cell);
     return {
       episodeNum: parsedCell.episode,
-      weekNum: index,
+      weekNum: index + 1,
       votesFor: parsedCell.votesFor,
       votesAgainst: parsedCell.votesAgainst,
     };
