@@ -67,14 +67,14 @@ export interface SeriesModel {
 
 // Current voting status of a show
 export const enum VotingStatus {
-  Watching = 0,
+  Unknown = 0,
   Dropped,
+  Watching,
   Completed,
   Continuing,
 }
 
 export interface SeriesVotingRecord {
-  seriesId: number;
   episodeNum: number;
   weekNum: number;
   votesFor: number;
