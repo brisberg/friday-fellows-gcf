@@ -40,9 +40,8 @@ describe('syncFromVotingSheet', () => {
   });
 
   test('should save last sync date to Firestore', async () => {
-    jest.spyOn(global.Date, 'now')
-        .mockImplementationOnce(
-            () => new Date('2019-05-14T11:01:58.135Z').valueOf());
+    const timestamp = new Date('2019-05-14T11:01:58.135Z').getTime();
+    const spy = jest.spyOn(Date, 'now').mockImplementation(() => timestamp);
     const req = new MockRequest<SyncFromVotingSheetRequest>().setMethod('GET');
     const res = new MockResponse<SyncFromVotingSheetResponse>();
 
@@ -55,8 +54,8 @@ describe('syncFromVotingSheet', () => {
                         .doc(CONFIG_COLLECTION + '/' + SYNC_STATE_KEY)
                         .get();
     const doc = docSnap.data();
-    expect(doc).toEqual(
-        {lastSync: new Date('2019-05-14T11:01:58.135Z').getTime()});
+    expect(doc).toEqual({lastSync: timestamp});
+    spy.mockRestore();
   });
 
   test('should save two seasons to Firestore', async () => {
