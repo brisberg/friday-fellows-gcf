@@ -1,7 +1,7 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 
-import {Season, SeasonModel, SeriesModel, SeriesType, VotingStatus} from '../model/firestore';
+import {Season, SeasonModel, SeriesModel, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
 
 import {aggregateVotingStatus} from './aggregateVotingRecordsHelpers';
 
@@ -24,47 +24,180 @@ const staticSeries: SeriesModel = {
   votingRecord: [],
 };
 
+const passingRecord: SeriesVotingRecord = {
+  weekNum: 1,
+  episodeNum: 1,
+  votesFor: 2,
+  votesAgainst: 1,
+};
+
+const failedRecord: SeriesVotingRecord = {
+  weekNum: 1,
+  episodeNum: 1,
+  votesFor: 1,
+  votesAgainst: 2,
+};
+
 describe('aggregateVotingStatus', () => {
   beforeAll(() => {
     // Lock Time
-    const timestamp = new Date('12/3/2010').getTime();
+    const timestamp = new Date('6/1/2010').getTime();
     jest.spyOn(Date, 'now').mockImplementation(() => timestamp);
   });
   afterAll(() => {
     (Date.now as unknown as jest.SpyInstance).mockRestore();
   });
 
-  test('should set all series to completed/dropped for past seasons', () => {
+  test('should exit early if season has no start date', () => {
+    const nullSeason: SeasonModel = {
+      ...staticSeason,
+      startDate: null,
+    };
+
+    aggregateVotingStatus(nullSeason, []);
+
+    // TODO: expect an error logged
+  });
+
+  describe('for past seasons', () => {
     const pastSeason: SeasonModel = {
       ...staticSeason,
       startDate: new Date('1/1/2009').getTime(),
     };
 
-    const droppedSeries: SeriesModel = {
-      ...staticSeries,
-      votingRecord: [{
-        weekNum: 0,
-        episodeNum: 1,
-        votesFor: 1,
-        votesAgainst: 2,
-      }]
+    test('should set all series to completed/dropped for past seasons', () => {
+      const droppedSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [failedRecord],
+      };
+
+      const completeSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [passingRecord],
+      };
+
+      const seriesList: SeriesModel[] = [droppedSeries, completeSeries];
+
+      aggregateVotingStatus(pastSeason, seriesList);
+
+      expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
+      expect(completeSeries.votingStatus).toEqual(VotingStatus.Completed);
+    });
+  });
+
+  describe('for current season', () => {
+    const currentSeason = {
+      ...staticSeason,
+      startDate: new Date('5/1/2010').getTime(),
     };
 
-    const completeSeries: SeriesModel = {
-      ...staticSeries,
-      votingRecord: [{
-        weekNum: 0,
-        episodeNum: 1,
-        votesFor: 2,
-        votesAgainst: 1,
-      }]
-    };
+    test('should set series with a failed vote to dropped', () => {
+      const droppedSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [failedRecord],
+      };
 
-    const seriesList: SeriesModel[] = [droppedSeries, completeSeries];
+      aggregateVotingStatus(currentSeason, [droppedSeries]);
 
-    aggregateVotingStatus(pastSeason, seriesList);
+      expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
+    });
 
-    expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
-    expect(completeSeries.votingStatus).toEqual(VotingStatus.Completed);
+    test('should set unknown if series has no records', () => {
+      const emptySeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [],
+      };
+
+      aggregateVotingStatus(currentSeason, [emptySeries]);
+
+      expect(emptySeries.votingStatus).toEqual(VotingStatus.Unknown);
+    });
+
+    test('should set completed if watched the last episode of series', () => {
+      const completeSeries: SeriesModel = {
+        ...staticSeries,
+        episodes: 2,
+        votingRecord: [{
+          ...passingRecord,
+          episodeNum: 2,
+        }],
+      };
+
+      aggregateVotingStatus(currentSeason, [completeSeries]);
+
+      expect(completeSeries.votingStatus).toEqual(VotingStatus.Completed);
+    });
+
+    test('should set unknown the voting record is from the future', () => {
+      const invalidSeries: SeriesModel = {
+        ...staticSeries,
+        episodes: 2,
+        votingRecord: [{
+          ...passingRecord,
+          weekNum: 5,
+        }],
+      };
+
+      aggregateVotingStatus(currentSeason, [invalidSeries]);
+
+      expect(invalidSeries.votingStatus).toEqual(VotingStatus.Unknown);
+    });
+
+    test('should set watching if voting record is from this week', () => {
+      const completeSeries: SeriesModel = {
+        ...staticSeries,
+        episodes: 2,
+        votingRecord: [{
+          ...passingRecord,
+          weekNum: 4,  // current week
+        }],
+      };
+
+      aggregateVotingStatus(currentSeason, [completeSeries]);
+
+      expect(completeSeries.votingStatus).toEqual(VotingStatus.Watching);
+    });
+
+    test('should append passing records if vote from previous week', () => {
+      const passingSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [{
+          ...passingRecord,
+          weekNum: 1,
+        }],
+      };
+
+      aggregateVotingStatus(currentSeason, [passingSeries]);
+
+      expect(passingSeries.votingStatus).toEqual(VotingStatus.Watching);
+      expect(passingSeries.votingRecord.length).toEqual(4);
+      expect(passingSeries.votingRecord).toEqual([
+        {...passingRecord, weekNum: 1},
+        {weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
+        {weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
+        {weekNum: 4, episodeNum: 4, votesFor: 0, votesAgainst: 0},
+      ]);
+    });
+
+    test('should mark completed if last episode aired since last vote', () => {
+      const passingSeries: SeriesModel = {
+        ...staticSeries,
+        episodes: 3,
+        votingRecord: [{
+          ...passingRecord,
+          weekNum: 1,
+        }],
+      };
+
+      aggregateVotingStatus(currentSeason, [passingSeries]);
+
+      expect(passingSeries.votingStatus).toEqual(VotingStatus.Completed);
+      expect(passingSeries.votingRecord.length).toEqual(3);
+      expect(passingSeries.votingRecord).toEqual([
+        {...passingRecord, weekNum: 1},
+        {weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
+        {weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
+      ]);
+    });
   });
 });
