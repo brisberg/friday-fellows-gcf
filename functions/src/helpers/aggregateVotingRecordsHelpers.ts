@@ -13,7 +13,7 @@ export function aggregateVotingStatus(
     return;
   }
   const seasonStartDate = new Date(season.startDate);
-  const weekNum = weeksBetween(new Date(), seasonStartDate);
+  const weekNum = weeksBetween(seasonStartDate, new Date(Date.now()));
 
   if (weekNum > 13) {
     aggregateOlderSeason(season, series);
