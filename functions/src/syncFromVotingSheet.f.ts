@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 
 import {SCOPES_READONLY, SPREADSHEET_ID} from './config';
 import {getSheetsClient} from './google.auth';
+import {aggregateVotingStatus} from './helpers/aggregateVotingRecordsHelpers';
 import {extractFirestoreDocuments} from './helpers/firestoreDocumentHelpers';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
 import {CONFIG_COLLECTION, genSeriesId, SEASONS_COLLECTION, SERIES_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
@@ -35,6 +36,9 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
 
     const sheetModel = extractSheetModelFromSpreadsheetData(resp.data);
     const allDocuments = extractFirestoreDocuments(sheetModel);
+    allDocuments.forEach((docsTuples) => {
+      aggregateVotingStatus(docsTuples.season, docsTuples.seriesList);
+    });
 
     const batch = firestore.batch();
     const seasonCollection = firestore.collection(SEASONS_COLLECTION);
