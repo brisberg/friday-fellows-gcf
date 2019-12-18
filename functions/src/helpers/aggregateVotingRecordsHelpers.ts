@@ -51,6 +51,8 @@ function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
  * Calculate and update the voting status of all series for the season
  * assuming the given number of weeks have passed since the start of the season.
  *
+ * weekNum is the 1-index number of weeks since the start of the season.
+ *
  * TODO: Apply the aggregate watching/completed/dropped stats to season model
  */
 function aggregateCurrentSeason(
@@ -76,11 +78,8 @@ function aggregateCurrentSeason(
  */
 function calculateCurrentVotingStatus(
     series: SeriesModel, weekNum: number): VotingStatus {
-  if (weekNum > 13) {
-    return calculateOlderVotingStatus(series);
-  }
-
   const records = series.votingRecord;
+
   if (!records || records.length === 0) {
     return VotingStatus.Unknown;
   }
@@ -107,7 +106,7 @@ function calculateCurrentVotingStatus(
 
   const weeksSinceLastRecord = weekNum - lastRecord.weekNum;
   let nextEp = lastRecord.episodeNum + 1;
-  for (let i = 0; i < weeksSinceLastRecord; i++) {
+  for (let i = 1; i <= weeksSinceLastRecord; i++) {
     const passRecord: SeriesVotingRecord = {
       weekNum: i + lastRecord.weekNum,
       episodeNum: nextEp,
