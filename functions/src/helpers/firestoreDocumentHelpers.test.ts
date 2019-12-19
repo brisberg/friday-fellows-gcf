@@ -86,7 +86,15 @@ describe('extractFirestoreDocuments', () => {
         title: 'SPRING 2018',
         gridProperties: {},
         metadata: {},
-        data: [{metadata: {}, cells: ['Teekyuu', 'BYE']}],
+        data: [{
+          metadata: {},
+          cells: [
+            'Teekyuu',
+            'BYE',
+            'Ep 1: 0 to 0',
+            'BYE',
+          ]
+        }],
       }],
     };
 
@@ -95,12 +103,20 @@ describe('extractFirestoreDocuments', () => {
 
     expect(seriesList.length).toEqual(1);
     const series = seriesList[0];
-    expect(series.votingRecord).toEqual<SeriesVotingRecord[]>([{
+    expect(series.votingRecord.length).toEqual(3);
+    expect(series.votingRecord[0]).toEqual<SeriesVotingRecord>({
       msg: 'BYE',
       episodeNum: 0,
       weekNum: 1,
       votesFor: 0,
       votesAgainst: 0,
-    }]);
+    });
+    expect(series.votingRecord[2]).toEqual<SeriesVotingRecord>({
+      msg: 'BYE',
+      episodeNum: 1,
+      weekNum: 3,
+      votesFor: 0,
+      votesAgainst: 0,
+    });
   });
 });

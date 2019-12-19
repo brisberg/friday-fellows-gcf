@@ -76,11 +76,12 @@ function extractSeriesDocuments(
  * Google Sheets.
  */
 function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
+  let prevEpisode = 0;
   return cells.map((cell, index): SeriesVotingRecord => {
     if (cell === 'BYE') {
       return {
         msg: 'BYE',
-        episodeNum: 0,
+        episodeNum: prevEpisode,
         weekNum: index + 1,
         votesAgainst: 0,
         votesFor: 0,
@@ -88,6 +89,10 @@ function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
     }
 
     const parsedCell = parseVoteCell(cell);
+    // Store the previous episode number for use in a future BYE cell
+    if (parsedCell.episode) {
+      prevEpisode = parsedCell.episode;
+    }
     return {
       episodeNum: parsedCell.episode,
       weekNum: index + 1,
