@@ -24,6 +24,7 @@ export enum Season {
   WINTER,
 }
 
+/** Model of a Season represented by a sheet in the voting sheet */
 export interface SeasonModel {
   formattedName: string;  // ex. 'WINTER 2014'
   year: number;
@@ -50,6 +51,10 @@ export function genSeriesId(seasonId: number, rowIndex: number): string {
   return `${seasonId}-${String(rowIndex).padStart(3, '0')}`;
 }
 
+/**
+ * Model of a series combining the voting record from the sheet and metadata
+ * from AniList
+ */
 export interface SeriesModel {
   // Row Index in the voting sheet of this series. Used to uniquely identify the
   // series if a AL Id has not been set
@@ -80,4 +85,21 @@ export interface SeriesVotingRecord {
   weekNum: number;
   votesFor: number;
   votesAgainst: number;
+}
+
+// Top level collection for storing generated ondeck reports
+export const ONDECK_REPORTS_COLLECTION = 'ondeck-reports'
+
+/** Model of a report of a set of episodes to be watched on a particular date */
+export interface OnDeckReport {
+  lastSync: number;           // last time voting sheet was synced
+  created: number;            // date this report was created
+  expectedWatchDate: number;  // expected date these episodes should be watched
+  series: OnDeckReportRow[];
+}
+
+export interface OnDeckReportRow {
+  // TODO: represent title as an Anilist english/native/romaji representation
+  seriesTitle: string;
+  episode: number;
 }
