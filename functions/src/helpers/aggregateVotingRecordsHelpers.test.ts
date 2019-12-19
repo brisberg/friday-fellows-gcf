@@ -173,9 +173,9 @@ describe('aggregateVotingStatus', () => {
       expect(passingSeries.votingRecord.length).toEqual(4);
       expect(passingSeries.votingRecord).toEqual([
         {...passingRecord, weekNum: 1},
-        {weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
-        {weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
-        {weekNum: 4, episodeNum: 4, votesFor: 0, votesAgainst: 0},
+        {msg: 'PASS', weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
+        {msg: 'PASS', weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
+        {msg: 'PASS', weekNum: 4, episodeNum: 4, votesFor: 0, votesAgainst: 0},
       ]);
     });
 
@@ -195,8 +195,8 @@ describe('aggregateVotingStatus', () => {
       expect(passingSeries.votingRecord.length).toEqual(3);
       expect(passingSeries.votingRecord).toEqual([
         {...passingRecord, weekNum: 1},
-        {weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
-        {weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
+        {msg: 'PASS', weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
+        {msg: 'PASS', weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
       ]);
     });
   });
