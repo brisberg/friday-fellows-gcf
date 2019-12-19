@@ -11,6 +11,15 @@ import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { AppActions } from '../state/actions';
 import { GetAllSeriesResponse } from '../../../model/service';
 
+// Current voting status of a show
+enum VotingStatus {
+  Unknown = 0,
+  Dropped,
+  Watching,
+  Completed,
+  Continuing,
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     header: {
@@ -221,7 +230,7 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
               <TableCell component="th" scope="row">
                 {series.titleRaw}
               </TableCell>
-              <TableCell>{series.votingStatus}</TableCell>
+              <TableCell>{VotingStatus[series.votingStatus]}</TableCell>
               {series.votingRecord.map((record) => (
                 <TableCell align="right">{
                   record.msg ? record.msg : [
