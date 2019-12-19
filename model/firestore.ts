@@ -92,9 +92,9 @@ export const ONDECK_REPORTS_COLLECTION = 'ondeck-reports'
 
 /** Model of a report of a set of episodes to be watched on a particular date */
 export interface OnDeckReport {
-  lastSync: number;           // last time voting sheet was synced
-  created: number;            // date this report was created
-  expectedWatchDate: number;  // expected date these episodes should be watched
+  lastSync: number;         // last time voting sheet was synced
+  created: number;          // date this report was created
+  targetWatchDate: number;  // expected date these episodes should be watched
   series: OnDeckReportRow[];
 }
 

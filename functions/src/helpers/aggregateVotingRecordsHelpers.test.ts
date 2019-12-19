@@ -227,7 +227,7 @@ describe('aggregateVotingStatus', () => {
       expect(report!.lastSync).toEqual(-1);
       expect(report!.created).toEqual(mockNow);
       // TODO: calculate next friday
-      expect(report!.expectedWatchDate).toEqual(mockNow);
+      expect(report!.targetWatchDate).toEqual(mockNow);
       expect(report!.series.length).toEqual(1);
       expect(report!.series).toEqual<OnDeckReportRow[]>([
         {seriesTitle: staticSeries.titleRaw, episode: 5}
