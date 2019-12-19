@@ -202,7 +202,7 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
 
   const headers = [];
   for (let i = 1; i <= maxWeeks; i++) {
-    headers.push(<TableCell align="right">Week {i}</TableCell>)
+    headers.push(<TableCell key={i} align="right">Week {i}</TableCell>)
   }
 
   return (
@@ -223,10 +223,11 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
               </TableCell>
               <TableCell>{series.votingStatus}</TableCell>
               {series.votingRecord.map((record) => (
-                <TableCell align="right">{[
-                  'Ep', record.episodeNum, ':',
-                  record.votesFor, '-', record.votesAgainst]
-                  .join(' ')}</TableCell>
+                <TableCell align="right">{
+                  record.msg ? record.msg : [
+                    'Ep', record.episodeNum, ':',
+                    record.votesFor, '-', record.votesAgainst]
+                    .join(' ')}</TableCell>
               ))}
             </TableRow>
           ))}
