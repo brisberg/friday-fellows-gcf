@@ -1,13 +1,15 @@
-import {SeasonModel, SeriesModel, SeriesVotingRecord, VotingStatus} from '../model/firestore';
+import {OnDeckReport, SeasonModel, SeriesModel, SeriesVotingRecord, VotingStatus} from '../model/firestore';
 
 /**
  * Calculate and update the voting status of all series and aggregate voting
  * stats of the given season.
  *
  * This take into account the current date relative to the start of the season.
+ *
+ * Returns a report of the next episodes to watch if this is the current season.
  */
 export function aggregateVotingStatus(
-    season: SeasonModel, series: SeriesModel[]) {
+    season: SeasonModel, series: SeriesModel[]): OnDeckReport|undefined {
   if (!season.startDate) {
     // TODO: Log a warning
     return;
@@ -17,8 +19,9 @@ export function aggregateVotingStatus(
 
   if (weekNum > 13) {
     aggregateOlderSeason(season, series);
+    return;
   } else {
-    aggregateCurrentSeason(season, series, weekNum);
+    return aggregateCurrentSeason(season, series, weekNum);
   }
 }
 
@@ -56,10 +59,25 @@ function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
  * TODO: Apply the aggregate watching/completed/dropped stats to season model
  */
 function aggregateCurrentSeason(
-    season: SeasonModel, series: SeriesModel[], weekNum: number) {
+    season: SeasonModel, series: SeriesModel[], weekNum: number): OnDeckReport {
+  const report: OnDeckReport = {
+    lastSync: -1,
+    created: Date.now(),
+    expectedWatchDate: Date.now(),  // TODO: Calculate the next Friday
+    series: [],
+  };
   series.forEach((model: SeriesModel) => {
     model.votingStatus = calculateCurrentVotingStatus(model, weekNum);
+
+    if (model.votingStatus === VotingStatus.Watching) {
+      report.series.push({
+        seriesTitle: model.titleRaw,
+        episode: calculateNextEpisode(model),
+      });
+    }
   });
+
+  return report;
 }
 
 /**
@@ -122,7 +140,6 @@ function calculateCurrentVotingStatus(
     }
   }
 
-  // TODO: Save this series to the OnDeck report as this is an ongoing series
   return VotingStatus.Watching;
 }
 
@@ -137,4 +154,10 @@ function weeksBetween(d1: Date, d2: Date) {
 /** Did this vote pass */
 function didPass(record: SeriesVotingRecord) {
   return record.votesFor >= record.votesAgainst;
+}
+
+/** Determine the next episode to watch for a series given its voting record */
+function calculateNextEpisode(series: SeriesModel) {
+  const lastRecord = series.votingRecord[series.votingRecord.length - 1];
+  return lastRecord.episodeNum + 1;
 }
