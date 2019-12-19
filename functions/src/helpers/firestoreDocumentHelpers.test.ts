@@ -76,4 +76,31 @@ describe('extractFirestoreDocuments', () => {
       votesAgainst: 2,
     }]);
   });
+
+  test('should produce a BYE record for \'BYE\' cells in a series row', () => {
+    const mockData: SpreadsheetModel = {
+      spreadsheetId: 'foobar',
+      title: 'MockSpreadSheet',
+      sheets: [{
+        sheetId: 12345,
+        title: 'SPRING 2018',
+        gridProperties: {},
+        metadata: {},
+        data: [{metadata: {}, cells: ['Teekyuu', 'BYE']}],
+      }],
+    };
+
+    const docs = extractFirestoreDocuments(mockData);
+    const seriesList = docs[0].seriesList;
+
+    expect(seriesList.length).toEqual(1);
+    const series = seriesList[0];
+    expect(series.votingRecord).toEqual<SeriesVotingRecord[]>([{
+      msg: 'BYE',
+      episodeNum: 0,
+      weekNum: 1,
+      votesFor: 0,
+      votesAgainst: 0,
+    }]);
+  });
 });
