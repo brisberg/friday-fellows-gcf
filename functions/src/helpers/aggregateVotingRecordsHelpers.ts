@@ -108,6 +108,7 @@ function calculateCurrentVotingStatus(
   let nextEp = lastRecord.episodeNum + 1;
   for (let i = 1; i <= weeksSinceLastRecord; i++) {
     const passRecord: SeriesVotingRecord = {
+      msg: 'PASS',
       weekNum: i + lastRecord.weekNum,
       episodeNum: nextEp,
       votesFor: 0,
