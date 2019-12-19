@@ -1,7 +1,7 @@
 // tslint:disable-next-line: no-import-side-effect
 import 'jest';
 
-import {Season, SeasonModel, SeriesModel, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
+import {OnDeckReportRow, Season, SeasonModel, SeriesModel, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
 
 import {aggregateVotingStatus} from './aggregateVotingRecordsHelpers';
 
@@ -39,10 +39,10 @@ const failedRecord: SeriesVotingRecord = {
 };
 
 describe('aggregateVotingStatus', () => {
+  const mockNow = new Date('6/1/2010').getTime();
   beforeAll(() => {
     // Lock Time
-    const timestamp = new Date('6/1/2010').getTime();
-    jest.spyOn(Date, 'now').mockImplementation(() => timestamp);
+    jest.spyOn(Date, 'now').mockImplementation(() => mockNow);
   });
   afterAll(() => {
     (Date.now as unknown as jest.SpyInstance).mockRestore();
@@ -54,8 +54,9 @@ describe('aggregateVotingStatus', () => {
       startDate: null,
     };
 
-    aggregateVotingStatus(nullSeason, []);
+    const report = aggregateVotingStatus(nullSeason, []);
 
+    expect(report).toBeUndefined();
     // TODO: expect an error logged
   });
 
@@ -82,6 +83,16 @@ describe('aggregateVotingStatus', () => {
 
       expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
       expect(completeSeries.votingStatus).toEqual(VotingStatus.Completed);
+    });
+
+    test('should return no report for past seasons', () => {
+      const passingSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [passingRecord],
+      };
+      const report = aggregateVotingStatus(pastSeason, [passingSeries]);
+
+      expect(report).toBeUndefined();
     });
   });
 
@@ -197,6 +208,29 @@ describe('aggregateVotingStatus', () => {
         {...passingRecord, weekNum: 1},
         {msg: 'PASS', weekNum: 2, episodeNum: 2, votesFor: 0, votesAgainst: 0},
         {msg: 'PASS', weekNum: 3, episodeNum: 3, votesFor: 0, votesAgainst: 0},
+      ]);
+    });
+
+    test('should return a report of all WATCHING series', () => {
+      const watchingSeries: SeriesModel = {
+        ...staticSeries,
+        votingRecord: [{
+          ...passingRecord,
+          weekNum: 4,  // current week
+          episodeNum: 4,
+        }]
+      };
+
+      const report = aggregateVotingStatus(currentSeason, [watchingSeries]);
+
+      expect(report).toBeTruthy();
+      expect(report!.lastSync).toEqual(-1);
+      expect(report!.created).toEqual(mockNow);
+      // TODO: calculate next friday
+      expect(report!.expectedWatchDate).toEqual(mockNow);
+      expect(report!.series.length).toEqual(1);
+      expect(report!.series).toEqual<OnDeckReportRow[]>([
+        {seriesTitle: staticSeries.titleRaw, episode: 5}
       ]);
     });
   });
