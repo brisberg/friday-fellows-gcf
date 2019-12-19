@@ -63,7 +63,7 @@ function aggregateCurrentSeason(
   const report: OnDeckReport = {
     lastSync: -1,
     created: Date.now(),
-    expectedWatchDate: Date.now(),  // TODO: Calculate the next Friday
+    targetWatchDate: Date.now(),  // TODO: Calculate the next Friday
     series: [],
   };
   series.forEach((model: SeriesModel) => {
