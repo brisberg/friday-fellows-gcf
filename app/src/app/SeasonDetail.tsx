@@ -6,6 +6,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody, Dialog, DialogTitle, Button, DialogActions, DialogContent, TextField } from '@material-ui/core';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { AppActions } from '../state/actions';
 import { GetAllSeriesResponse } from '../../../model/service';
@@ -107,6 +108,7 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
   const { seasonId } = useParams();
   const [idDialogOpen, setDialogOpen] = useState(false);
   const [selectedSeries, setSelectedSeries] = useState<SeriesModel | null>(null);
+  const [showDebug, setShowDebug] = useState<boolean>(false);
   const classes = useStyles();
 
   // Load all season data on start using effect Hook
@@ -168,9 +170,19 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
         {season.startDate === null && <Tooltip title="Missing Start Date">
           <Icon className="push-left warning-icon text-top">warning</Icon>
         </Tooltip>}
+        <ToggleButton
+          value="debug"
+          selected={showDebug}
+          onChange={() => {
+            setShowDebug(!showDebug);
+          }}>
+          {/* <BugReportIcon /> */}
+          Debug
+        </ToggleButton>
       </Paper>
-      <SeriesVotingGrid seriesList={seriesList}></SeriesVotingGrid>
-      {/* <SeriesDebugGrid seriesList={seriesList} openIDDialog={openSeriesIdDialog}></SeriesDebugGrid> */}
+      {showDebug && <SeriesDebugGrid seriesList={seriesList} openIDDialog={openSeriesIdDialog}></SeriesDebugGrid>}
+      {!showDebug && <SeriesVotingGrid seriesList={seriesList}></SeriesVotingGrid>}
+
       <SetSeriesIdDialog open={idDialogOpen} onClose={handleSeriesIdDialogConfirm} series={selectedSeries}></SetSeriesIdDialog>
     </div>
   );
