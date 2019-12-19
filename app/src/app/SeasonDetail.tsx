@@ -144,14 +144,6 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
     setSelectedSeries(null);
   }
 
-  const DialogButton = ({ onClick, series }: { onClick: Function, series: SeriesModel }) => {
-    const handleClick = () => {
-      onClick(series);
-    };
-
-    return (<Button onClick={handleClick}>Edit</Button>);
-  }
-
   return (
     <div>
       <Paper className={classes.header}>
@@ -177,39 +169,104 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
           <Icon className="push-left warning-icon text-top">warning</Icon>
         </Tooltip>}
       </Paper>
-      <Paper className={classes.root}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Series Name&nbsp;(Raw)</TableCell>
-              <TableCell>Series Name&nbsp;(AniList)</TableCell>
-              <TableCell align="right">AniList&nbsp;ID</TableCell>
-              <TableCell align="right">MAL&nbsp;ID</TableCell>
-              <TableCell align="right">Type</TableCell>
-              <TableCell align="right">Episodes</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {seriesList.map((series) => (
-              <TableRow key={series.rowIndex}>
-                <TableCell component="th" scope="row">
-                  {series.titleRaw}
-                </TableCell>
-                <TableCell>{series.titleEn}</TableCell>
-                <TableCell align="right">{series.idAL}</TableCell>
-                <TableCell align="right">{series.idMal}</TableCell>
-                <TableCell align="right">{series.type}</TableCell>
-                <TableCell align="right">{series.episodes}</TableCell>
-                <TableCell>
-                  <DialogButton onClick={openSeriesIdDialog} series={series} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+      <SeriesVotingGrid seriesList={seriesList}></SeriesVotingGrid>
+      {/* <SeriesDebugGrid seriesList={seriesList} openIDDialog={openSeriesIdDialog}></SeriesDebugGrid> */}
       <SetSeriesIdDialog open={idDialogOpen} onClose={handleSeriesIdDialogConfirm} series={selectedSeries}></SetSeriesIdDialog>
     </div>
+  );
+}
+
+function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
+  const classes = useStyles();
+
+  const maxWeeks = seriesList.reduce((max, series) => {
+    const weekNum = series.votingRecord[series.votingRecord.length - 1].weekNum;
+    if (weekNum > max) {
+      return weekNum;
+    } else {
+      return max;
+    }
+  }, 0);
+
+  const headers = [];
+  for (let i = 1; i <= maxWeeks; i++) {
+    headers.push(<TableCell align="right">Week {i}</TableCell>)
+  }
+
+  return (
+    <Paper className={classes.root}>
+      <Table className={classes.table} aria-label="series voting grid">
+        <TableHead>
+          <TableRow>
+            <TableCell>Series Name</TableCell>
+            <TableCell>Status</TableCell>
+            {headers}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {seriesList.map((series) => (
+            <TableRow key={series.rowIndex}>
+              <TableCell component="th" scope="row">
+                {series.titleRaw}
+              </TableCell>
+              <TableCell>{series.votingStatus}</TableCell>
+              {series.votingRecord.map((record) => (
+                <TableCell align="right">{[
+                  'Ep', record.episodeNum, ':',
+                  record.votesFor, '-', record.votesAgainst]
+                  .join(' ')}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
+}
+
+function SeriesDebugGrid({ seriesList, openIDDialog }: { seriesList: SeriesModel[], openIDDialog: (series: SeriesModel) => void }) {
+  const classes = useStyles();
+
+  const DialogButton = ({ onClick, series }: { onClick: Function, series: SeriesModel }) => {
+    const handleClick = () => {
+      onClick(series);
+    };
+
+    return (<Button onClick={handleClick}>Edit</Button>);
+  }
+
+  return (
+    <Paper className={classes.root}>
+      <Table className={classes.table} aria-label="series debug grid">
+        <TableHead>
+          <TableRow>
+            <TableCell>Series Name&nbsp;(Raw)</TableCell>
+            <TableCell>Series Name&nbsp;(AniList)</TableCell>
+            <TableCell align="right">AniList&nbsp;ID</TableCell>
+            <TableCell align="right">MAL&nbsp;ID</TableCell>
+            <TableCell align="right">Type</TableCell>
+            <TableCell align="right">Episodes</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {seriesList.map((series) => (
+            <TableRow key={series.rowIndex}>
+              <TableCell component="th" scope="row">
+                {series.titleRaw}
+              </TableCell>
+              <TableCell>{series.titleEn}</TableCell>
+              <TableCell align="right">{series.idAL}</TableCell>
+              <TableCell align="right">{series.idMal}</TableCell>
+              <TableCell align="right">{series.type}</TableCell>
+              <TableCell align="right">{series.episodes}</TableCell>
+              <TableCell>
+                <DialogButton onClick={openIDDialog} series={series} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   );
 }
 
