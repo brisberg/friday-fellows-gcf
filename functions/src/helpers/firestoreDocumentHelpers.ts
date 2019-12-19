@@ -77,6 +77,16 @@ function extractSeriesDocuments(
  */
 function extractSeriesVotingRecord(cells: string[]): SeriesVotingRecord[] {
   return cells.map((cell, index): SeriesVotingRecord => {
+    if (cell === 'BYE') {
+      return {
+        msg: 'BYE',
+        episodeNum: 0,
+        weekNum: index + 1,
+        votesAgainst: 0,
+        votesFor: 0,
+      };
+    }
+
     const parsedCell = parseVoteCell(cell);
     return {
       episodeNum: parsedCell.episode,

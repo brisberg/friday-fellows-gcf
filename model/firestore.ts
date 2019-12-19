@@ -75,6 +75,7 @@ export const enum VotingStatus {
 }
 
 export interface SeriesVotingRecord {
+  msg?: string;
   episodeNum: number;
   weekNum: number;
   votesFor: number;
