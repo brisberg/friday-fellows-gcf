@@ -8,7 +8,7 @@ import functionsTest from 'firebase-functions-test';
 
 import {PROJECT_ID} from './config';
 import {mockSpreadsheetGetResponse} from './helpers/testing/mockSpreadsheetResponse';
-import {CONFIG_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
+import {CONFIG_COLLECTION, ONDECK_REPORTS_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetRequest, SyncFromVotingSheetResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 
@@ -55,6 +55,7 @@ describe('syncFromVotingSheet', () => {
                         .get();
     const doc = docSnap.data();
     expect(doc).toEqual({lastSync: timestamp});
+
     spy.mockRestore();
   });
 
@@ -89,5 +90,27 @@ describe('syncFromVotingSheet', () => {
       },
     ];
     expect(seasons).toEqual(expected);
+  });
+
+  test('should save ondeck report with timestamp to Firestore', async () => {
+    // Set time to week 7 of first mock season
+    const mockNow = new Date('2019-12-11T11:01:58.135Z').getTime();
+    const spy = jest.spyOn(Date, 'now').mockImplementation(() => mockNow);
+    const req = new MockRequest<SyncFromVotingSheetRequest>().setMethod('GET');
+    const res = new MockResponse<SyncFromVotingSheetResponse>();
+
+    syncFromVotingSheet(
+        req as unknown as functions.Request,
+        res as unknown as functions.Response);
+    await res.sent;
+
+    const reportSnap =
+        await admin.firestore().collection(ONDECK_REPORTS_COLLECTION).get();
+
+    expect(reportSnap.size).toEqual(1);
+    const report = reportSnap.docs[0].data();
+    expect(report.lastSync).toEqual(mockNow);
+
+    spy.mockRestore();
   });
 });
