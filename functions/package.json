@@ -25,7 +25,7 @@
     "firebase-admin": "^8.8.0",
     "firebase-functions": "^3.3.0",
     "gaxios": "^2.1.0",
-    "googleapis": "^45.0.0",
+    "googleapis": "^46.0.0",
     "node": "^8.13.0",
     "node-fetch": "^2.6.0"
   },
@@ -35,11 +35,11 @@
     "firebase-functions-test": "^0.1.7",
     "firebase-tools": "^7.8.1",
     "jest": "^24.9.0",
-    "jest-fetch-mock": "^2.1.2",
+    "jest-fetch-mock": "^3.0.0",
     "jest-mock": "^24.9.0",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.7.3"
   },
   "private": true
 }
