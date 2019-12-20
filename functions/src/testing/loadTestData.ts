@@ -7,10 +7,8 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
 }
 
 import admin from 'firebase-admin';
-import fs from 'fs';
-import path from 'path';
-
 import {DocumentModel} from './dumpTestData';
+import DocumentData from './test-data/firestore.json';
 
 if (!admin.apps.find((app: admin.app.App|null) => {
       return app ? app.name === '[DEFAULT]' : false;
@@ -26,9 +24,7 @@ const firestore = admin.firestore();
  * further testing.
  */
 export async function loadTestDataToFirestore() {
-  const fileName =
-      path.resolve(__dirname, '../../src/testing/test-data/firestore.json');
-  const testData = JSON.parse(fs.readFileSync(fileName, 'UTF-8'));
+  const testData: DocumentModel[] = DocumentData;
   const batch = firestore.batch();
 
   testData.map((doc: DocumentModel) => {
