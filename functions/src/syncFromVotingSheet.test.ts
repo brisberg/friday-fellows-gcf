@@ -8,7 +8,7 @@ import functionsTest from 'firebase-functions-test';
 
 import {PROJECT_ID} from './config';
 import {mockSpreadsheetGetResponse} from './helpers/testing/mockSpreadsheetResponse';
-import {CONFIG_COLLECTION, ONDECK_REPORTS_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
+import {CONFIG_COLLECTION, ONDECK_REPORTS_COLLECTION, SeasonModel, SEASONS_COLLECTION, SYNC_STATE_KEY, VotingStatus} from './model/firestore';
 import {SyncFromVotingSheetRequest, SyncFromVotingSheetResponse} from './model/service';
 import {MockRequest, MockResponse} from './testing/express-helpers';
 
@@ -80,6 +80,13 @@ describe('syncFromVotingSheet', () => {
         sheetId: 1242888778,
         startDate: 1573772820000,
         year: 2018,
+        seriesStats: {
+          [VotingStatus.Unknown]: 0,
+          [VotingStatus.Dropped]: 8,
+          [VotingStatus.Watching]: 7,
+          [VotingStatus.Completed]: 1,
+          [VotingStatus.Continuing]: 0,
+        },
       },
       {
         formattedName: 'WINTER 2018',
@@ -87,6 +94,13 @@ describe('syncFromVotingSheet', () => {
         sheetId: 281991772,
         startDate: 1573772820000,
         year: 2018,
+        seriesStats: {
+          [VotingStatus.Unknown]: 0,
+          [VotingStatus.Dropped]: 13,
+          [VotingStatus.Watching]: 6,
+          [VotingStatus.Completed]: 0,
+          [VotingStatus.Continuing]: 0,
+        },
       },
     ];
     expect(seasons).toEqual(expected);

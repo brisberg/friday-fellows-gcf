@@ -32,7 +32,7 @@ export interface SeasonModel {
   sheetId: number;  // id of the sheet in the source SpreadSheet
   // date of the first episode viewing this season in mills. null if not set
   startDate: number|null;
-  // TODO: {aggregate: totals}
+  seriesStats: {[status in VotingStatus]: number},
 }
 
 // Sub-collection for all series documents under a season document

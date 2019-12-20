@@ -73,6 +73,7 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, lastSyncDate, loading 
               <TableCell align="right">Year</TableCell>
               <TableCell align="right">Start&nbsp;Date&nbsp;(ms)</TableCell>
               <TableCell align="right">Sheet&nbsp;ID</TableCell>
+              <TableCell align="right">U/D/W/C/CN</TableCell>
             </TableRow>
           </TableHead>
           {/* TODO Add an empty state message and a loading spinner */}
@@ -89,6 +90,7 @@ const SeasonList: React.FC<SeasonListProps> = ({ seasons, lastSyncDate, loading 
                   <TableCell align="right">{season.year}</TableCell>
                   <TableCell align="right">{season.startDate}</TableCell>
                   <TableCell align="right">{season.sheetId}</TableCell>
+                  <TableCell align="right">{`${season.seriesStats[0]}/${season.seriesStats[1]}/${season.seriesStats[2]}/${season.seriesStats[3]}/${season.seriesStats[4]}`}</TableCell>
                 </TableRow>
               ))}
             </TableBody>}

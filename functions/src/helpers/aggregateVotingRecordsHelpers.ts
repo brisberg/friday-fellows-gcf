@@ -29,11 +29,11 @@ export function aggregateVotingStatus(
  * Calculate and update the voting status of all series for this season
  * assuming that the season has already passed.
  *
- * TODO: Apply the aggregate watching/completed/dropped stats to season model
  */
 function aggregateOlderSeason(season: SeasonModel, series: SeriesModel[]) {
   series.forEach((model: SeriesModel) => {
     model.votingStatus = calculateOlderVotingStatus(model);
+    season.seriesStats[model.votingStatus]++;
   });
 }
 
@@ -55,8 +55,6 @@ function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
  * assuming the given number of weeks have passed since the start of the season.
  *
  * weekNum is the 1-index number of weeks since the start of the season.
- *
- * TODO: Apply the aggregate watching/completed/dropped stats to season model
  */
 function aggregateCurrentSeason(
     season: SeasonModel, series: SeriesModel[], weekNum: number): OnDeckReport {
@@ -68,6 +66,7 @@ function aggregateCurrentSeason(
   };
   series.forEach((model: SeriesModel) => {
     model.votingStatus = calculateCurrentVotingStatus(model, weekNum);
+    season.seriesStats[model.votingStatus]++;
 
     if (model.votingStatus === VotingStatus.Watching) {
       report.series.push({
