@@ -66,8 +66,10 @@ function handleSheetRowData(data: sheets_v4.Schema$GridData):
       const row = data.rowData[i];
       const rowMeta = metadataByRow[i + 1] || {};
 
+      if (!row.values) continue;
+
       result.push({
-        cells: row.values!.map((cell) => {
+        cells: row.values.map((cell) => {
           if (!cell.effectiveValue) {
             return '';
           } else {

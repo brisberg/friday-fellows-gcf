@@ -6,7 +6,7 @@ import {getSheetsClient} from './google.auth';
 import {aggregateVotingStatus} from './helpers/aggregateVotingRecordsHelpers';
 import {extractFirestoreDocuments} from './helpers/firestoreDocumentHelpers';
 import {extractSheetModelFromSpreadsheetData} from './helpers/spreadsheetModelHelpers';
-import {CONFIG_COLLECTION, genSeriesId, ONDECK_REPORTS_COLLECTION, OnDeckReport, SEASONS_COLLECTION, SERIES_COLLECTION, SYNC_STATE_KEY} from './model/firestore';
+import {CONFIG_COLLECTION, genSeriesId, ONDECK_REPORTS_COLLECTION, OnDeckReport, SEASONS_COLLECTION, SERIES_COLLECTION, SeriesModel, SYNC_STATE_KEY} from './model/firestore';
 import {SyncFromVotingSheetResponse} from './model/service';
 
 const firestore = admin.firestore();
@@ -45,7 +45,10 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
       }
     });
 
-    const batch = firestore.batch();
+
+    const seriesRefs: FirebaseFirestore.DocumentReference[] = [];
+    let allSeries: SeriesModel[] = [];
+    const batch = firestore.batch();  // Main batch for seasons/metadata
     const seasonCollection = firestore.collection(SEASONS_COLLECTION);
 
     for (const docsTuple of allDocuments) {
@@ -58,8 +61,9 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
         const seriesRef =
             seasonRef.collection(SERIES_COLLECTION)
                 .doc(genSeriesId(season.sheetId, series.rowIndex));
-        batch.set(seriesRef, series);
+        seriesRefs.push(seriesRef);
       }
+      allSeries = allSeries.concat(seriesList);
     }
 
     // Record the timestamp of the latest sync
@@ -76,6 +80,18 @@ export const syncFromVotingSheet = functions.https.onRequest(async (_, res) => {
     }
 
     await batch.commit();
+
+    const CHUNK_SIZE = 450;
+    while (seriesRefs.length > 0) {
+      const seriesBatch = firestore.batch();
+      const refChunk = seriesRefs.splice(0, CHUNK_SIZE);
+      const seriesChunk = allSeries.splice(0, CHUNK_SIZE);
+
+      for (let i = 0; i < seriesChunk.length; i++) {
+        seriesBatch.set(refChunk[i], seriesChunk[i]);
+      }
+      await seriesBatch.commit();
+    }
 
     const payload: SyncFromVotingSheetResponse = {
       data: resp.data,
