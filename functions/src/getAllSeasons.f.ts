@@ -12,13 +12,15 @@ const cors = Cors({
 });
 
 /**
- * Query Firestore for the list of all seasons and the timestamp of the last
- * sync from sheets.
+ * Query Firestore for the list of all seasons ordered by start date and the
+ * timestamp of the last sync from sheets.
  */
 export const getAllSeasons = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     try {
-      const seasonsQuery = firestore.collection(SEASONS_COLLECTION).get();
+      const seasonsQuery = firestore.collection(SEASONS_COLLECTION)
+                               .orderBy('startDate', 'desc')
+                               .get();
       const lastSyncQuery =
           firestore.doc(CONFIG_COLLECTION + '/' + SYNC_STATE_KEY).get();
       const [snapshot, lastSync] =
