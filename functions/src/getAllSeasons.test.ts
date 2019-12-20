@@ -2,6 +2,7 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
+import {Query} from '@google-cloud/firestore';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
@@ -56,8 +57,8 @@ describe('getAllSeasons', () => {
   });
 
   test('should return an error if Firebase returns one', async () => {
-    const oldCollection = admin.firestore().collection;
-    admin.firestore().collection = jest.fn(() => {
+    const spy = jest.spyOn(Query.prototype, 'get');
+    spy.mockImplementation(() => {
       throw new FirebaseError(400, 'firebase error');
     });
 
@@ -73,6 +74,6 @@ describe('getAllSeasons', () => {
     expect(res.body).toStrictEqual(
         {err: new FirebaseError(400, 'firebase error')});
 
-    admin.firestore().collection = oldCollection;
+    spy.mockRestore();
   });
 });
