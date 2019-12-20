@@ -1,6 +1,6 @@
-import {SeasonModel, SeriesModel} from '../../../model/firestore';
+import {OnDeckReport, SeasonModel, SeriesModel} from '../../../model/firestore';
 
-import {AllActions, FETCH_SEASONS_START, FETCH_SEASONS_SUCCESS, FETCH_SERIES_START, FETCH_SERIES_SUCCESS, SET_SEASON_START_DATE, SET_SERIES_ID} from './actions';
+import {AllActions, FETCH_ONDECK_START, FETCH_ONDECK_SUCCESS, FETCH_SEASONS_START, FETCH_SEASONS_SUCCESS, FETCH_SERIES_START, FETCH_SERIES_SUCCESS, SET_SEASON_START_DATE, SET_SERIES_ID} from './actions';
 
 export enum Season {
   UNKNOWN = 0,
@@ -11,6 +11,8 @@ export enum Season {
 }
 
 interface AppState {
+  ondeck?: OnDeckReport;
+  loadingOnDeck: boolean;
   seasons: SeasonModel[];
   loadingSeasons: boolean;
   seriesForSeason: SeriesModel[];
@@ -19,6 +21,8 @@ interface AppState {
 }
 
 export const initialState: AppState = {
+  ondeck: undefined,
+  loadingOnDeck: false,
   seasons: [],
   loadingSeasons: false,
   seriesForSeason: [],
@@ -44,6 +48,14 @@ export function reducer(state: AppState = initialState, action: AllActions) {
     case FETCH_SERIES_SUCCESS:
       return {
         ...state, seriesForSeason: action.payload.json, loadingSeries: false,
+      }
+    case FETCH_ONDECK_START:
+      return {
+        ...state, loadingOnDeck: true,
+      }
+    case FETCH_ONDECK_SUCCESS:
+      return {
+        ...state, ondeck: action.payload.report, loadingOnDeck: false,
       }
     case SET_SEASON_START_DATE:
       const seasonIdx = state.seasons.indexOf(action.payload.season);
