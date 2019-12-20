@@ -9,7 +9,7 @@ import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
 import OnDeck from './OnDeck';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
-import { SetSeasonStartDateRequest, SetSeriesIdRequest } from '../../../model/service';
+import { SetSeasonStartDateRequest, SetSeriesIdRequest, GetOnDeckReportsResponse } from '../../../model/service';
 
 interface AppProps {
   backendURI: string;
@@ -42,6 +42,25 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
 
     fetchSeasonData();
   }, [backendURI])
+
+  useEffect(() => {
+    const fetchOnDeckData = async () => {
+      try {
+        dispatch(AppActions.fetchOnDeckStart());
+        const resp = await axios.get<GetOnDeckReportsResponse>(backendURI + '/getOnDeckReports');
+
+        const { reports } = resp.data;
+        if (reports && reports.length > 0) {
+          dispatch(AppActions.fetchOnDeckSuccess({ report: reports[0] }));
+        }
+      } catch (e) {
+        console.log(e);
+        // TODO: dispatch fail action and log the error
+      }
+    }
+
+    fetchOnDeckData();
+  }, [backendURI]);
 
   const handleStartDateChanged = async (newDate: Date | null, season: SeasonModel) => {
     const payload: SetSeasonStartDateRequest = {
@@ -89,7 +108,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
             <Redirect to='/ondeck' />
           </Route>
           <Route exact={true} path='/ondeck'>
-            <OnDeck />
+            <OnDeck report={state.ondeck} loading={state.loadingOnDeck} />
           </Route>
           <Route exact={true} path='/seasons'>
             <SeasonList seasons={state.seasons} lastSyncDate={state.lastSync} loading={state.loadingSeasons} onStartDateChanged={handleStartDateChanged} />

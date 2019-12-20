@@ -7,6 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
+import { OnDeckReport } from '../../../model/firestore';
+import { CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,17 +34,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const OnDeck: React.FC = () => {
-  const classes = useStyles();
+interface OnDeckProps {
+  report?: OnDeckReport;
+  loading: boolean;
+}
 
-  const mockSeries = [
-    { id: 1, title: 'Violet Evergarden', ep: 9 },
-    { id: 2, title: 'One Piece', ep: 619 },
-    { id: 3, title: 'Kyoukai no Kanata', ep: 10 },
-    { id: 4, title: 'White Album 2', ep: 9 },
-    { id: 5, title: 'My Hero Academia', ep: 8 },
-    { id: 6, title: 'One Punch Man', ep: 10 },
-  ];
+const OnDeck: React.FC<OnDeckProps> = ({ report, loading = false }) => {
+  const classes = useStyles();
 
   return (
     <div>
@@ -59,16 +57,17 @@ const OnDeck: React.FC = () => {
               <TableCell align="right">Episode</TableCell>
             </TableRow>
           </TableHead>
-          {/* TODO Add an empty state message and a loading spinner */}
-          <TableBody>
-            {mockSeries.map((series) => (
-              <TableRow key={series.id}>
-                <TableCell component="th" scope="row">{series.title}</TableCell>
-                <TableCell align="right">{series.ep}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+          {!loading && report &&
+            <TableBody>
+              {report.series.map((series) => (
+                <TableRow key={series.seriesTitle}>
+                  <TableCell component="th" scope="row">{series.seriesTitle}</TableCell>
+                  <TableCell align="right">{series.episode}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>}
         </Table>
+        {loading && <CircularProgress size={60} />}
       </Paper>
     </div>
   );
