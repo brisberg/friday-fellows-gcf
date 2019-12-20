@@ -2,6 +2,8 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
+// tslint:disable-next-line: no-implicit-dependencies
+import {DocumentReference} from '@google-cloud/firestore';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
@@ -20,7 +22,6 @@ import {setSeasonStartDate} from './setSeasonStartDate.f';
 import {loadTestDataToFirestore} from './testing/loadTestData';
 import {mockSetStartDateMetadataResponse} from './helpers/testing/mockSetStartDateResponse';
 import {START_DATE_METADATA_KEY} from './model/sheets';
-import {Query} from '@google-cloud/firestore';
 
 describe('setSeasonStartDate', () => {
   beforeEach(async () => {
@@ -94,7 +95,7 @@ describe('setSeasonStartDate', () => {
   });
 
   test('should return a 400 and an error if Firebase returns one', async () => {
-    const spy = jest.spyOn(Query.prototype, 'get');
+    const spy = jest.spyOn(DocumentReference.prototype, 'update');
     spy.mockImplementation(() => {
       throw new FirebaseError(400, 'firebase error');
     });

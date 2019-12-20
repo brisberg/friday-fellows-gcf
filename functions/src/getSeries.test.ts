@@ -2,6 +2,7 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
+// tslint:disable-next-line: no-implicit-dependencies
 import {Query} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
