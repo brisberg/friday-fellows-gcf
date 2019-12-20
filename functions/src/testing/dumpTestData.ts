@@ -8,14 +8,13 @@ import admin from 'firebase-admin';
 import fs from 'fs';
 import path from 'path';
 
-import {CONFIG_COLLECTION, SEASONS_COLLECTION, SERIES_COLLECTION} from '../model/firestore';
+import {CONFIG_COLLECTION, SEASONS_COLLECTION, SERIES_COLLECTION, ONDECK_REPORTS_COLLECTION} from '../model/firestore';
+import {PROJECT_ID} from '../config';
 
 if (!admin.apps.find((app: admin.app.App|null) => {
       return app ? app.name === '[DEFAULT]' : false;
     })) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
+  admin.initializeApp({projectId: PROJECT_ID});
 }
 const firestore = admin.firestore();
 
@@ -51,11 +50,16 @@ async function dumpTestDataToFile() {
     seriesData = seriesData.concat(seriesDocs);
   }
 
+  const reportSnap =
+      await firestore.collection(ONDECK_REPORTS_COLLECTION).get();
+  const reportData = snapshotToJson(ONDECK_REPORTS_COLLECTION, reportSnap);
+
   const data = JSON.stringify(
       [
         ...configData,
         ...seasonData,
         ...seriesData,
+        ...reportData,
       ],
       null, 2);
   fs.writeFileSync(dataFile, data);

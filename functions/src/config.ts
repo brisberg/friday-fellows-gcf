@@ -23,8 +23,11 @@ export const SCOPES_READONLY: Scopes = [
 ];
 export const TOKEN_PATH = 'credentials.json';
 export const SECRET_PATH = 'client_secret.json';
-// development sheet id
-export const SPREADSHEET_ID = '11Fo3g9KmR51HxEqDOMzsGZLeq5fU3q6lwxgpl6IH7cE';
+// development test sheet id
+export const SPREADSHEET_ID = '1w9ADt88UpKwZigx6xrP_Oohc3VTPVLWqC3-ATLCyExg';
+// stating sheet id
+export const STAGING_SPREADSHEET_ID =
+    '11Fo3g9KmR51HxEqDOMzsGZLeq5fU3q6lwxgpl6IH7cE';
 
 /// MAL client configs
 export const MAL_CRED_PATH = 'mal_credentials.json';

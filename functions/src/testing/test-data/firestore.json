@@ -2,7 +2,7 @@
   {
     "id": "config/sync-status",
     "data": {
-      "lastSync": 1575591324504
+      "lastSync": 1576882582240
     }
   },
   {
@@ -10,9 +10,16 @@
     "data": {
       "year": 2018,
       "formattedName": "SPRING 2018",
+      "seriesStats": {
+        "0": 0,
+        "1": 11,
+        "2": 8,
+        "3": 0,
+        "4": 0
+      },
       "sheetId": 1242888778,
       "season": 1,
-      "startDate": 1573600020000
+      "startDate": 1572646020000
     }
   },
   {
@@ -20,6 +27,13 @@
     "data": {
       "year": 2018,
       "formattedName": "WINTER 2018",
+      "seriesStats": {
+        "0": 0,
+        "1": 16,
+        "2": 6,
+        "3": 0,
+        "4": 0
+      },
       "sheetId": 281991772,
       "season": 4,
       "startDate": 1573600020000
@@ -28,41 +42,37 @@
   {
     "id": "seasons/1242888778/series/1242888778-001",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 4,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 4
         },
         {
           "votesAgainst": 3,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 4
         },
         {
           "votesAgainst": 5,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 2
         }
       ],
@@ -79,13 +89,12 @@
   {
     "id": "seasons/1242888778/series/1242888778-002",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 3
         }
       ],
@@ -102,13 +111,12 @@
   {
     "id": "seasons/1242888778/series/1242888778-003",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 3
         }
       ],
@@ -125,13 +133,12 @@
   {
     "id": "seasons/1242888778/series/1242888778-004",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 3
         }
       ],
@@ -148,42 +155,52 @@
   {
     "id": "seasons/1242888778/series/1242888778-005",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 2,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 7
         },
         {
           "votesAgainst": 1,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 6
         },
         {
           "votesAgainst": 1,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 5
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -199,27 +216,25 @@
   {
     "id": "seasons/1242888778/series/1242888778-006",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 7,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 3
         }
       ],
@@ -236,21 +251,55 @@
   {
     "id": "seasons/1242888778/series/1242888778-007",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 5
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 2,
+          "weekNum": 3,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 3,
+          "weekNum": 4,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 4,
+          "weekNum": 5,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -266,42 +315,52 @@
   {
     "id": "seasons/1242888778/series/1242888778-008",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 6
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 2,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 7
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 5
         },
         {
           "votesAgainst": 1,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 5
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -317,27 +376,24 @@
   {
     "id": "seasons/1242888778/series/1242888778-009",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         },
         {
           "votesAgainst": 5,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 4
         }
       ],
@@ -354,42 +410,51 @@
   {
     "id": "seasons/1242888778/series/1242888778-010",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 1,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 6
         },
         {
           "votesAgainst": 3,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 7
         },
         {
           "votesAgainst": 4,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 4
         },
         {
           "votesAgainst": 2,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 4
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": 35968,
@@ -405,28 +470,53 @@
   {
     "id": "seasons/1242888778/series/1242888778-011",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         },
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": -1
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 0,
+          "weekNum": 4,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 5,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 2,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 3,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": 36397,
@@ -442,27 +532,24 @@
   {
     "id": "seasons/1242888778/series/1242888778-012",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 5
         },
         {
           "votesAgainst": 5,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 3
         }
       ],
@@ -479,42 +566,51 @@
   {
     "id": "seasons/1242888778/series/1242888778-013",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 2,
           "episodeNum": 39,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 6
         },
         {
           "votesAgainst": 3,
           "episodeNum": 40,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 6
         },
         {
           "votesAgainst": 2,
           "episodeNum": 41,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 7
         },
         {
           "votesAgainst": 1,
           "episodeNum": 42,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 5
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 43,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 44,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": 36456,
@@ -530,42 +626,51 @@
   {
     "id": "seasons/1242888778/series/1242888778-014",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         },
         {
           "votesAgainst": 3,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 7
         },
         {
           "votesAgainst": 3,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 5
         },
         {
           "votesAgainst": 2,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 2
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -581,20 +686,18 @@
   {
     "id": "seasons/1242888778/series/1242888778-015",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         }
       ],
@@ -611,27 +714,24 @@
   {
     "id": "seasons/1242888778/series/1242888778-016",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         },
         {
           "votesAgainst": 7,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 3
         }
       ],
@@ -648,20 +748,18 @@
   {
     "id": "seasons/1242888778/series/1242888778-017",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         }
       ],
@@ -678,20 +776,18 @@
   {
     "id": "seasons/1242888778/series/1242888778-018",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 6,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 3
         }
       ],
@@ -708,42 +804,51 @@
   {
     "id": "seasons/1242888778/series/1242888778-019",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 5
         },
         {
           "votesAgainst": 0,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 8
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 6
         },
         {
           "votesAgainst": 0,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 5
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -759,27 +864,25 @@
   {
     "id": "seasons/281991772/series/281991772-001",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 5
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 5,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 1
         }
       ],
@@ -796,13 +899,12 @@
   {
     "id": "seasons/281991772/series/281991772-002",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 3
         }
       ],
@@ -819,13 +921,12 @@
   {
     "id": "seasons/281991772/series/281991772-003",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 2
         }
       ],
@@ -842,41 +943,37 @@
   {
     "id": "seasons/281991772/series/281991772-004",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 5
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 3,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 4
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 5
         },
         {
           "votesAgainst": 0,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 4
         }
       ],
@@ -893,27 +990,25 @@
   {
     "id": "seasons/281991772/series/281991772-005",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 5,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 2
         }
       ],
@@ -930,13 +1025,12 @@
   {
     "id": "seasons/281991772/series/281991772-006",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 7,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 0
         }
       ],
@@ -953,41 +1047,37 @@
   {
     "id": "seasons/281991772/series/281991772-007",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 1,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 5
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 5
         },
         {
           "votesAgainst": 1,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 4
         }
       ],
@@ -1004,41 +1094,37 @@
   {
     "id": "seasons/281991772/series/281991772-008",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
-          "votesAgainst": -1,
+          "msg": "BYE",
+          "votesAgainst": 0,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 1,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 5
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 6
         },
         {
           "votesAgainst": 2,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 4
         }
       ],
@@ -1055,13 +1141,12 @@
   {
     "id": "seasons/281991772/series/281991772-009",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 3
         }
       ],
@@ -1078,41 +1163,37 @@
   {
     "id": "seasons/281991772/series/281991772-010",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 2,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 6
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 4
         },
         {
           "votesAgainst": 2,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 4
         }
       ],
@@ -1129,27 +1210,25 @@
   {
     "id": "seasons/281991772/series/281991772-011",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": 4
         },
         {
-          "votesAgainst": -1,
-          "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
-          "votesFor": -1
+          "msg": "BYE",
+          "votesAgainst": 0,
+          "episodeNum": 1,
+          "weekNum": 2,
+          "votesFor": 0
         },
         {
           "votesAgainst": 8,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 0
         }
       ],
@@ -1166,27 +1245,24 @@
   {
     "id": "seasons/281991772/series/281991772-012",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 5
         },
         {
           "votesAgainst": 4,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 2
         }
       ],
@@ -1203,27 +1279,24 @@
   {
     "id": "seasons/281991772/series/281991772-013",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 3
         },
         {
           "votesAgainst": 4,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 1
         }
       ],
@@ -1240,20 +1313,18 @@
   {
     "id": "seasons/281991772/series/281991772-014",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 6,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 1
         }
       ],
@@ -1270,41 +1341,36 @@
   {
     "id": "seasons/281991772/series/281991772-015",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 0,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 8
         },
         {
           "votesAgainst": 1,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 6
         },
         {
           "votesAgainst": 2,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 6
         },
         {
           "votesAgainst": 1,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 5
         }
       ],
@@ -1321,20 +1387,18 @@
   {
     "id": "seasons/281991772/series/281991772-016",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 3
         }
       ],
@@ -1351,27 +1415,24 @@
   {
     "id": "seasons/281991772/series/281991772-017",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 2,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 4
         },
         {
           "votesAgainst": 4,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 3
         }
       ],
@@ -1388,20 +1449,18 @@
   {
     "id": "seasons/281991772/series/281991772-018",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 5,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 0
         }
       ],
@@ -1418,41 +1477,36 @@
   {
     "id": "seasons/281991772/series/281991772-019",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 3,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 3
         },
         {
           "votesAgainst": 3,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 4
         },
         {
           "votesAgainst": 4,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 4
         },
         {
           "votesAgainst": 4,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 1
         }
       ],
@@ -1469,20 +1523,18 @@
   {
     "id": "seasons/281991772/series/281991772-020",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 4,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 0
         }
       ],
@@ -1499,41 +1551,36 @@
   {
     "id": "seasons/281991772/series/281991772-021",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 2,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": 1,
           "episodeNum": 1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": 5
         },
         {
           "votesAgainst": 2,
           "episodeNum": 2,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 3
         },
         {
           "votesAgainst": 3,
           "episodeNum": 3,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 4,
           "votesFor": 5
         },
         {
           "votesAgainst": 2,
           "episodeNum": 4,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 5,
           "votesFor": 3
         }
       ],
@@ -1550,27 +1597,24 @@
   {
     "id": "seasons/281991772/series/281991772-022",
     "data": {
-      "votingStatus": 0,
+      "votingStatus": 1,
       "votingRecord": [
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 1,
           "votesFor": -1
         },
         {
           "votesAgainst": -1,
           "episodeNum": -1,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 2,
           "votesFor": -1
         },
         {
           "votesAgainst": 5,
           "episodeNum": 14,
-          "seriesId": -1,
-          "weekNum": -1,
+          "weekNum": 3,
           "votesFor": 0
         }
       ],
@@ -1582,6 +1626,48 @@
       "titleRaw": "Mahoutsukai no Yome",
       "rowIndex": 22,
       "episodes": -1
+    }
+  },
+  {
+    "id": "ondeck-reports/dj7iTSo1255KcvybgNpy",
+    "data": {
+      "created": 1576882582238,
+      "lastSync": 1576882582240,
+      "targetWatchDate": 1576882582238,
+      "series": [
+        {
+          "episode": 7,
+          "seriesTitle": "Megalo Box"
+        },
+        {
+          "episode": 7,
+          "seriesTitle": "Gurazeni"
+        },
+        {
+          "episode": 7,
+          "seriesTitle": "Lupin the Third: Part V"
+        },
+        {
+          "episode": 7,
+          "seriesTitle": "Wotakoi"
+        },
+        {
+          "episode": 4,
+          "seriesTitle": "Shiyan Pin Jiating (Jikken-hin Kazoku)"
+        },
+        {
+          "episode": 45,
+          "seriesTitle": "Boku no Hero Academia S3"
+        },
+        {
+          "episode": 7,
+          "seriesTitle": "Golden Kamuy"
+        },
+        {
+          "episode": 7,
+          "seriesTitle": "Hinamatsuri"
+        }
+      ]
     }
   }
 ]
