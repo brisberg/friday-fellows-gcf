@@ -1,9 +1,9 @@
 import {OnDeckReport} from '../../model/firestore';
 
 export const StandardReport: OnDeckReport = {
-  lastSync: 0,
-  targetWatchDate: 0,
-  created: 0,
+  lastSync: 50,
+  targetWatchDate: 100,
+  created: 50,
   series: [
     {seriesTitle: 'Teekyuu', episode: 3},
     {seriesTitle: 'Aldnoah Zero', episode: 9},

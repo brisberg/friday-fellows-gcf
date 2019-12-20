@@ -25,6 +25,7 @@ export const getOnDeckReports = functions.https.onRequest((req, res) => {
 
     if (timeRange) {
       res.status(501).send({err: 'TimeRange query unimplemented.'});
+      return;
     }
 
     if (!targetDate && !timeRange) {
