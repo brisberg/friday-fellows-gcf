@@ -70,6 +70,12 @@ function SetSeriesIdDialog(props: SetSeriesIdDialog) {
     onClose(value);
   };
 
+  useEffect(() => {
+    if (open) {
+      setValue(series ? series.idAL || 0 : 0);
+    }
+  }, [open, series]);
+
   const valueChanged = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(parseInt(e.target.value));
   }
@@ -151,7 +157,7 @@ const SeasonDetail: React.FC<SeasonDetailProps> = ({ dispatch, backendURI, seaso
 
   const handleSeriesIdDialogConfirm = (seriesId: number) => {
     setDialogOpen(false);
-    if (selectedSeries) {
+    if (selectedSeries && selectedSeries.idAL !== seriesId) {
       onSeriesIdChanged(selectedSeries, season.sheetId, seriesId);
     }
     setSelectedSeries(null);
