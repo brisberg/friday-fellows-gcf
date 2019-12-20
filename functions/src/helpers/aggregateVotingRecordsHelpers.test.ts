@@ -11,6 +11,13 @@ const staticSeason: SeasonModel = {
   sheetId: 12345,
   year: 2010,
   startDate: 12345,
+  seriesStats: {
+    [VotingStatus.Unknown]: 0,
+    [VotingStatus.Dropped]: 0,
+    [VotingStatus.Watching]: 0,
+    [VotingStatus.Completed]: 0,
+    [VotingStatus.Continuing]: 0,
+  },
 };
 
 const staticSeries: SeriesModel = {

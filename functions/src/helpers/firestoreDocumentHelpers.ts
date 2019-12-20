@@ -28,6 +28,13 @@ export function extractFirestoreDocuments(model: SpreadsheetModel) {
         year: extractYear(sheet.title),
         season: extractSeason(sheet.title),
         startDate: startDateMs,
+        seriesStats: {
+          [VotingStatus.Unknown]: 0,
+          [VotingStatus.Dropped]: 0,
+          [VotingStatus.Watching]: 0,
+          [VotingStatus.Completed]: 0,
+          [VotingStatus.Continuing]: 0,
+        },
       },
       seriesList: extractSeriesDocuments(sheet.sheetId, sheet.data),
     });
