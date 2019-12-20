@@ -6,7 +6,9 @@ Implementing FridayFellows Updater on Google Cloud Platform with Cloud Functions
 
 Serverless Backend is implemented by a series of Cloud Function, located in the `functions` directory.
 
-`firebase deploy --only functions` to depoly all functions to Firebase/GCP
+`firebase deploy --only functions` to deploy all functions to Firebase/GCP
+
+To run all backend unit tests: `cd functions && npm test`
 
 ## Web App
 
@@ -14,30 +16,6 @@ React App for viewing and interacting with the voting record is hosted on [Githu
 
 Deploy a new version to gh-pages with: `npm run deploy`
 
+Run a local version of the app with: `npm start`.
 
-## Testing during Development
-
-Use the Firebase emulator to test functions locally before deploying to cloud resources.
-
-First export environment variables used by the emulator for configuration:
-
-```
-export GOOGLE_APPLICATION_CREDENTIALS=<absolute path>/service-credentials.json
-export FIRESTORE_EMULATOR_HOST=localhost:8080
-```
-
-Then start the emulator and access its emulated function URLs.
-
-`firebase emulators:start`
-
-### Unit testing Cloud Functions
-
-Cloud function unit tests use the firebase emulator (above) to mock interacts with Firestore. Follow the instructions above to launch the emulator, then from the `functions` directory run the tests with:
-
-`npm run test:jest`
-
-or
-
-To run the emulator and tests in a single step use just:
-
-`npm test`
+Make sure that the Firebase Emulator is running or most UI interactions will fail. (See `functions` directory for instructions on starting the emulator)

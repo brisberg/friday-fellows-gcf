@@ -9,13 +9,12 @@ if (!process.env['FIRESTORE_EMULATOR_HOST']) {
 import admin from 'firebase-admin';
 import {DocumentModel} from './dumpTestData';
 import DocumentData from './test-data/firestore.json';
+import {PROJECT_ID} from '../config';
 
 if (!admin.apps.find((app: admin.app.App|null) => {
       return app ? app.name === '[DEFAULT]' : false;
     })) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
+  admin.initializeApp({projectId: PROJECT_ID});
 }
 const firestore = admin.firestore();
 

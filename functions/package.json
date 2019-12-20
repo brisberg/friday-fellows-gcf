@@ -10,6 +10,7 @@
     "test": "npm run build && FIRESTORE_EMULATOR_HOST='localhost:8080' firebase emulators:exec --only firestore 'npm run test:jest'",
     "test:jest": "node_modules/.bin/jest --coverage",
     "test:load_data": "node -e 'require(\"./lib/testing/loadTestData\").loadTestDataToFirestore()'",
+    "test:dump_data": "node -e 'require(\"./lib/testing/dumpTestData\")'",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
