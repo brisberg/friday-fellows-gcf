@@ -57,7 +57,7 @@ export interface GetOnDeckReportsRequest {
   timeRange?: {
     startDate: number,
     endDate: number,
-  },
+  };
 }
 export interface GetOnDeckReportsResponse {
   reports?: OnDeckReport[];

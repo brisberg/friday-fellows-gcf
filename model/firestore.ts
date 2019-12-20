@@ -32,7 +32,7 @@ export interface SeasonModel {
   sheetId: number;  // id of the sheet in the source SpreadSheet
   // date of the first episode viewing this season in mills. null if not set
   startDate: number|null;
-  seriesStats: {[status in VotingStatus]: number},
+  seriesStats: {[status in VotingStatus]: number};
 }
 
 // Sub-collection for all series documents under a season document
@@ -88,7 +88,7 @@ export interface SeriesVotingRecord {
 }
 
 // Top level collection for storing generated ondeck reports
-export const ONDECK_REPORTS_COLLECTION = 'ondeck-reports'
+export const ONDECK_REPORTS_COLLECTION = 'ondeck-reports';
 
 /** Model of a report of a set of episodes to be watched on a particular date */
 export interface OnDeckReport {
