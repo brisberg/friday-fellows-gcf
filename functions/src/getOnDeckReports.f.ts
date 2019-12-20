@@ -20,24 +20,27 @@ const cors = Cors({
 export const getOnDeckReports = functions.https.onRequest((req, res) => {
   return cors(req, res, async () => {
     const query: GetOnDeckReportsRequest = req.query;
-    const {timeRange} = query;
-    let {targetDate} = query;
+    const {targetDate, timeRange} = query;
 
     if (timeRange) {
       res.status(501).send({err: 'TimeRange query unimplemented.'});
       return;
     }
 
+    const baseQuery: FirebaseFirestore.Query =
+        firestore.collection(ONDECK_REPORTS_COLLECTION);
+    let reportsQuery = baseQuery;
+
     if (!targetDate && !timeRange) {
-      // TODO: calculate next Friday
-      targetDate = new Date(Date.now()).getTime();
+      // Fetch the latest report
+      // TODO: maybe fetch many reports for the frontend to display?
+      reportsQuery = reportsQuery.orderBy('created', 'desc').limit(1);
+    } else if (targetDate) {
+      reportsQuery = reportsQuery.where('targetWatchDate', '==', targetDate);
     }
 
     try {
-      const reportsQuery = firestore.collection(ONDECK_REPORTS_COLLECTION)
-                               .where('targetWatchDate', '==', targetDate)
-                               .get();
-      const reportsSnap = await reportsQuery;
+      const reportsSnap = await reportsQuery.get();
 
       const reports: OnDeckReport[] = reportsSnap.docs.map(
           (reportSnap) => reportSnap.data() as OnDeckReport);
