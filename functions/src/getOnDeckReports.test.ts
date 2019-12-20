@@ -2,6 +2,7 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
+import {Query} from '@google-cloud/firestore';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
@@ -21,7 +22,7 @@ if (!admin.apps.find((app: admin.app.App|null) => {
   });
 }
 import {OnDeckReport, ONDECK_REPORTS_COLLECTION} from './model/firestore';
-import {StandardReport} from './testing/test-data/mockOnDeckReportsData';
+import {StandardReport, RecentReport, TwoHundredReport} from './testing/test-data/mockOnDeckReportsData';
 import {getOnDeckReports} from './getOnDeckReports.f';
 
 async function loadReportDocsToFirestore(
@@ -37,25 +38,18 @@ async function loadReportDocsToFirestore(
 
 describe('getOnDeckReports', () => {
   const firestore = admin.firestore();
-  const reports: OnDeckReport[] = [
-    StandardReport,
-    {...StandardReport, targetWatchDate: 200},
-    StandardReport,
-  ];
 
-  beforeEach(async () => {
-    await loadReportDocsToFirestore(firestore, reports);
-  });
   afterEach(async () => {
     testEnv.cleanup();
     await firebase.clearFirestoreData({projectId: PROJECT_ID});
   });
 
   test('should return unimplemented if given timerange', async () => {
-    const req =
-        new MockRequest<GetOnDeckReportsRequest>().setMethod('GET').setQuery({
-          timeRange: {startDate: 100, endDate: 200},
-        });
+    await loadReportDocsToFirestore(firestore, []);
+    const req = new MockRequest<GetOnDeckReportsRequest>().setMethod('GET');
+    req.setQuery({
+      timeRange: {startDate: 100, endDate: 200},
+    });
     const res = new MockResponse<GetOnDeckReportsResponse>();
 
     getOnDeckReports(
@@ -67,11 +61,13 @@ describe('getOnDeckReports', () => {
     expect(res.body!.err).toEqual('TimeRange query unimplemented.');
   });
 
-  test('should all reports with the given targetDate', async () => {
-    const req =
-        new MockRequest<GetOnDeckReportsRequest>().setMethod('GET').setQuery({
-          targetDate: 100,
-        });
+  test('given targetDate should return all reports for that date', async () => {
+    const reports = [StandardReport, TwoHundredReport, TwoHundredReport];
+    await loadReportDocsToFirestore(firestore, reports);
+    const req = new MockRequest<GetOnDeckReportsRequest>().setMethod('GET');
+    req.setQuery({
+      targetDate: 200,
+    });
     const res = new MockResponse<GetOnDeckReportsResponse>();
 
     getOnDeckReports(
@@ -81,12 +77,11 @@ describe('getOnDeckReports', () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body!.reports!.length).toEqual(2);
-    expect(res.body!.reports!).toEqual([StandardReport, StandardReport]);
+    expect(res.body!.reports!).toEqual([TwoHundredReport, TwoHundredReport]);
   });
 
-  test('no arguments returns all reports with targetDate of Now', async () => {
-    jest.spyOn(Date, 'now').mockImplementation(() => 200);
-    // TODO: improve this to calculare the next showing date
+  test('no arguments returns the latest report', async () => {
+    await loadReportDocsToFirestore(firestore, [StandardReport, RecentReport]);
     const req = new MockRequest<GetOnDeckReportsRequest>().setMethod('GET');
     const res = new MockResponse<GetOnDeckReportsResponse>();
 
@@ -97,21 +92,18 @@ describe('getOnDeckReports', () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body!.reports!.length).toEqual(1);
-    expect(res.body!.reports!).toEqual([
-      {...StandardReport, targetWatchDate: 200}
-    ]);
-    (Date.now as unknown as jest.SpyInstance).mockRestore();
+    expect(res.body!.reports!).toEqual([RecentReport]);
   });
 
   test('should return an error if Firebase returns one', async () => {
-    const oldCollection = admin.firestore().collection;
-    admin.firestore().collection = jest.fn(() => {
+    const spy = jest.spyOn(Query.prototype, 'get');
+    spy.mockImplementation(() => {
       throw new FirebaseError(400, 'firebase error');
     });
-    const req =
-        new MockRequest<GetOnDeckReportsRequest>().setMethod('GET').setQuery({
-          targetDate: 100,
-        });
+    const req = new MockRequest<GetOnDeckReportsRequest>().setMethod('GET');
+    req.setQuery({
+      targetDate: 100,
+    });
     const res = new MockResponse<GetOnDeckReportsResponse>();
 
     getOnDeckReports(
@@ -123,6 +115,6 @@ describe('getOnDeckReports', () => {
     expect(res.body).toStrictEqual(
         {err: new FirebaseError(400, 'firebase error')});
 
-    admin.firestore().collectionGroup = oldCollection;
+    spy.mockRestore();
   });
 });
