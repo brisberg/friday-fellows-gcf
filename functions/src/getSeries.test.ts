@@ -2,7 +2,8 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
-import admin from 'firebase-admin';
+// tslint:disable-next-line: no-implicit-dependencies
+import {Query} from '@google-cloud/firestore';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
 
@@ -66,8 +67,8 @@ describe('getSeries', () => {
   });
 
   test('should return an error if Firebase returns one', async () => {
-    const oldCollectionGroup = admin.firestore().collectionGroup;
-    admin.firestore().collectionGroup = jest.fn(() => {
+    const spy = jest.spyOn(Query.prototype, 'get');
+    spy.mockImplementation(() => {
       throw new FirebaseError(400, 'firebase error');
     });
 
@@ -83,6 +84,6 @@ describe('getSeries', () => {
     expect(res.body).toStrictEqual(
         {err: new FirebaseError(400, 'firebase error')});
 
-    admin.firestore().collectionGroup = oldCollectionGroup;
+    spy.mockRestore();
   });
 });

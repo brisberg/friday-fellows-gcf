@@ -2,6 +2,8 @@
 import 'jest';
 
 import * as firebase from '@firebase/testing';
+// tslint:disable-next-line: no-implicit-dependencies
+import {DocumentReference} from '@google-cloud/firestore';
 import admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import functionsTest from 'firebase-functions-test';
@@ -93,8 +95,8 @@ describe('setSeasonStartDate', () => {
   });
 
   test('should return a 400 and an error if Firebase returns one', async () => {
-    const oldCollection = admin.firestore().collection;
-    admin.firestore().collection = jest.fn(() => {
+    const spy = jest.spyOn(DocumentReference.prototype, 'update');
+    spy.mockImplementation(() => {
       throw new FirebaseError(400, 'firebase error');
     });
 
@@ -112,6 +114,6 @@ describe('setSeasonStartDate', () => {
     expect(res.body).toStrictEqual(
         {err: new FirebaseError(400, 'firebase error')});
 
-    admin.firestore().collection = oldCollection;
+    spy.mockRestore();
   });
 });
