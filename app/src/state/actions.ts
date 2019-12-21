@@ -1,4 +1,5 @@
 import {OnDeckReport, SeasonModel, SeriesModel} from '../../../model/firestore';
+import {SetSeriesIdResponse} from '../../../model/service';
 
 import {ActionsUnion, createAction, createActionPayload} from './action_utils';
 
@@ -30,8 +31,8 @@ export const AppActions = {
       typeof SET_SEASON_START_DATE,
       {season: SeasonModel, startDate: Date | null}>(SET_SEASON_START_DATE),
   setSeriesId: createActionPayload<
-      typeof SET_SERIES_ID, {series: SeriesModel, seriesId: number}>(
-      SET_SERIES_ID)
+      typeof SET_SERIES_ID,
+      {series: SeriesModel, data: SetSeriesIdResponse['data']}>(SET_SERIES_ID)
 };
 
 export type AllActions = ActionsUnion<typeof AppActions>;

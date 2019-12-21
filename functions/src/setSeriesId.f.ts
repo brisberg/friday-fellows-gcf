@@ -131,7 +131,13 @@ query ($id: Int) {
     }
 
     const payload: SetSeriesIdResponse = {
-      data: data,
+      data: {
+        titleEn: data.data.Media.title.english,
+        type: data.data.Media.format,
+        idMal: data.data.Media.idMal,
+        idAL: data.data.Media.id,
+        episodes: data.data.Media.episodes,
+      }
     };
     res.status(200).send(payload);
   });
