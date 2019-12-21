@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import './App.css';
 import { reducer, initialState } from '../state/reducer';
 import { AppActions } from '../state/actions';
@@ -7,6 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import SeasonList from './SeasonList';
 import SeasonDetail from './SeasonDetail';
 import AppHeader from './AppHeader';
+import { SuccessSnackbar, ErrorSnackbar } from './Snackbars';
 import OnDeck from './OnDeck';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { SetSeasonStartDateRequest, SetSeriesIdRequest, GetOnDeckReportsResponse } from '../../../model/service';
@@ -22,6 +23,10 @@ interface GetAllSeasonsResponse {
 
 const App: React.FC<AppProps> = ({ backendURI }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   // Load all season data on start using effect Hook
   // https://www.robinwieruch.de/react-hooks-fetch-data
@@ -82,12 +87,20 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
       row: series.rowIndex,
       seriesId: seriesId,
     }
-    const resp = await axios.post(backendURI + '/setSeriesId', payload)
-    if (resp.status === 200) {
-      dispatch(AppActions.setSeriesId({
-        series: series,
-        seriesId: seriesId,
-      }))
+    try {
+      const resp = await axios.post(backendURI + '/setSeriesId', payload)
+      if (resp.status === 200) {
+        dispatch(AppActions.setSeriesId({
+          series: series,
+          seriesId: seriesId,
+        }));
+        setSuccessMsg(`Updated AniList ID for ${series.titleRaw}`);
+        setSuccessOpen(true);
+      }
+    } catch (e) {
+      // console.log(e); // log the error
+      setErrorMsg(`Error when updating AniList ID for ${series.titleRaw}`);
+      setErrorOpen(true);
     }
   }
 
@@ -125,6 +138,8 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
         </Switch>
       </div>
       <AppFooter />
+      <SuccessSnackbar open={successOpen} msg={successMsg} handleClose={setSuccessOpen} />
+      <ErrorSnackbar open={errorOpen} msg={errorMsg} handleClose={setErrorOpen} />
     </div>
   );
 }
