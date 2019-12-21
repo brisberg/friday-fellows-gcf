@@ -92,7 +92,7 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
       if (resp.status === 200) {
         dispatch(AppActions.setSeriesId({
           series: series,
-          seriesId: seriesId,
+          data: resp.data.data,
         }));
         setSuccessMsg(`Updated AniList ID for ${series.titleRaw}`);
         setSuccessOpen(true);

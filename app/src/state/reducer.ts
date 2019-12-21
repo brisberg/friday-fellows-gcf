@@ -83,9 +83,8 @@ export function reducer(state: AppState = initialState, action: AllActions) {
           }
 
           // Otherwise, this is the one we want - return an updated value
-          const seriesId = action.payload.seriesId;
           return {
-            ...series, idAL: seriesId || -1,
+            ...series, ...action.payload.data,
           }
         })
       }

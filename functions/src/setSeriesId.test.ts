@@ -92,7 +92,13 @@ describe('setSeriesId', () => {
     await res.sent;
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body!.data).toEqual(mockAnilistQueryMediaResponse);
+    expect(res.body!.data).toEqual({
+      idAL: 15125,
+      idMal: 15125,
+      episodes: 12,
+      titleEn: 'Teekyuu',
+      type: SeriesType.Short,
+    });
   });
 
   test('should store the AniList metadata into Voting Sheet', async () => {
