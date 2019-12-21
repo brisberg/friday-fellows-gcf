@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/friday-fellows-gcf/static/css/main.3fd87347.chunk.css",
-    "main.js": "/friday-fellows-gcf/static/js/main.070310e4.chunk.js",
-    "main.js.map": "/friday-fellows-gcf/static/js/main.070310e4.chunk.js.map",
+    "main.js": "/friday-fellows-gcf/static/js/main.0f9d7639.chunk.js",
+    "main.js.map": "/friday-fellows-gcf/static/js/main.0f9d7639.chunk.js.map",
     "runtime-main.js": "/friday-fellows-gcf/static/js/runtime-main.28b63093.js",
     "runtime-main.js.map": "/friday-fellows-gcf/static/js/runtime-main.28b63093.js.map",
-    "static/js/2.494d8579.chunk.js": "/friday-fellows-gcf/static/js/2.494d8579.chunk.js",
-    "static/js/2.494d8579.chunk.js.map": "/friday-fellows-gcf/static/js/2.494d8579.chunk.js.map",
+    "static/js/2.d6947051.chunk.js": "/friday-fellows-gcf/static/js/2.d6947051.chunk.js",
+    "static/js/2.d6947051.chunk.js.map": "/friday-fellows-gcf/static/js/2.d6947051.chunk.js.map",
     "index.html": "/friday-fellows-gcf/index.html",
-    "precache-manifest.5e8110cff9ffd2b51101f15f5933c0d1.js": "/friday-fellows-gcf/precache-manifest.5e8110cff9ffd2b51101f15f5933c0d1.js",
+    "precache-manifest.01dc6e76ad88328a90dc5b8b4097a485.js": "/friday-fellows-gcf/precache-manifest.01dc6e76ad88328a90dc5b8b4097a485.js",
     "service-worker.js": "/friday-fellows-gcf/service-worker.js",
     "static/css/main.3fd87347.chunk.css.map": "/friday-fellows-gcf/static/css/main.3fd87347.chunk.css.map",
-    "static/js/2.494d8579.chunk.js.LICENSE": "/friday-fellows-gcf/static/js/2.494d8579.chunk.js.LICENSE",
+    "static/js/2.d6947051.chunk.js.LICENSE": "/friday-fellows-gcf/static/js/2.d6947051.chunk.js.LICENSE",
     "static/media/logo.svg": "/friday-fellows-gcf/static/media/logo.25bf045c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.28b63093.js",
-    "static/js/2.494d8579.chunk.js",
+    "static/js/2.d6947051.chunk.js",
     "static/css/main.3fd87347.chunk.css",
-    "static/js/main.070310e4.chunk.js"
+    "static/js/main.0f9d7639.chunk.js"
   ]
 }
