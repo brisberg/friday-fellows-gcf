@@ -236,7 +236,9 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
           {seriesList.map((series) => (
             <TableRow key={series.rowIndex}>
               <TableCell component="th" scope="row">
-                {series.titleRaw}
+                <Button className="no-uppercase" href={`https://anilist.co/anime/${series.idAL}`} target="_blank">
+                  {series.titleRaw}
+                </Button>
               </TableCell>
               <TableCell>{VotingStatus[series.votingStatus]}</TableCell>
               {series.votingRecord.map((record) => (
