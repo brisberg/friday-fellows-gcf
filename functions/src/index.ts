@@ -13,7 +13,7 @@ import {getOnDeckReports} from './getOnDeckReports.f';
 import {getSeries} from './getSeries.f';
 import {setSeasonStartDate} from './setSeasonStartDate.f';
 import {setSeriesId} from './setSeriesId.f';
-import {syncFromVotingSheet} from './syncFromVotingSheet.f';
+import {syncFromVotingSheet, syncFromVotingSheetCron} from './syncFromVotingSheet.f';
 
 export {
   getAllSeasons,
@@ -22,4 +22,5 @@ export {
   setSeasonStartDate,
   setSeriesId,
   syncFromVotingSheet,
+  syncFromVotingSheetCron,
 };
