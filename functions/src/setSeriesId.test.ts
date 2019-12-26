@@ -99,7 +99,7 @@ describe('setSeriesId', () => {
       title: {
         english: 'Teekyuu',
         romaji: 'Teekyuu',
-        native: 'Teekyuu',
+        native: 'てーきゅう',
       },
       type: SeriesType.Short,
     });
@@ -123,7 +123,7 @@ describe('setSeriesId', () => {
       title: {
         english: 'Teekyuu',
         romaji: 'Teekyuu',
-        native: 'Teekyuu',
+        native: 'てーきゅう',
       },
       alId: 15125,
       malId: 15125,
