@@ -86,7 +86,11 @@ query ($id: Int) {
       const api = await getSheetsClient(SCOPES);
 
       const metadataPayload: SeriesMetadataPayload = {
-        titleEn: data.data.Media.title.english,
+        title: {
+          english: data.data.Media.title.english,
+          romaji: data.data.Media.title.romaji,
+          native: data.data.Media.title.native,
+        },
         alId: data.data.Media.id,
         malId: data.data.Media.idMal,
         type: data.data.Media.format,
@@ -117,7 +121,11 @@ query ($id: Int) {
           .collection(SERIES_COLLECTION)
           .doc(genSeriesId(seasonId, row))
           .update({
-            titleEn: data.data.Media.title.english,
+            title: {
+              english: data.data.Media.title.english,
+              romaji: data.data.Media.title.romaji,
+              native: data.data.Media.title.native,
+            },
             type: data.data.Media.format,
             idMal: data.data.Media.idMal,
             idAL: data.data.Media.id,
@@ -132,7 +140,11 @@ query ($id: Int) {
 
     const payload: SetSeriesIdResponse = {
       data: {
-        titleEn: data.data.Media.title.english,
+        title: {
+          english: data.data.Media.title.english,
+          romaji: data.data.Media.title.romaji,
+          native: data.data.Media.title.native,
+        },
         type: data.data.Media.format,
         idMal: data.data.Media.idMal,
         idAL: data.data.Media.id,

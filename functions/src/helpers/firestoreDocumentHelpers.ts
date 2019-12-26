@@ -1,4 +1,4 @@
-import {Season, SeasonModel, SeriesModel, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
+import {Season, SeasonModel, SeriesModel, SeriesTitle, SeriesType, SeriesVotingRecord, VotingStatus} from '../model/firestore';
 import {SERIES_AL_ID_KEY, SeriesMetadataPayload, SpreadsheetModel, START_DATE_METADATA_KEY, WorksheetModel, WorksheetRowModel} from '../model/sheets';
 
 /**
@@ -49,7 +49,24 @@ function extractSeriesDocuments(
   return rows.map((row, index): SeriesModel => {
     const metadataPayload: SeriesMetadataPayload =
         JSON.parse(row.metadata[SERIES_AL_ID_KEY] || '{}');
-    const {alId, malId, episodes, titleEn, type} = metadataPayload;
+    const {alId, malId, episodes, title, type} = metadataPayload;
+    let english, romaji, native = undefined;
+    if (title) {
+      english = title.english;
+      romaji = title.romaji;
+      native = title.native;
+    }
+
+    const seriesTitle: SeriesTitle = {raw: row.cells[0]};
+    if (english) {
+      seriesTitle.english = english;
+    }
+    if (romaji) {
+      seriesTitle.romaji = romaji;
+    }
+    if (native) {
+      seriesTitle.native = native;
+    }
 
     let seriesType = SeriesType.Unknown;
     switch (type) {
@@ -64,8 +81,7 @@ function extractSeriesDocuments(
     const votingRecords = extractSeriesVotingRecord(row.cells.slice(1));
 
     return {
-      titleRaw: row.cells[0] || '',
-      titleEn: titleEn || '',
+      title: seriesTitle,
       rowIndex: index + 1,  // offset for Title row being dropped
       idAL: alId || -1,
       idMal: malId || -1,

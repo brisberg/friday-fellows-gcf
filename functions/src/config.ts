@@ -30,7 +30,7 @@ export const DEV_SPREADSHEET_ID =
 export const STAGING_SPREADSHEET_ID =
     '11Fo3g9KmR51HxEqDOMzsGZLeq5fU3q6lwxgpl6IH7cE';
 // spreadsheet id config variable actually used by the project
-export const SPREADSHEET_ID = STAGING_SPREADSHEET_ID;
+export const SPREADSHEET_ID = DEV_SPREADSHEET_ID;
 
 /// MAL client configs
 export const MAL_CRED_PATH = 'mal_credentials.json';

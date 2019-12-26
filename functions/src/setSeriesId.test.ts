@@ -92,11 +92,15 @@ describe('setSeriesId', () => {
     await res.sent;
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body!.data).toEqual({
+    expect(res.body!.data).toEqual<SetSeriesIdResponse['data']>({
       idAL: 15125,
       idMal: 15125,
       episodes: 12,
-      titleEn: 'Teekyuu',
+      title: {
+        english: 'Teekyuu',
+        romaji: 'Teekyuu',
+        native: 'Teekyuu',
+      },
       type: SeriesType.Short,
     });
   });
@@ -116,7 +120,11 @@ describe('setSeriesId', () => {
     await res.sent;
 
     const expectedPayload: SeriesMetadataPayload = {
-      titleEn: 'Teekyuu',
+      title: {
+        english: 'Teekyuu',
+        romaji: 'Teekyuu',
+        native: 'Teekyuu',
+      },
       alId: 15125,
       malId: 15125,
       type: SeriesType.Short,
@@ -170,7 +178,7 @@ describe('setSeriesId', () => {
                            .get();
     const series = seriesSnap.data() as SeriesModel;
 
-    expect(series.titleEn).toBe('Teekyuu');
+    expect(series.title.english).toBe('Teekyuu');
     expect(series.idAL).toBe(15125);
     expect(series.idMal).toBe(15125);
     expect(series.type).toBe('TV_SHORT');

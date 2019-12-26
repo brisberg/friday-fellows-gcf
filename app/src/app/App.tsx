@@ -94,12 +94,12 @@ const App: React.FC<AppProps> = ({ backendURI }) => {
           series: series,
           data: resp.data.data,
         }));
-        setSuccessMsg(`Updated AniList ID for ${series.titleRaw}`);
+        setSuccessMsg(`Updated AniList ID for ${series.title.raw}`);
         setSuccessOpen(true);
       }
     } catch (e) {
       // console.log(e); // log the error
-      setErrorMsg(`Error when updating AniList ID for ${series.titleRaw}`);
+      setErrorMsg(`Error when updating AniList ID for ${series.title.raw}`);
       setErrorOpen(true);
     }
   }
