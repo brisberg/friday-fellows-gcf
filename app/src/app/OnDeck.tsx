@@ -42,12 +42,24 @@ interface OnDeckProps {
 const OnDeck: React.FC<OnDeckProps> = ({ report, loading = false }) => {
   const classes = useStyles();
 
+  function formatTargetDate(targetDate: number | undefined) {
+    if (!targetDate) {
+      return 'Unknown';
+    }
+
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'numeric',
+      day: '2-digit'
+    }).format(new Date(targetDate));
+  }
+
   return (
     <div>
       <Paper className={classes.header}>
-        <span className={classes.headerSegment}>Fall 2019</span>
-        <span className={classes.headerSegment}>Week 10</span>
-        <span className={classes.headerSegment}>Next Session: 11/22/2019</span>
+        <span className={classes.headerSegment}>{report?.seasonName}</span>
+        <span className={classes.headerSegment}>Week {report?.week}</span>
+        <span className={classes.headerSegment}>Next Session: {formatTargetDate(report?.targetWatchDate)}</span>
       </Paper>
       <Paper className={classes.paperBody}>
         <Table className={classes.table} aria-label="simple table">
