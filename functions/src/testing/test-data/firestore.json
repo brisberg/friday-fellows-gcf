@@ -2,7 +2,7 @@
   {
     "id": "config/sync-status",
     "data": {
-      "lastSync": 1576882582240
+      "lastSync": 1577325919257
     }
   },
   {
@@ -77,11 +77,12 @@
         }
       ],
       "idMal": 36470,
+      "title": {
+        "raw": "Tada-kun wa Koi wo Shinai"
+      },
       "type": "TV",
-      "titleEn": "Tada Never Falls In Love",
       "seasonId": 1242888778,
       "idAL": 100179,
-      "titleRaw": "Tada-kun wa Koi wo Shinai",
       "rowIndex": 1,
       "episodes": 13
     }
@@ -99,11 +100,12 @@
         }
       ],
       "idMal": 36902,
+      "title": {
+        "raw": "Mahou Shoujo Ore"
+      },
       "type": "TV",
-      "titleEn": "Magical Girl Ore",
       "seasonId": 1242888778,
       "idAL": 100715,
-      "titleRaw": "Mahou Shoujo Ore",
       "rowIndex": 2,
       "episodes": 12
     }
@@ -121,11 +123,12 @@
         }
       ],
       "idMal": 36266,
+      "title": {
+        "raw": "Mahou Shoujo Site"
+      },
       "type": "TV",
-      "titleEn": "MAGICAL GIRL SITE",
       "seasonId": 1242888778,
       "idAL": 100010,
-      "titleRaw": "Mahou Shoujo Site",
       "rowIndex": 3,
       "episodes": 12
     }
@@ -143,11 +146,12 @@
         }
       ],
       "idMal": 35249,
+      "title": {
+        "raw": "Uma Musume: Pretty Derby"
+      },
       "type": "TV",
-      "titleEn": "Umamusume: Pretty Derby",
       "seasonId": 1242888778,
       "idAL": 98514,
-      "titleRaw": "Uma Musume: Pretty Derby",
       "rowIndex": 4,
       "episodes": 13
     }
@@ -201,14 +205,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Megalo Box"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Megalo Box",
       "rowIndex": 5,
       "episodes": -1
     }
@@ -239,11 +251,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Ginga Eiyuu Densetsu: Die Neue These - Kaikou",
       "rowIndex": 6,
       "episodes": -1
     }
@@ -300,14 +313,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Gurazeni"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Gurazeni",
       "rowIndex": 7,
       "episodes": -1
     }
@@ -361,14 +382,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Lupin the Third: Part V"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Lupin the Third: Part V",
       "rowIndex": 8,
       "episodes": -1
     }
@@ -398,11 +427,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Gegege no Kitaro (2018)"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Gegege no Kitaro (2018)",
       "rowIndex": 9,
       "episodes": -1
     }
@@ -455,14 +485,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": 35968,
+      "title": {
+        "raw": "Wotakoi"
+      },
       "type": "TV",
-      "titleEn": "Wotakoi: Love is Hard for Otaku",
       "seasonId": 1242888778,
       "idAL": 99578,
-      "titleRaw": "Wotakoi",
       "rowIndex": 10,
       "episodes": 11
     }
@@ -517,14 +555,22 @@
           "episodeNum": 3,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 4,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": 36397,
+      "title": {
+        "raw": "Shiyan Pin Jiating (Jikken-hin Kazoku)"
+      },
       "type": "TV",
-      "titleEn": "Frankenstein Family",
       "seasonId": 1242888778,
       "idAL": 98477,
-      "titleRaw": "Shiyan Pin Jiating (Jikken-hin Kazoku)",
       "rowIndex": 11,
       "episodes": 12
     }
@@ -554,11 +600,12 @@
         }
       ],
       "idMal": 35756,
+      "title": {
+        "raw": "Comic Girls"
+      },
       "type": "TV",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": 99131,
-      "titleRaw": "Comic Girls",
       "rowIndex": 12,
       "episodes": 12
     }
@@ -611,14 +658,22 @@
           "episodeNum": 44,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 45,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": 36456,
+      "title": {
+        "raw": "Boku no Hero Academia S3"
+      },
       "type": "TV",
-      "titleEn": "My Hero Academia Season 3",
       "seasonId": 1242888778,
       "idAL": 100166,
-      "titleRaw": "Boku no Hero Academia S3",
       "rowIndex": 13,
       "episodes": 25
     }
@@ -671,14 +726,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Golden Kamuy"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Golden Kamuy",
       "rowIndex": 14,
       "episodes": -1
     }
@@ -702,11 +765,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Persona 5 the Animation"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Persona 5 the Animation",
       "rowIndex": 15,
       "episodes": -1
     }
@@ -736,11 +800,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Piano no Mori"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Piano no Mori",
       "rowIndex": 16,
       "episodes": -1
     }
@@ -764,11 +829,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Sword Art Online: Gun Gale Online"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Sword Art Online: Gun Gale Online",
       "rowIndex": 17,
       "episodes": -1
     }
@@ -792,11 +858,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Last Period: Owarinaki Rasen no Monogatari"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Last Period: Owarinaki Rasen no Monogatari",
       "rowIndex": 18,
       "episodes": -1
     }
@@ -849,14 +916,22 @@
           "episodeNum": 6,
           "weekNum": 7,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Hinamatsuri"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 1242888778,
       "idAL": -1,
-      "titleRaw": "Hinamatsuri",
       "rowIndex": 19,
       "episodes": -1
     }
@@ -887,11 +962,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Mitsuboshi Colors"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Mitsuboshi Colors",
       "rowIndex": 1,
       "episodes": -1
     }
@@ -909,11 +985,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Karakai Jouzu no Takagi-san"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Karakai Jouzu no Takagi-san",
       "rowIndex": 2,
       "episodes": -1
     }
@@ -931,11 +1008,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Hakata Tonkotsu Ramens"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Hakata Tonkotsu Ramens",
       "rowIndex": 3,
       "episodes": -1
     }
@@ -975,14 +1053,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 4
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Koi wa Ameagari no You ni"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Koi wa Ameagari no You ni",
       "rowIndex": 4,
       "episodes": -1
     }
@@ -1013,11 +1099,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Ryuuou no Oshigoto"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Ryuuou no Oshigoto",
       "rowIndex": 5,
       "episodes": -1
     }
@@ -1035,11 +1122,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Gakuen Babysitters"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Gakuen Babysitters",
       "rowIndex": 6,
       "episodes": -1
     }
@@ -1079,14 +1167,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 4
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Sora yori mo Tooi Basho"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Sora yori mo Tooi Basho",
       "rowIndex": 7,
       "episodes": -1
     }
@@ -1126,14 +1222,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 4
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Violet Evergarden"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Violet Evergarden",
       "rowIndex": 8,
       "episodes": -1
     }
@@ -1151,11 +1255,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Märchen Mädchen"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Märchen Mädchen",
       "rowIndex": 9,
       "episodes": -1
     }
@@ -1195,14 +1300,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 4
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Devilman Crybaby"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Devilman Crybaby",
       "rowIndex": 10,
       "episodes": -1
     }
@@ -1233,11 +1346,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Beatless"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Beatless",
       "rowIndex": 11,
       "episodes": -1
     }
@@ -1267,11 +1381,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Darling in the Franxx"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Darling in the Franxx",
       "rowIndex": 12,
       "episodes": -1
     }
@@ -1301,11 +1416,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Hakumei to Mikochi"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Hakumei to Mikochi",
       "rowIndex": 13,
       "episodes": -1
     }
@@ -1329,11 +1445,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Toji no Miko"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Toji no Miko",
       "rowIndex": 14,
       "episodes": -1
     }
@@ -1372,14 +1489,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 5
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Pop Team Epic"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Pop Team Epic",
       "rowIndex": 15,
       "episodes": -1
     }
@@ -1403,11 +1528,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Citrus"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Citrus",
       "rowIndex": 16,
       "episodes": -1
     }
@@ -1437,11 +1563,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Death March kara Hajimaru Isekai Kyousoukyoku"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Death March kara Hajimaru Isekai Kyousoukyoku",
       "rowIndex": 17,
       "episodes": -1
     }
@@ -1465,11 +1592,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Dame x Prince Anime Caravan"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Dame x Prince Anime Caravan",
       "rowIndex": 18,
       "episodes": -1
     }
@@ -1511,11 +1639,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Ito Junji: Collection"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Ito Junji: Collection",
       "rowIndex": 19,
       "episodes": -1
     }
@@ -1539,11 +1668,12 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Sanrio Danshi"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Sanrio Danshi",
       "rowIndex": 20,
       "episodes": -1
     }
@@ -1582,14 +1712,22 @@
           "episodeNum": 4,
           "weekNum": 5,
           "votesFor": 3
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 6,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Yurucamp"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Yurucamp",
       "rowIndex": 21,
       "episodes": -1
     }
@@ -1619,53 +1757,70 @@
         }
       ],
       "idMal": -1,
+      "title": {
+        "raw": "Mahoutsukai no Yome"
+      },
       "type": "Unknown",
-      "titleEn": "",
       "seasonId": 281991772,
       "idAL": -1,
-      "titleRaw": "Mahoutsukai no Yome",
       "rowIndex": 22,
       "episodes": -1
     }
   },
   {
-    "id": "ondeck-reports/dj7iTSo1255KcvybgNpy",
+    "id": "ondeck-reports/zbOblqrYg0oHdrkQTaw9",
     "data": {
-      "created": 1576882582238,
-      "lastSync": 1576882582240,
-      "targetWatchDate": 1576882582238,
+      "created": 1577325919255,
+      "lastSync": 1577325919257,
+      "targetWatchDate": 1577325919255,
       "series": [
         {
-          "episode": 7,
-          "seriesTitle": "Megalo Box"
+          "episode": 8,
+          "title": {
+            "raw": "Megalo Box"
+          }
         },
         {
-          "episode": 7,
-          "seriesTitle": "Gurazeni"
+          "episode": 8,
+          "title": {
+            "raw": "Gurazeni"
+          }
         },
         {
-          "episode": 7,
-          "seriesTitle": "Lupin the Third: Part V"
+          "episode": 8,
+          "title": {
+            "raw": "Lupin the Third: Part V"
+          }
         },
         {
-          "episode": 7,
-          "seriesTitle": "Wotakoi"
+          "episode": 8,
+          "title": {
+            "raw": "Wotakoi"
+          }
         },
         {
-          "episode": 4,
-          "seriesTitle": "Shiyan Pin Jiating (Jikken-hin Kazoku)"
+          "episode": 5,
+          "title": {
+            "raw": "Shiyan Pin Jiating (Jikken-hin Kazoku)"
+          }
         },
         {
-          "episode": 45,
-          "seriesTitle": "Boku no Hero Academia S3"
+          "episode": 46,
+          "title": {
+            "raw": "Boku no Hero Academia S3"
+          }
         },
         {
-          "episode": 7,
-          "seriesTitle": "Golden Kamuy"
+          "episode": 8,
+          "title": {
+            "raw": "Golden Kamuy"
+          }
         },
         {
-          "episode": 7,
-          "seriesTitle": "Hinamatsuri"
+          "episode": 8,
+          "title": {
+            "raw": "Hinamatsuri"
+          }
         }
       ]
     }

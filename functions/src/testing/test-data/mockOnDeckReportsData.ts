@@ -5,9 +5,9 @@ export const StandardReport: OnDeckReport = {
   lastSync: 50,
   targetWatchDate: 100,
   series: [
-    {seriesTitle: 'Teekyuu', episode: 3},
-    {seriesTitle: 'Aldnoah Zero', episode: 9},
-    {seriesTitle: 'Absolute Duo', episode: 10},
+    {title: {raw: 'Teekyuu'}, episode: 3},
+    {title: {raw: 'Aldnoah Zero'}, episode: 9},
+    {title: {raw: 'Absolute Duo'}, episode: 10},
   ],
 };
 

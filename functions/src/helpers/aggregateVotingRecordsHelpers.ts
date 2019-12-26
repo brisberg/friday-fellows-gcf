@@ -70,7 +70,7 @@ function aggregateCurrentSeason(
 
     if (model.votingStatus === VotingStatus.Watching) {
       report.series.push({
-        seriesTitle: model.titleRaw,
+        title: {raw: model.title.raw},
         episode: calculateNextEpisode(model),
       });
     }

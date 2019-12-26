@@ -35,7 +35,7 @@ describe('extractFirestoreDocuments', () => {
 
   test('should build a series model for row model in the sheet', () => {
     const metaPayload: SeriesMetadataPayload = {
-      titleEn: 'Teekyuu English',
+      title: {english: 'Teekyuu English'},
       alId: 12345,
       malId: 54321,
       type: SeriesType.Short,
@@ -63,8 +63,8 @@ describe('extractFirestoreDocuments', () => {
 
     expect(seriesList.length).toEqual(1);
     const series = seriesList[0];
-    expect(series.titleRaw).toEqual('Teekyuu');
-    expect(series.titleEn).toEqual('Teekyuu English');
+    expect(series.title.raw).toEqual('Teekyuu');
+    expect(series.title.english).toEqual('Teekyuu English');
     expect(series.episodes).toEqual(12);
     expect(series.idAL).toEqual(12345);
     expect(series.idMal).toEqual(54321);

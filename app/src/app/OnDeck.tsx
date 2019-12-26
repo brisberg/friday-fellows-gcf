@@ -60,8 +60,8 @@ const OnDeck: React.FC<OnDeckProps> = ({ report, loading = false }) => {
           {!loading && report &&
             <TableBody>
               {report.series.map((series) => (
-                <TableRow key={series.seriesTitle}>
-                  <TableCell component="th" scope="row">{series.seriesTitle}</TableCell>
+                <TableRow key={series.title.raw}>
+                  <TableCell component="th" scope="row">{series.title.raw}</TableCell>
                   <TableCell align="right">{series.episode}</TableCell>
                 </TableRow>
               ))}

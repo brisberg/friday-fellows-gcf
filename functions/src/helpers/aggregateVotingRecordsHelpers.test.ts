@@ -21,8 +21,10 @@ const staticSeason: SeasonModel = {
 };
 
 const staticSeries: SeriesModel = {
-  titleEn: 'Teekyuu',
-  titleRaw: 'Teekyuu',
+  title: {
+    raw: 'Teekyuu',
+    english: 'Teekyuu',
+  },
   seasonId: 12345,
   rowIndex: 1,
   type: SeriesType.Short,
@@ -237,7 +239,7 @@ describe('aggregateVotingStatus', () => {
       expect(report!.targetWatchDate).toEqual(mockNow);
       expect(report!.series.length).toEqual(1);
       expect(report!.series).toEqual<OnDeckReportRow[]>([
-        {seriesTitle: staticSeries.titleRaw, episode: 5}
+        {title: {raw: staticSeries.title.raw}, episode: 5}
       ]);
     });
   });

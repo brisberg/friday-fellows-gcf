@@ -1,3 +1,5 @@
+import {SeriesTitle} from './firestore';
+
 /**
  * Set of type interfaces for storing and interacting with spreadsheets data.
  */
@@ -32,7 +34,7 @@ export interface SeriesMetadataPayload {
   malId: number;
   type: string;
   episodes: number;
-  titleEn: string;
+  title: SeriesTitle;
 }
 
 /**

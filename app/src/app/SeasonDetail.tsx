@@ -241,7 +241,7 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
           {seriesList.map((series) => (
             <TableRow key={series.rowIndex}>
               <TableCell component="th" scope="row">
-                {series.titleRaw}
+                {series.title.raw}
                 {series.idAL !== -1 && <IconButton className={classes.pushLeft} href={`https://anilist.co/anime/${series.idAL}`} target="_blank">
                   <HelpOutlineIcon fontSize="small" />
                 </IconButton>}
@@ -290,9 +290,9 @@ function SeriesDebugGrid({ seriesList, openIDDialog }: { seriesList: SeriesModel
           {seriesList.map((series) => (
             <TableRow key={series.rowIndex}>
               <TableCell component="th" scope="row">
-                {series.titleRaw}
+                {series.title.raw}
               </TableCell>
-              <TableCell>{series.titleEn}</TableCell>
+              <TableCell>{series.title.english}</TableCell>
               <TableCell align="right">{series.idAL}</TableCell>
               <TableCell align="right">{series.idMal}</TableCell>
               <TableCell align="right">{series.type}</TableCell>

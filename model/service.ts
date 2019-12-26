@@ -1,4 +1,4 @@
-import {OnDeckReport, SeasonModel, SeriesModel, SeriesType} from './firestore';
+import {OnDeckReport, SeasonModel, SeriesModel, SeriesTitle, SeriesType} from './firestore';
 
 /**
  * Service messages for Friday Fellows Cloud Functions and client endpoints
@@ -47,7 +47,7 @@ export interface SetSeriesIdRequest {
 }
 export interface SetSeriesIdResponse {
   data?: {
-    titleEn: string,
+    title: SeriesTitle,
     idAL: number,
     idMal: number,
     episodes: number,

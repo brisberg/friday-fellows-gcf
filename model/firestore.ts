@@ -51,6 +51,13 @@ export function genSeriesId(seasonId: number, rowIndex: number): string {
   return `${seasonId}-${String(rowIndex).padStart(3, '0')}`;
 }
 
+export interface SeriesTitle {
+  raw?: string;  // from spreadsheet
+  english?: string;
+  romaji?: string;
+  native?: string;
+}
+
 /**
  * Model of a series combining the voting record from the sheet and metadata
  * from AniList
@@ -59,8 +66,7 @@ export interface SeriesModel {
   // Row Index in the voting sheet of this series. Used to uniquely identify the
   // series if a AL Id has not been set
   rowIndex: number;
-  titleRaw: string;  // Raw title from Voting Sheet
-  titleEn: string;   // English title from AniList
+  title: SeriesTitle;
   type: SeriesType;
   idMal?: number;
   idAL?: number;
@@ -99,7 +105,6 @@ export interface OnDeckReport {
 }
 
 export interface OnDeckReportRow {
-  // TODO: represent title as an Anilist english/native/romaji representation
-  seriesTitle: string;
+  title: SeriesTitle;
   episode: number;
 }
