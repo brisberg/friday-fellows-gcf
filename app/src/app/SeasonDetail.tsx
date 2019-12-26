@@ -7,6 +7,8 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 import { Tooltip, Icon, Paper, Table, TableHead, TableRow, TableCell, TableBody, Dialog, DialogTitle, Button, DialogActions, DialogContent, TextField } from '@material-ui/core';
 import ToggleButton from '@material-ui/lab/ToggleButton';
+import IconButton from '@material-ui/core/IconButton';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import { SeasonModel, SeriesModel } from '../../../model/firestore';
 import { AppActions } from '../state/actions';
 import { GetAllSeriesResponse } from '../../../model/service';
@@ -41,6 +43,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     datePicker: {
       margin: 0,
+    },
+    pushLeft: {
+      marginLeft: '10px',
     },
     paperBody: {
       margin: 'auto',
@@ -237,6 +242,9 @@ function SeriesVotingGrid({ seriesList }: { seriesList: SeriesModel[] }) {
             <TableRow key={series.rowIndex}>
               <TableCell component="th" scope="row">
                 {series.titleRaw}
+                {series.idAL !== -1 && <IconButton className={classes.pushLeft} href={`https://anilist.co/anime/${series.idAL}`} target="_blank">
+                  <HelpOutlineIcon fontSize="small" />
+                </IconButton>}
               </TableCell>
               <TableCell>{VotingStatus[series.votingStatus]}</TableCell>
               {series.votingRecord.map((record) => (
