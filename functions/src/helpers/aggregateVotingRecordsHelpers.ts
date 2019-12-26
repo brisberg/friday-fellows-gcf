@@ -58,10 +58,15 @@ function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
  */
 function aggregateCurrentSeason(
     season: SeasonModel, series: SeriesModel[], weekNum: number): OnDeckReport {
+  const targetDate = new Date(season.startDate!);
+  targetDate.setDate(targetDate.getDate() + weekNum * 7);
+
   const report: OnDeckReport = {
     lastSync: -1,
     created: Date.now(),
-    targetWatchDate: Date.now(),  // TODO: Calculate the next Friday
+    targetWatchDate: targetDate.getTime(),
+    seasonName: season.formattedName,
+    week: weekNum + 1,
     series: [],
   };
   series.forEach((model: SeriesModel) => {

@@ -4,6 +4,8 @@ export const StandardReport: OnDeckReport = {
   created: 50,
   lastSync: 50,
   targetWatchDate: 100,
+  seasonName: 'FALL 2019',
+  week: 3,
   series: [
     {title: {raw: 'Teekyuu'}, episode: 3},
     {title: {raw: 'Aldnoah Zero'}, episode: 9},

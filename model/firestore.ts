@@ -100,6 +100,8 @@ export const ONDECK_REPORTS_COLLECTION = 'ondeck-reports';
 export interface OnDeckReport {
   lastSync: number;         // last time voting sheet was synced
   created: number;          // date this report was created
+  seasonName: string;       // e.g. FALL 2019
+  week: number              // week number through the season
   targetWatchDate: number;  // expected date these episodes should be watched
   series: OnDeckReportRow[];
 }

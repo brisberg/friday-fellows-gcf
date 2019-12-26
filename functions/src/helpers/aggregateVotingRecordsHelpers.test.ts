@@ -229,14 +229,16 @@ describe('aggregateVotingStatus', () => {
           episodeNum: 4,
         }]
       };
+      const expectedTargetDate = new Date(currentSeason.startDate);
+      expectedTargetDate.setDate(expectedTargetDate.getDate() + 4 * 7);
+      const expectedTargetTime = expectedTargetDate.getTime();
 
       const report = aggregateVotingStatus(currentSeason, [watchingSeries]);
 
       expect(report).toBeTruthy();
       expect(report!.lastSync).toEqual(-1);
       expect(report!.created).toEqual(mockNow);
-      // TODO: calculate next friday
-      expect(report!.targetWatchDate).toEqual(mockNow);
+      expect(report!.targetWatchDate).toEqual(expectedTargetTime);
       expect(report!.series.length).toEqual(1);
       expect(report!.series).toEqual<OnDeckReportRow[]>([
         {title: {raw: staticSeries.title.raw}, episode: 5}
