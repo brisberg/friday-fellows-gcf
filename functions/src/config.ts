@@ -26,11 +26,14 @@ export const SECRET_PATH = 'client_secret.json';
 // development test sheet id
 export const DEV_SPREADSHEET_ID =
     '1w9ADt88UpKwZigx6xrP_Oohc3VTPVLWqC3-ATLCyExg';
-// stating sheet id
+// staging sheet id
 export const STAGING_SPREADSHEET_ID =
     '11Fo3g9KmR51HxEqDOMzsGZLeq5fU3q6lwxgpl6IH7cE';
+// prod sheet id
+export const PROD_SPREADSHEET_ID =
+    '1HN0dYPEet-Zkx_9AQGCKDZGU8ygNmpymLT3y6szp0UY';
 // spreadsheet id config variable actually used by the project
-export const SPREADSHEET_ID = DEV_SPREADSHEET_ID;
+export const SPREADSHEET_ID = PROD_SPREADSHEET_ID;
 
 /// MAL client configs
 export const MAL_CRED_PATH = 'mal_credentials.json';
