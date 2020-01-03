@@ -59,7 +59,7 @@ function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
 function aggregateCurrentSeason(
     season: SeasonModel, series: SeriesModel[], weekNum: number): OnDeckReport {
   const targetDate = new Date(season.startDate!);
-  targetDate.setDate(targetDate.getDate() + (weekNum + 1) * 7);
+  targetDate.setDate(targetDate.getDate() + weekNum * 7);
 
   const report: OnDeckReport = {
     lastSync: -1,
