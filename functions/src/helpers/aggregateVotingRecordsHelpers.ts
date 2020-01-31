@@ -52,7 +52,7 @@ function aggregateOlderSeason(season: SeasonModel, series: SeriesModel[]) {
   // Ensure we have at least 6 active shows. If not, bring back the ones with
   // the best records.
   reviveShowsIfLessThanSix(
-      series, remainingShows, lastVotingWeek, VotingStatus.Completed);
+      season, series, remainingShows, lastVotingWeek, VotingStatus.Completed);
 }
 
 /**
@@ -100,7 +100,7 @@ function aggregateCurrentSeason(
   // Ensure we have at least 6 active shows. If not, bring back the ones with
   // the best records.
   reviveShowsIfLessThanSix(
-      series, remainingShows, lastVotingWeek, VotingStatus.Watching);
+      season, series, remainingShows, lastVotingWeek, VotingStatus.Watching);
 
   /*
    * Pad out PASS records for watching shows
@@ -207,8 +207,8 @@ function calculateCurrentVotingStatus(
  * Mutates the series list by overwriting their Voting Status.
  */
 function reviveShowsIfLessThanSix(
-    series: SeriesModel[], remaining: number, lastVotingWeek: number,
-    status: VotingStatus) {
+    season: SeasonModel, series: SeriesModel[], remaining: number,
+    lastVotingWeek: number, status: VotingStatus) {
   let remainingShows = remaining;
   while (remainingShows < 6) {
     // Calculate the least bad or list of tied least bad dropped shows
@@ -253,7 +253,9 @@ function reviveShowsIfLessThanSix(
 
     // Resurrect them, keep going until we are above 6
     leastBad.forEach((model: SeriesModel) => {
+      season.seriesStats[model.votingStatus]--;
       model.votingStatus = status;
+      season.seriesStats[status]++;
       remainingShows++;
     });
   }
