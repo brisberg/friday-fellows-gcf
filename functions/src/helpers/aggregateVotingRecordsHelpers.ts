@@ -28,13 +28,31 @@ export function aggregateVotingStatus(
 /**
  * Calculate and update the voting status of all series for this season
  * assuming that the season has already passed.
- *
  */
 function aggregateOlderSeason(season: SeasonModel, series: SeriesModel[]) {
+  let remainingShows = 0;
+  let lastVotingWeek = 0;
+
   series.forEach((model: SeriesModel) => {
     model.votingStatus = calculateOlderVotingStatus(model);
     season.seriesStats[model.votingStatus]++;
+
+    if (model.votingStatus === VotingStatus.Watching ||
+        model.votingStatus === VotingStatus.Completed) {
+      remainingShows++;
+    }
+
+    const lastVote = model.votingRecord[model.votingRecord.length - 1];
+    if (lastVote && lastVote.weekNum > lastVotingWeek) {
+      lastVotingWeek = lastVote.weekNum;
+    }
   });
+
+
+  // Ensure we have at least 6 active shows. If not, bring back the ones with
+  // the best records.
+  reviveShowsIfLessThanSix(
+      series, remainingShows, lastVotingWeek, VotingStatus.Completed);
 }
 
 /**
@@ -43,7 +61,7 @@ function aggregateOlderSeason(season: SeasonModel, series: SeriesModel[]) {
  */
 function calculateOlderVotingStatus(series: SeriesModel): VotingStatus {
   const lastRecord = series.votingRecord[series.votingRecord.length - 1];
-  if (lastRecord.votesAgainst > lastRecord.votesFor) {
+  if (!didPass(lastRecord)) {
     return VotingStatus.Dropped;
   } else {
     return VotingStatus.Completed;
@@ -61,6 +79,63 @@ function aggregateCurrentSeason(
   const targetDate = new Date(season.startDate!);
   targetDate.setDate(targetDate.getDate() + weekNum * 7);
 
+  // Calculate voting status
+  let remainingShows = 0;
+  let lastVotingWeek = 0;
+  series.forEach((model: SeriesModel) => {
+    model.votingStatus = calculateCurrentVotingStatus(model, weekNum);
+    season.seriesStats[model.votingStatus]++;
+
+    if (model.votingStatus === VotingStatus.Watching ||
+        model.votingStatus === VotingStatus.Completed) {
+      remainingShows++;
+    }
+
+    const lastVote = model.votingRecord[model.votingRecord.length - 1];
+    if (lastVote && lastVote.weekNum > lastVotingWeek) {
+      lastVotingWeek = lastVote.weekNum;
+    }
+  });
+
+  // Ensure we have at least 6 active shows. If not, bring back the ones with
+  // the best records.
+  reviveShowsIfLessThanSix(
+      series, remainingShows, lastVotingWeek, VotingStatus.Watching);
+
+  /*
+   * Pad out PASS records for watching shows
+   *
+   *    We are likely in the final 6, assume that we watch one episode a week
+   *      Iteratively add a PASS record, until we hit series.episode or weekNum
+   */
+  series.forEach((model: SeriesModel) => {
+    if (model.votingStatus !== VotingStatus.Watching) {
+      return;
+    }
+
+    const lastRecord = model.votingRecord[model.votingRecord.length - 1];
+    const weeksSinceLastRecord = weekNum - lastRecord.weekNum;
+    let nextEp = lastRecord.episodeNum + 1;
+    for (let i = 1; i <= weeksSinceLastRecord; i++) {
+      const passRecord: SeriesVotingRecord = {
+        msg: 'PASS',
+        weekNum: i + lastRecord.weekNum,
+        episodeNum: nextEp,
+        votesFor: 0,
+        votesAgainst: 0,
+      };
+      nextEp++;
+
+      // If we have finished the show, mark as Completed
+      model.votingRecord.push(passRecord);
+      if (passRecord.episodeNum === model.episodes) {
+        model.votingStatus = VotingStatus.Completed;
+        break;
+      }
+    }
+  });
+
+  // Compile report
   const report: OnDeckReport = {
     lastSync: -1,
     created: Date.now(),
@@ -69,17 +144,16 @@ function aggregateCurrentSeason(
     week: weekNum + 1,
     series: [],
   };
-  series.forEach((model: SeriesModel) => {
-    model.votingStatus = calculateCurrentVotingStatus(model, weekNum);
-    season.seriesStats[model.votingStatus]++;
-
-    if (model.votingStatus === VotingStatus.Watching) {
-      report.series.push({
-        title: {raw: model.title.raw},
-        episode: calculateNextEpisode(model),
-      });
-    }
-  });
+  report.series = series
+                      .filter((model: SeriesModel) => {
+                        return model.votingStatus === VotingStatus.Watching;
+                      })
+                      .map((model: SeriesModel) => {
+                        return {
+                          title: {raw: model.title.raw},
+                          episode: calculateNextEpisode(model),
+                        };
+                      });
 
   return report;
 }
@@ -94,9 +168,6 @@ function aggregateCurrentSeason(
  * If passing
  *    If record/episode = series/episodes = COMPLETED
  *    record week number matches current week = WATCHING
- *
- *    We are likely in the final 6, assume that we watch one episode a week
- *      Iteratively add a PASS record, until we hit series.episode or weekNum
  */
 function calculateCurrentVotingStatus(
     series: SeriesModel, weekNum: number): VotingStatus {
@@ -126,25 +197,66 @@ function calculateCurrentVotingStatus(
     return VotingStatus.Watching;
   }
 
-  const weeksSinceLastRecord = weekNum - lastRecord.weekNum;
-  let nextEp = lastRecord.episodeNum + 1;
-  for (let i = 1; i <= weeksSinceLastRecord; i++) {
-    const passRecord: SeriesVotingRecord = {
-      msg: 'PASS',
-      weekNum: i + lastRecord.weekNum,
-      episodeNum: nextEp,
-      votesFor: 0,
-      votesAgainst: 0,
-    };
-    nextEp++;
-
-    series.votingRecord.push(passRecord);
-    if (passRecord.episodeNum === series.episodes) {
-      return VotingStatus.Completed;
-    }
-  }
-
   return VotingStatus.Watching;
+}
+
+/**
+ * Ensure we have at least 6 active shows. If not, bring back the ones with
+ * the best records.
+ *
+ * Mutates the series list by overwriting their Voting Status.
+ */
+function reviveShowsIfLessThanSix(
+    series: SeriesModel[], remaining: number, lastVotingWeek: number,
+    status: VotingStatus) {
+  let remainingShows = remaining;
+  while (remainingShows < 6) {
+    // Calculate the least bad or list of tied least bad dropped shows
+    const leastBad = series.reduce((prev: SeriesModel[], model) => {
+      if (model.votingStatus !== VotingStatus.Dropped) {
+        return prev;
+      }
+
+      const lastVote = model.votingRecord[model.votingRecord.length - 1];
+      const score = lastVote.votesFor / (lastVote.votesAgainst || 1);
+
+      // Only consider shows still being voted on this week
+      if (lastVote.weekNum !== lastVotingWeek) {
+        return prev;
+      }
+
+      // If there are no prevously considered shows, use this one as base
+      if (prev.length === 0) {
+        return [model];
+      }
+
+      const prevVote = prev[0].votingRecord[prev[0].votingRecord.length - 1];
+      const prevScore = prevVote.votesFor / (prevVote.votesAgainst || 1);
+      if (score > prevScore) {
+        // Only consider this show if it has a better score
+        return [model];
+      } else if (score === prevScore) {
+        // If it matches exactly, we have a tie so return both
+        prev.push(model);
+        return prev;
+      }
+
+      return prev;
+    }, []);
+
+    if (leastBad.length === 0) {
+      // There are no other dropped shows. This might mean we watched less than
+      // 6 total shows in the first week, or some other data issue. Break out of
+      // the loop to avoid inifinite.
+      break;
+    }
+
+    // Resurrect them, keep going until we are above 6
+    leastBad.forEach((model: SeriesModel) => {
+      model.votingStatus = status;
+      remainingShows++;
+    });
+  }
 }
 
 

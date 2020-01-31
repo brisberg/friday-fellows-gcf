@@ -2,7 +2,7 @@
   {
     "id": "config/sync-status",
     "data": {
-      "lastSync": 1577325919257
+      "lastSync": 1580433785669
     }
   },
   {
@@ -29,8 +29,8 @@
       "formattedName": "WINTER 2018",
       "seriesStats": {
         "0": 0,
-        "1": 16,
-        "2": 6,
+        "1": 17,
+        "2": 5,
         "3": 0,
         "4": 0
       },
@@ -212,6 +212,41 @@
           "episodeNum": 7,
           "weekNum": 8,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -320,6 +355,41 @@
           "episodeNum": 7,
           "weekNum": 8,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -389,6 +459,41 @@
           "episodeNum": 7,
           "weekNum": 8,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -440,7 +545,7 @@
   {
     "id": "seasons/1242888778/series/1242888778-010",
     "data": {
-      "votingStatus": 2,
+      "votingStatus": 3,
       "votingRecord": [
         {
           "votesAgainst": -1,
@@ -491,6 +596,41 @@
           "votesAgainst": 0,
           "episodeNum": 7,
           "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
           "votesFor": 0
         }
       ],
@@ -561,6 +701,41 @@
           "votesAgainst": 0,
           "episodeNum": 4,
           "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 5,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 13,
           "votesFor": 0
         }
       ],
@@ -665,6 +840,41 @@
           "episodeNum": 45,
           "weekNum": 8,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 46,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 47,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 48,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 49,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 50,
+          "weekNum": 13,
+          "votesFor": 0
         }
       ],
       "idMal": 36456,
@@ -732,6 +942,41 @@
           "votesAgainst": 0,
           "episodeNum": 7,
           "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
           "votesFor": 0
         }
       ],
@@ -923,6 +1168,41 @@
           "episodeNum": 7,
           "weekNum": 8,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 11,
+          "weekNum": 12,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 12,
+          "weekNum": 13,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -1060,6 +1340,41 @@
           "episodeNum": 5,
           "weekNum": 6,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -1174,6 +1489,41 @@
           "episodeNum": 5,
           "weekNum": 6,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -1228,6 +1578,41 @@
           "votesAgainst": 0,
           "episodeNum": 5,
           "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
           "votesFor": 0
         }
       ],
@@ -1306,6 +1691,41 @@
           "votesAgainst": 0,
           "episodeNum": 5,
           "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
           "votesFor": 0
         }
       ],
@@ -1496,6 +1916,41 @@
           "episodeNum": 5,
           "weekNum": 6,
           "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -1632,10 +2087,10 @@
           "votesFor": 4
         },
         {
-          "votesAgainst": 4,
+          "votesAgainst": 5,
           "episodeNum": 4,
           "weekNum": 5,
-          "votesFor": 1
+          "votesFor": 0
         }
       ],
       "idMal": -1,
@@ -1708,16 +2163,51 @@
           "votesFor": 5
         },
         {
-          "votesAgainst": 2,
+          "votesAgainst": 4,
           "episodeNum": 4,
           "weekNum": 5,
-          "votesFor": 3
+          "votesFor": 1
         },
         {
           "msg": "PASS",
           "votesAgainst": 0,
           "episodeNum": 5,
           "weekNum": 6,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 6,
+          "weekNum": 7,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 7,
+          "weekNum": 8,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 8,
+          "weekNum": 9,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 9,
+          "weekNum": 10,
+          "votesFor": 0
+        },
+        {
+          "msg": "PASS",
+          "votesAgainst": 0,
+          "episodeNum": 10,
+          "weekNum": 11,
           "votesFor": 0
         }
       ],
@@ -1768,61 +2258,57 @@
     }
   },
   {
-    "id": "ondeck-reports/zbOblqrYg0oHdrkQTaw9",
+    "id": "ondeck-reports/rC5wGYQmDLl375ErNOyv",
     "data": {
-      "created": 1577325919255,
-      "lastSync": 1577325919257,
-      "targetWatchDate": 1577325919255,
+      "week": 14,
+      "created": 1580433785664,
+      "lastSync": 1580433785669,
+      "targetWatchDate": 1580512020000,
       "series": [
         {
-          "episode": 8,
+          "episode": 13,
           "title": {
             "raw": "Megalo Box"
           }
         },
         {
-          "episode": 8,
+          "episode": 13,
           "title": {
             "raw": "Gurazeni"
           }
         },
         {
-          "episode": 8,
+          "episode": 13,
           "title": {
             "raw": "Lupin the Third: Part V"
           }
         },
         {
-          "episode": 8,
-          "title": {
-            "raw": "Wotakoi"
-          }
-        },
-        {
-          "episode": 5,
+          "episode": 10,
           "title": {
             "raw": "Shiyan Pin Jiating (Jikken-hin Kazoku)"
           }
         },
         {
-          "episode": 46,
+          "episode": 51,
           "title": {
             "raw": "Boku no Hero Academia S3"
           }
         },
         {
-          "episode": 8,
+          "episode": 13,
           "title": {
             "raw": "Golden Kamuy"
           }
         },
         {
-          "episode": 8,
+          "episode": 13,
           "title": {
             "raw": "Hinamatsuri"
           }
         }
-      ]
+      ],
+      "seasonName": "SPRING 2018"
     }
   }
 ]
