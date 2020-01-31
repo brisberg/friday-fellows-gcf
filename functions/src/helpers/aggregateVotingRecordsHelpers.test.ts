@@ -75,24 +75,28 @@ describe('aggregateVotingStatus', () => {
       startDate: new Date('1/1/2009').getTime(),
     };
 
-    test('should set all series to completed/dropped for past seasons', () => {
-      const droppedSeries: SeriesModel = {
-        ...staticSeries,
-        votingRecord: [failedRecord],
-      };
+    test.only(
+        'should set all series to completed/dropped for past seasons', () => {
+          const droppedSeries: SeriesModel = {
+            ...staticSeries,
+            votingRecord: [failedRecord],
+          };
 
-      const completeSeries: SeriesModel = {
-        ...staticSeries,
-        votingRecord: [passingRecord],
-      };
+          // 6 Completed series to avoid resurrecting the dropped one
+          const completeSeries = Array<SeriesModel>(6).fill({
+            ...staticSeries,
+            votingRecord: [passingRecord],
+          });
 
-      const seriesList: SeriesModel[] = [droppedSeries, completeSeries];
+          const seriesList: SeriesModel[] =
+              completeSeries.concat([droppedSeries]);
 
-      aggregateVotingStatus(pastSeason, seriesList);
+          aggregateVotingStatus(pastSeason, seriesList);
 
-      expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
-      expect(completeSeries.votingStatus).toEqual(VotingStatus.Completed);
-    });
+          expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
+          expect(completeSeries[0].votingStatus)
+              .toEqual(VotingStatus.Completed);
+        });
 
     test('should return no report for past seasons', () => {
       const passingSeries: SeriesModel = {
@@ -117,7 +121,13 @@ describe('aggregateVotingStatus', () => {
         votingRecord: [failedRecord],
       };
 
-      aggregateVotingStatus(currentSeason, [droppedSeries]);
+      // 6 Completed series to avoid resurrecting the dropped one
+      const completeSeries = Array<SeriesModel>(6).fill({
+        ...staticSeries,
+        votingRecord: [passingRecord],
+      });
+
+      aggregateVotingStatus(currentSeason, [...completeSeries, droppedSeries]);
 
       expect(droppedSeries.votingStatus).toEqual(VotingStatus.Dropped);
     });
