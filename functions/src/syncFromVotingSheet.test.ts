@@ -83,8 +83,8 @@ describe('syncFromVotingSheet', () => {
         seriesStats: {
           [VotingStatus.Unknown]: 0,
           [VotingStatus.Dropped]: 8,
-          [VotingStatus.Watching]: 7,
-          [VotingStatus.Completed]: 1,
+          [VotingStatus.Watching]: 0,
+          [VotingStatus.Completed]: 8,
           [VotingStatus.Continuing]: 0,
         },
       },
@@ -97,8 +97,8 @@ describe('syncFromVotingSheet', () => {
         seriesStats: {
           [VotingStatus.Unknown]: 0,
           [VotingStatus.Dropped]: 13,
-          [VotingStatus.Watching]: 6,
-          [VotingStatus.Completed]: 0,
+          [VotingStatus.Watching]: 0,
+          [VotingStatus.Completed]: 6,
           [VotingStatus.Continuing]: 0,
         },
       },
