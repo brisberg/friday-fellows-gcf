@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/friday-fellows-gcf/static/css/main.3fd87347.chunk.css",
-    "main.js": "/friday-fellows-gcf/static/js/main.30f77b93.chunk.js",
-    "main.js.map": "/friday-fellows-gcf/static/js/main.30f77b93.chunk.js.map",
-    "runtime-main.js": "/friday-fellows-gcf/static/js/runtime-main.28b63093.js",
-    "runtime-main.js.map": "/friday-fellows-gcf/static/js/runtime-main.28b63093.js.map",
-    "static/js/2.6715ef1c.chunk.js": "/friday-fellows-gcf/static/js/2.6715ef1c.chunk.js",
-    "static/js/2.6715ef1c.chunk.js.map": "/friday-fellows-gcf/static/js/2.6715ef1c.chunk.js.map",
+    "main.css": "/friday-fellows-gcf/static/css/main.37dea8a7.chunk.css",
+    "main.js": "/friday-fellows-gcf/static/js/main.159759fc.chunk.js",
+    "main.js.map": "/friday-fellows-gcf/static/js/main.159759fc.chunk.js.map",
+    "runtime-main.js": "/friday-fellows-gcf/static/js/runtime-main.d43759e5.js",
+    "runtime-main.js.map": "/friday-fellows-gcf/static/js/runtime-main.d43759e5.js.map",
+    "static/js/2.fcf6311b.chunk.js": "/friday-fellows-gcf/static/js/2.fcf6311b.chunk.js",
+    "static/js/2.fcf6311b.chunk.js.map": "/friday-fellows-gcf/static/js/2.fcf6311b.chunk.js.map",
     "index.html": "/friday-fellows-gcf/index.html",
-    "precache-manifest.fb78bd59931813d6e6ae25130b642fa3.js": "/friday-fellows-gcf/precache-manifest.fb78bd59931813d6e6ae25130b642fa3.js",
+    "precache-manifest.4861f0bb9a679be64410fc7e45dd5e3f.js": "/friday-fellows-gcf/precache-manifest.4861f0bb9a679be64410fc7e45dd5e3f.js",
     "service-worker.js": "/friday-fellows-gcf/service-worker.js",
-    "static/css/main.3fd87347.chunk.css.map": "/friday-fellows-gcf/static/css/main.3fd87347.chunk.css.map",
-    "static/js/2.6715ef1c.chunk.js.LICENSE": "/friday-fellows-gcf/static/js/2.6715ef1c.chunk.js.LICENSE",
+    "static/css/main.37dea8a7.chunk.css.map": "/friday-fellows-gcf/static/css/main.37dea8a7.chunk.css.map",
+    "static/js/2.fcf6311b.chunk.js.LICENSE.txt": "/friday-fellows-gcf/static/js/2.fcf6311b.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/friday-fellows-gcf/static/media/logo.25bf045c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.28b63093.js",
-    "static/js/2.6715ef1c.chunk.js",
-    "static/css/main.3fd87347.chunk.css",
-    "static/js/main.30f77b93.chunk.js"
+    "static/js/runtime-main.d43759e5.js",
+    "static/js/2.fcf6311b.chunk.js",
+    "static/css/main.37dea8a7.chunk.css",
+    "static/js/main.159759fc.chunk.js"
   ]
 }
