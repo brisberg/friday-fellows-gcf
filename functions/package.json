@@ -15,32 +15,32 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "main": "lib/index.js",
   "dependencies": {
     "@types/cors": "^2.8.6",
-    "@types/node": "^12.12.30",
-    "@types/node-fetch": "^2.5.5",
+    "@types/node": "^10.17.26",
+    "@types/node-fetch": "^2.5.7",
     "cors": "^2.8.5",
-    "firebase-admin": "^8.10.0",
-    "firebase-functions": "^3.3.0",
-    "gaxios": "^2.3.2",
-    "googleapis": "^48.0.0",
-    "node": "^8.13.0",
+    "firebase-admin": "^8.13.0",
+    "firebase-functions": "^3.7.0",
+    "gaxios": "^3.0.3",
+    "googleapis": "^52.1.0",
+    "node": "^10.21.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@firebase/testing": "^0.17.0",
-    "@types/jest": "^25.1.4",
-    "firebase-functions-test": "^0.2.0",
-    "firebase-tools": "^7.15.1",
-    "jest": "^25.1.0",
+    "@firebase/testing": "^0.20.5",
+    "@types/jest": "^26.0.3",
+    "firebase-functions-test": "^0.2.1",
+    "firebase-tools": "^8.4.3",
+    "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.3",
-    "jest-mock": "^25.1.0",
-    "ts-jest": "^25.2.1",
-    "tslint": "^6.1.0",
-    "typescript": "^3.8.3"
+    "jest-mock": "^26.1.0",
+    "ts-jest": "^26.1.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.6"
   },
   "private": true
 }
