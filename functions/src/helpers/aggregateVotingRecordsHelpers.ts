@@ -15,7 +15,7 @@ export function aggregateVotingStatus(
     return;
   }
   const seasonStartDate = new Date(season.startDate);
-  const weekNum = weeksBetween(seasonStartDate, new Date(Date.now()));
+  const weekNum = weeksBetween(seasonStartDate, new Date(Date.now())) + 1;
 
   if (weekNum > 13) {
     aggregateOlderSeason(season, series);
@@ -264,9 +264,9 @@ function reviveShowsIfLessThanSix(
 
 // Utilities
 
-/** Calculate the number of weeks between two dates */
+/** Calculate the number of weeks (rounded down) between two dates */
 function weeksBetween(d1: Date, d2: Date) {
-  return Math.round((d2.getTime() - d1.getTime()) / (7 * 24 * 60 * 60 * 1000));
+  return Math.floor((d2.getTime() - d1.getTime()) / (7 * 24 * 60 * 60 * 1000));
 }
 
 /** Did this vote pass */
